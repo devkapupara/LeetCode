@@ -17,7 +17,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 
 
-###[Count And Say]("https://leetcode.com/problems/count-and-say/">)
+### [Count And Say](https://leetcode.com/problems/count-and-say/)
 
 ```java
 public String countAndSay(int n) {
@@ -44,7 +44,7 @@ public String countAndSay(int n) {
 
 
 
-### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
+###[Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
 
 ```java
 public int maxSubArray(int[] nums) {
@@ -68,7 +68,7 @@ public int maxSubArray(int[] nums) {
 
 
 
-###[Plus One](https://leetcode.com/problems/plus-one/)
+### [Plus One](https://leetcode.com/problems/plus-one/)
 
 ```java
 public int[] plusOne(int[] digits)
@@ -94,7 +94,7 @@ public int[] plusOne(int[] digits)
 
 
 
-###[Sqrt of X](https://leetcode.com/problems/sqrtx/)
+### [Sqrt of X](https://leetcode.com/problems/sqrtx/)
 
 ```java
 public int mySqrt(int x) {
@@ -246,7 +246,7 @@ public int maxDepth(TreeNode root) {
 
 
 
-###[Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
+### [Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
 
 ```java
 public TreeNode sortedArrayToBST(int[] nums)
@@ -269,7 +269,7 @@ private TreeNode aux(int[] n, int left, int right)
 
 
 
-###[Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
+### [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
 
 ```java
 public boolean isBalanced(TreeNode root)
@@ -428,7 +428,7 @@ public List<Integer> getRow(int rowIndex)
 
 ```Java
 /*
-The general idea is that the price you are looking at right now in the array minus the minimum observed so far is greater than the maximum profit you recorded, update the max.
+The general idea is that if the price you are looking at right now in the array minus the minimum observed so far is greater than the maximum profit you recorded, update the max.
 */
 public int maxProfit(int[] prices) {
     if (prices.length == 0)		// Empty array
@@ -616,14 +616,12 @@ public int majorityElement(int[] nums) {
     int major = nums[0];
     int count = 1;
 
-   for (int i = 0; i < nums.length; i++)
-    {
+   for (int i = 0; i < nums.length; i++){
         if (major == nums[i])
             count++;
         else
             count--;
-        if (count == 0)
-        {
+        if (count == 0){
             major = nums[i];
             count = 1;
         }
@@ -818,7 +816,7 @@ public int reverse(int x) {
 
 
 
-###[Add Two Numbers](https://leetcode.com/problems/add-two-numbers/submissions/)
+### [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/submissions/)
 
 ```java
 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
@@ -1084,7 +1082,7 @@ public boolean containsNearbyDuplicate(int[] nums, int k) {
 
 
 
-###[Implement Stack Using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
+### [Implement Stack Using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
 
 ```java
 class MyStack {
@@ -1135,7 +1133,7 @@ public TreeNode invertTree(TreeNode root) {
 
 
 
-###[Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)
+### [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)
 
 ```java
 // Iterative
@@ -1239,6 +1237,75 @@ public boolean isPowerOfTwo(int n) {
         n = n / 2;			// It is a multiple of 2, so divide it by 2.
     }
     return true;			// n came out to be 1 which is a power of 2, so return true.
+}
+```
+
+
+
+### [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)
+
+```java
+private char[][] board;
+  public boolean isValidSudoku(char[][] board){
+    this.board = board;
+    return rowCheck() && colCheck() && boxCheck();	// Check row first, then column and at
+  }													// last, boxes because they are time
+													// consuming.
+  private boolean rowCheck(){						// Horizontal check
+    boolean[] arr;
+    for (char[] row: board){
+      arr = new boolean[9];
+      for (char c: row){
+        int val = c-'0';
+        if (val != -2){								// val = -2 means '.' in the board
+          if (arr[val-1])							// If val already seen, invalid sudoku
+            return false;
+          arr[val-1] = true;						// else, Mark that index as seen.
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean colCheck(){						// Vertical Check.
+    boolean[] arr;
+    for (int col = 0; col < board.length; col++){
+      arr = new boolean[9];
+      for (int row = 0; row < board[0].length; row++){
+        int val = board[row][col]-'0';
+        if (val != -2){
+          if (arr[val-1])
+            return false;
+          arr[val-1] = true;
+        }
+      }
+    }
+    return true;
+  }
+
+  private boolean boxCheck(){					// For the 9 sub boxes, let the single
+    for (int i = 0; i < 9; i+=3){				// box checker check it's validity.
+      for (int j = 0; j < 9; j+=3)				// If any of the subbox was invalid,
+        if (!singleBoxCheck(i,j))				// we abort and return false.
+          return false;
+    }
+    return true;
+  }
+
+  private boolean singleBoxCheck(int topRightRow, int topRightCol){
+    boolean[] arr = new boolean[9];
+    for (int i = 0; i < 3; i++){				// Each sub box has 3 rows and 3 columns
+      for (int j = 0; j < 3; j++){
+        int val = board[topRightRow+i][topRightCol+j]-'0';	// This gives us the value at 
+        if (val != -2){							// each cell in the sub box and we fill the
+          if (arr[val-1])						// arr with all values that are seen.
+            return false;						// If seen twice, return false;
+          arr[val-1] = true;
+        }
+      }
+    }
+    return true;
+  }
 }
 ```
 
