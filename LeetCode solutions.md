@@ -1309,3 +1309,43 @@ private char[][] board;
 }
 ```
 
+
+
+### [Implement Queue Using Stack](https://leetcode.com/problems/implement-queue-using-stacks/submissions/)
+
+```java
+/*
+Since we reverse stack1 into stack2, stack2 is basically our queue, so if stack2 isn't empty, then the topmost element is what we need when we pop or peek. If it is empty, then again fill it with whatever's there is stack1, and it again becomes the correct queue.
+*/
+Stack<Integer> stack1;
+Stack<Integer> stack2;
+
+public MyQueue() {
+    stack1 = new Stack<>();
+    stack2 = new Stack<>();
+}
+
+public void push(int x) {
+    stack1.push(x);			// Push onto stack1
+}
+
+public int pop() {
+    peek();					// First call the peek function, to make sure stack 2 isn't
+    return stack2.pop();	// empty. Then, the topmost element of stack2 is what we want
+}
+
+/** Get the front element. */
+public int peek() {
+    if (stack2.isEmpty()){			
+        while (!stack1.isEmpty())
+            stack2.push(stack1.pop());
+    }
+    return stack2.peek();	// stack2 is basically the queue, so return whatever's on the top
+}
+
+/** Returns whether the queue is empty. */
+public boolean empty() {
+    return stack1.isEmpty() && stack2.isEmpty();
+}
+```
+
