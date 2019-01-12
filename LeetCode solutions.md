@@ -17,7 +17,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 
 
-###[Count And Say](https://leetcode.com/problems/count-and-say/)
+### [Count And Say](https://leetcode.com/problems/count-and-say/)
 
 ```java
 public String countAndSay(int n) {
