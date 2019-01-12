@@ -44,7 +44,7 @@ public String countAndSay(int n) {
 
 
 
-### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
+###[Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
 
 ```java
 public int maxSubArray(int[] nums) {
@@ -1347,5 +1347,48 @@ public int peek() {
 public boolean empty() {
     return stack1.isEmpty() && stack2.isEmpty();
 }
+```
+
+
+
+### [Palindrome LinkedList](https://leetcode.com/problems/palindrome-linked-list/submissions/)
+
+```JAVA
+public boolean isPalindrome(ListNode head) {
+    if (head == null || head.next == null)		// Size 0 or 1 list, must be unique.
+        return true;
+    if (head.next.next == null)					// Size 2 list, compare the head and tail
+        return head.val == head.next.val;		// values
+
+    ListNode middleNode = head;					// Standard Rabbit-Tortoise pointers.
+    ListNode fastPointer = head;				// Fast pointer jumps twice so by the time
+												// it reaches the end of the list, middlenode
+    ListNode curr = head;						// is at the middle of the linkedlist.
+    ListNode prev = null;
+    ListNode nextNode;							// These three nodes are for reversing the 
+												// first half of the list
+    while (fastPointer != null && fastPointer.next != null){
+        middleNode = middleNode.next;			// Advance middle once, fastpointer twice
+        fastPointer = fastPointer.next.next;
+
+        nextNode = curr.next;					// Reverse the curr node, but first store the
+        curr.next = prev;						// next newNode. By doing this, we would have
+        prev = curr;							// reversed exactly half of the list because
+        curr = nextNode;						// fastpointer advacnes at double the speed.
+    }
+
+    if (fastPointer != null)					// If faspointer isn't null, then we have an
+        middleNode = middleNode.next;			// odd length list, so advance middle once,
+												// List looks like 1->2->3->2->1 instead of
+    while (middleNode != null){					// 1->2->3->3->2->1
+        if (middleNode.val != prev.val)			// While middle isn't null, check middlenode
+            return false;						// val and prev val. Prev is basically the
+        middleNode = middleNode.next;			// the point where the list reverses.
+        prev = prev.next;						// Advance middle and next.
+    }
+    return true;								// Values matched, so return true.
+}												// Reversed list looks like this:
+												// 1<-2<-3<-prev middle->3->2->1 in even len
+												// 1<-2<-prev middle->2->1 in odd lengths.
 ```
 
