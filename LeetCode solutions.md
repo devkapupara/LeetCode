@@ -44,7 +44,7 @@ public String countAndSay(int n) {
 
 
 
-###[Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
+### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
 
 ```java
 public int maxSubArray(int[] nums) {
