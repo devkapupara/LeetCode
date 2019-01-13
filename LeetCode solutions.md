@@ -1448,3 +1448,58 @@ public boolean isAnagram(String s, String t) {
 }
 ```
 
+
+
+### [Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/)
+
+```java
+List<String> paths = new ArrayList<>();
+public List<String> binaryTreePaths(TreeNode root) {
+    if (root == null)					// No paths
+        return paths;
+    String rootval = root.val + "";		// Converting int to string.
+    traverse(root, rootval);
+    return paths;
+}
+
+private void traverse(TreeNode root, String s){
+    if (root.left == null && root.right == null)		// It's a leaf, and you found a path
+        paths.add(s);									// so add it to the list
+    if (root.left != null)								// Left side is traversable, so
+        traverse(root.left, s + "->" + root.left.val);	// visit it and record its value.
+    if (root.right != null)								// Same as above, but for right side.
+        traverse(root.right, s + "->" + root.right.val);
+}
+```
+
+
+
+### [Add Digits](https://leetcode.com/problems/add-digits/)
+
+```java
+private int constantTime(int n){
+    if (n < 10)
+        return n;			// Already a single digit
+    int result = n % 9;
+    if (result == 0)		// If perfectly divisible by 9, then sum will be 9.
+        return 9;
+    return result;			// Otherwise, the result is going to be n % 9.
+}
+
+private int iterative(int num){
+    while (num > 9){				// While number isn't between 2-9
+        num = sumOfDigits(num);		// make num = sum of it's digits.
+    }
+    return num;
+}
+
+private int sumOfDigits(int n){		// Standard method to add the digits of a number.
+    int sum = 0;
+    while (n != 0){
+        sum += n % 10;				// Extract the last digit, add it to sum.
+        n /= 10;					// Divide the num by 10.
+    }
+    return sum;
+}
+```
+
