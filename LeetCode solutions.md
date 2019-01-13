@@ -1503,3 +1503,18 @@ private int sumOfDigits(int n){		// Standard method to add the digits of a numbe
 }
 ```
 
+
+
+### [Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)
+
+```java
+public int largestPerimeter(int[] A) {
+    Arrays.sort(A);							// Sort so the largest sides are at the end.
+    for (int i = A.length-3; i >= 0; --i)	// Triangle inequality Theorem : a + b > c
+        if (A[i] + A[i+1] > A[i+2])			// If sum of last two is greater than the last
+            return A[i] + A[i+1] + A[i+2];	// we found out max perimeter, otherwise
+    return 0;								// decrease i by i, then check the next three
+}											// triplets
+											// In the end if nothing works out, we return 0.
+```
+
