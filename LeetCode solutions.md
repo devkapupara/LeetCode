@@ -1246,12 +1246,38 @@ public boolean isPowerOfTwo(int n) {
 
 ```java
 private char[][] board;
-  public boolean isValidSudoku(char[][] board){
-    this.board = board;
-    return rowCheck() && colCheck() && boxCheck();	// Check row first, then column and at
-  }													// last, boxes because they are time
-													// consuming.
-  private boolean rowCheck(){						// Horizontal check
+public boolean isValidSudoku(char[][] board){
+this.board = board;
+return rowCheck() && colCheck() && boxCheck();	// Check row first, then column and at
+}												// last, boxes because they are time
+                                                // consuming.
+  
+private boolean onePassCheck(){
+  HashSet<Integer>[] rows = new HashSet[9];		// 1 HashSet for each row
+  HashSet<Integer>[] columns = new HashSet[9];	// 1 HashSet for each column
+  HashSet<Integer>[] boxes = new HashSet[9];	// 1 HashSet for each box.
+
+  for (int i = 0; i < 9; i++){
+      rows[i] = new HashSet<>();
+      columns[i] = new HashSet<>();
+      boxes[i] = new HashSet<>();
+  }
+
+  for (int i = 0; i < 9; i++){
+      for (int j = 0; j < 9; j++){
+          int n = (int)(board[i][j]);
+          if (n != -2){							// -2 = '.'		
+              int boxIndex = (i/3) * 3 + j/3;	// Calculate which box we are in.
+              if (!rows[i].add(n) || !columns[j].add(n) || !boxes[boxIndex].add(n))
+                  return false;					// If the row set or the column set or the
+          }										// box set contains that val, return false.
+      }
+  }
+
+  return true;
+}
+
+private boolean rowCheck(){						// Horizontal check
     boolean[] arr;
     for (char[] row: board){
       arr = new boolean[9];
