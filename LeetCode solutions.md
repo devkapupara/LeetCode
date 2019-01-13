@@ -1538,4 +1538,15 @@ public boolean isUgly(int num) {
 
 
 
-### [Missing Number]()
+### [Missing Number](https://leetcode.com/problems/missing-number/)
+
+```java
+public int missingNumber(int[] nums) {			// Since it's given that the array contains
+    int nsum = (nums.length*(nums.length+1))/2;	// all numbers from 0-n, we use the formula
+    int arraySum = nums[0];						// to compute sum of n numbers.
+    for (int i = 1; i < nums.length; i++)		// Then we loop through the array to compute
+        arraySum += nums[i];					// the sum of the array.
+    return nsum - arraySum;						// Subtract the array sum from the required
+}												// sum, and that gives us the missing number
+```
+
