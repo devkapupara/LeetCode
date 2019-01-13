@@ -1518,3 +1518,24 @@ public int largestPerimeter(int[] A) {
 											// In the end if nothing works out, we return 0.
 ```
 
+
+
+### [Ugly Number](https://leetcode.com/problems/ugly-number/submissions/)
+
+```java
+public boolean isUgly(int num) {
+    if (num < 1)
+        return false;		// Negative numbers are automatically non ugly
+    while (num % 2 == 0)	// Keep dividing number by 2 till it is divisible
+        num /= 2;
+    while (num % 3 == 0)	// Keep dividing by 3
+        num /= 3;
+    while (num % 5 == 0)	// and 5
+        num /= 5;
+    return num == 1;		// If num isn't 1, that means that there are other prime factors
+}							// except 2,3 and 5.
+```
+
+
+
+### [Missing Number]()
