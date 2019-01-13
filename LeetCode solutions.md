@@ -1424,8 +1424,8 @@ public boolean isPalindrome(ListNode head) {
 
 ```java
 public void deleteNode(ListNode node) {
-        node.val = node.next.val;		// Node's value becomes its next node's value
-        node.next = node.next.next;  	// Node's next is it's next's next.
-    }
+    node.val = node.next.val;		// Node's value becomes its next node's value
+    node.next = node.next.next;  	// Node's next is it's next's next.
+}
 ```
 
