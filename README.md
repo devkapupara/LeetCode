@@ -1,2 +1,2 @@
-# LeetCode
-A Markdown file that contains my solutions of LeetCode problems, with comments so everyone can understand the thought process. This markdown file will be updated periodically with each problem I solve.
+# LeetCode Solutions
+A Markdown file that contains my solutions of LeetCode problems, with comments so everyone can understand my thought process and the logic. The solutions files will contain optimal solution, plus any other different method that I came up with that differs from the published LeetCode solution. I have set up a script that will automatically update the the markdown file with each problem I solve, so please check back frequently if you cannot find some problems. As of now, I have decided to go through the easy problems one by one, then moving on to the medium and then the hard ones. 
