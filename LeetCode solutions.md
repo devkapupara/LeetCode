@@ -1429,3 +1429,22 @@ public void deleteNode(ListNode node) {
 }
 ```
 
+
+
+### [Is Anagram](https://leetcode.com/problems/valid-anagram/submissions/)
+
+```java
+public boolean isAnagram(String s, String t) {
+    if (s.length() != t.length())			// Can't be anagram if size aren't the same
+        return false;
+    int[] store = new int[26];				// Acts like a hashmap
+    for (int i = 0; i < s.length(); i++)	// Increment the count by 1 in the store for the
+        store[s.charAt(i)-'a']++;			// index = position of char in the alphabet
+    for (int i = 0; i < t.length(); i++){	// Loop throught the second string, decrement
+        if (--store[t.charAt(i)-'a'] < 0)	// count of each character in store by 1, but if
+            return false;					// it goes below 0, then it means that character
+    }										// occurred more than it did in s. So false.
+    return true;							// Everything matched, so return true.
+}
+```
+
