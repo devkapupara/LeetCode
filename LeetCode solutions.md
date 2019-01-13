@@ -1418,3 +1418,14 @@ public boolean isPalindrome(ListNode head) {
 												// 1<-2<-prev middle->2->1 in odd lengths.
 ```
 
+
+
+### [Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/)
+
+```java
+public void deleteNode(ListNode node) {
+        node.val = node.next.val;		// Node's value becomes its next node's value
+        node.next = node.next.next;  	// Node's next is it's next's next.
+    }
+```
+
