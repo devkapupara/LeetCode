@@ -1637,3 +1637,31 @@ public boolean canWinNim(int n) {
 }
 ```
 
+
+
+### [Power Of Three](https://leetcode.com/problems/power-of-three/)
+
+```java
+public boolean isPowerOfThree(int n) {
+    if (n < 1)				// If negative, it can't be a power of 3.
+        return false;
+    while (n % 3 == 0)		// While n is divisible by 3, keep dividing it.
+        n /= 3;
+    return n == 1;			// In the end, if it was a power of 3, then n should be 1.
+}
+```
+
+
+
+### [Power of Four](https://leetcode.com/problems/power-of-four/submissions/)
+
+```java
+/*
+You can also use the iterative method that I have used in Power of Two and Power of Three problems. I just wanted to try a different approach here. This is a constant time function.
+*/
+public boolean isPowerOfFour(int num) {
+    double pow = Math.log(num)/Math.log(4);	// Calculate x in 4^x = num using logs.
+    return pow == (int)pow;					// Making sure that x is an integer and not a
+}											// fractional exponent.
+```
+
