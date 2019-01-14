@@ -1605,7 +1605,7 @@ private void swap(int[] a, int i, int j){
 
 
 
-### [Word Pattern][https://leetcode.com/problems/word-pattern/]
+### [Word Pattern](https://leetcode.com/problems/word-pattern/)
 
 ```java
 public boolean wordPattern(String pattern, String str) {
