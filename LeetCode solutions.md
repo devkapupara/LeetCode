@@ -1550,3 +1550,24 @@ public int missingNumber(int[] nums) {			// Since it's given that the array cont
 }												// sum, and that gives us the missing number
 ```
 
+
+
+### [Is Bad Version](https://leetcode.com/problems/first-bad-version/submissions/)
+
+```java
+public int firstBadVersion(int n) {		// Basic Binary Search Algorithm
+    int low = 1, high = n;
+    int mid;
+    while (low < high){
+        mid = low + (high - low)/2;		// high - low to prefent integer overflow.
+        if (isBadVersion(mid))			// if the model at mid was bad version, then we
+            high = mid;					// could possibly have a bad version before it
+        else
+            low = mid+1;				// If it wasn't, then our first bad version lies
+    }									// beyond the middle element.
+    return low;
+}
+```
+
+
+
