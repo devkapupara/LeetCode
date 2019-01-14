@@ -44,7 +44,7 @@ public String countAndSay(int n) {
 
 
 
-###[Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
+### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
 
 ```java
 public int maxSubArray(int[] nums) {
@@ -1600,6 +1600,30 @@ private void swap(int[] a, int i, int j){
     int temp = a[i];
     a[i] = a[j];
     a[j] = temp;
+}
+```
+
+
+
+### [Word Pattern][https://leetcode.com/problems/word-pattern/]
+
+```java
+public boolean wordPattern(String pattern, String str) {
+    String[] words = str.split(" ");		// Split str into words
+    if (pattern.length() != words.length)	// If length of pattern and words mismatch
+        return false;						// then pattern do not match
+    HashMap<Character, String> patternStore = new HashMap<>();	// Map pattern char to word
+    HashMap<String, Character> wordMap = new HashMap<>();		// Map word to pattern char
+    for (int i = 0; i < words.length; i++){
+        char c = pattern.charAt(i);					// Get the char
+        patternStore.putIfAbsent(c, words[i]);		// Put it in patternStore if absent
+        if (!patternStore.get(c).equals(words[i]))	// If it was already there and it doesn't
+            return false;							// map to words[i], we have a violation
+        wordMap.putIfAbsent(words[i], c);			// Now check the other way around. If
+        if (wordMap.get(words[i]) != c)				// words is absent in the map, map it to
+            return false;							// the char. If present, then fetch it's
+    }												// mapping and check if both match to c.
+    return true;							// No violation, so return true
 }
 ```
 
