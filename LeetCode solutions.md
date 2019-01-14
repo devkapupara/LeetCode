@@ -1571,3 +1571,35 @@ public int firstBadVersion(int n) {		// Basic Binary Search Algorithm
 
 
 
+### [Move Zeroes](https://leetcode.com/problems/move-zeroes/solution/)
+
+```java
+/*
+The general idea is that we know the end of the array is going to contain zeroes. So first, iterate over the array, if you find any non-zero value, copy it down to the front of the array. Then we you are done, length of the array minus the last index where you copied the non-zero element is the number of zeroes you need to fill in. So iterate from that last non-zero index to the end of the array and fill in zeroes.
+*/
+public void moveZeroes(int[] nums) {
+    int lastNonZeroIndex = 0;
+    for (int i = 0; i < nums.length; i++)
+        if (nums[i] != 0)
+            nums[lastNonZeroIndex++] = nums[i];
+    for (int i = lastNonZeroIndex; i < nums.length; i++)
+        nums[i] = 0;
+}
+
+/*
+This solution is an extension of the above, but a better one because we only swap elements when needed and do not do any unnecessary writes. Start from the beginning of the array, maintain the last position of non-zero value you saw, and the current element. If you see a non-zero value, swap the current value with the index just after the last non-zero index you have, and then increment the non-zero index by 1 because you just found a new non-zero value. This helps us prepare for the next non-zero value we find and copy it at this index+1. By doing so, we are basically partitioning the array into non-zeroes and zero values.
+*/
+public void moveZeroes(int[] nums) {
+    for (int lastNonZeroIndex = 0, i = 0; i < nums.length; i++){
+        if (nums[i] != 0)
+            swap(nums, i , lastNonZeroIndex++);
+    }
+}
+
+private void swap(int[] a, int i, int j){
+    int temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
+}
+```
+
