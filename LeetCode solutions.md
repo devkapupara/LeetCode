@@ -1627,3 +1627,13 @@ public boolean wordPattern(String pattern, String str) {
 }
 ```
 
+
+
+### [Can Win Nim](https://leetcode.com/problems/nim-game/)
+
+```java
+public boolean canWinNim(int n) {
+    return n % 4 != 0;			// You can always win the game if n is not divisible by 4.
+}
+```
+
