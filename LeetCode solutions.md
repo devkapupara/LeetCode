@@ -1665,3 +1665,32 @@ public boolean isPowerOfFour(int num) {
 }											// fractional exponent.
 ```
 
+
+
+### [Reverse String](https://leetcode.com/problems/reverse-string/)
+
+```java
+/*
+1 Liner solution. Basically, create a StringBuilder of the string, the builder already has a reverse method, so reverse it and then return it's toString.
+*/
+
+public String reverseString(String s) {
+    return new StringBuilder(s).reverse().toString();
+}
+
+/*
+Golfing aside, here is how one is expected to solve it in an interview.
+*/
+
+public String reverseString(String s) {
+	char[] array = s.toCharArray();		// Create a char array of the string
+	int len = array.length;				// length of the array
+	for (int i = 0; i < len/2; i++){	// We only need to iterate over half the array.
+		char temp = array[i];			// Swap the 0th index element with (len-1)th,
+		array[i] = array[len-i-1];		// 1st index element with (len-2)th, until you get
+		array[len-i-1] = temp;			// to the middle element.
+	}
+	return new String(array);			// Return a new string with the reversed array.
+}
+```
+
