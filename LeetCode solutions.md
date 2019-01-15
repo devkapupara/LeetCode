@@ -1846,3 +1846,21 @@ public int getSum(int a, int b) {
 
 
 
+### [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/)
+
+```java
+public int guessNumber(int n) {				// Standard binary search algorithm
+    int low = 1, high = n, result = -2;		// Arbitrary result, but not 0
+    int mid = 0;
+    while (result != 0){
+        mid = low + (high-low)/2;			// Check the mid.
+        result = guess(mid);				// Check if our guess is correct
+        if (result == -1)					// If result == -1, then we overshot
+            high = mid-1;					// So we can discard all values > mid
+        else if (result == 1)				// If result == 1, we undershot
+            low = mid+1;					// Need to discard all the values < mid
+    }
+    return mid;								// Result == 0, so return the mid.
+}
+```
+
