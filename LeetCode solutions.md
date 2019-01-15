@@ -1789,3 +1789,38 @@ public int[] intersection(int[] nums1, int[] nums2) {
 }
 ```
 
+
+
+### [Is Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
+
+```java
+/**
+The basic idea here is to close in on the square root using binary search algorithm. 
+I handle 4 seperately because it's root is the only one where 4/3 < it's square root. 
+All other numbers square root is greater than its value/3.
+So we create a lowerBound of 1 and an upperBound of num/3. Then if the middle value's square
+overshoots, we make upperBound = mid-1, otherwise increment lowerBound to mid+1. This way, we
+close on the square root from both sides, and if the middle values is the square root, it's
+square will yield num.
+*/
+public boolean isPerfectSquare(int num) {
+    if (num < 2 || num == 4)
+        return true;
+    long lowerBound = 1;
+    long upperBound = num/3;
+    long mid;
+    long square;
+    while (lowerBound <= upperBound){
+        mid = lowerBound + (upperBound-lowerBound)/2;
+        square = mid*mid;
+        if (square == num)
+            return true;
+        if (square > num)
+            upperBound = mid-1;
+        else
+            lowerBound = mid+1;
+    }
+    return false;
+}
+```
+
