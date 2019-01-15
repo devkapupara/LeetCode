@@ -1694,3 +1694,29 @@ public String reverseString(String s) {
 }
 ```
 
+
+
+### [Implement strStr()](https://leetcode.com/problems/implement-strstr/submissions/)
+
+```java
+/*
+The basic idea here is that you only need to iterate haystack length - needle length, and then check the substring of size = needle length in haystack from each index. If you are successfully able to match each character of the needle in the corresponding substring in haystack, return the index you start from. 
+*/
+public int strStr(String haystack, String needle) {
+    if (needle.length() > haystack.length())	// Needle length can't be > than haystack
+        return -1;
+    int hl = haystack.length();
+    int nl = needle.length();
+    if (nl == 0)								// Empty strings are always a match starting
+        return 0;								// from 0.
+    for (int i = 0; i <= hl-nl; i++){			// Iterate haystack length - needle length.
+        for (int j = 0; j < nl && haystack.charAt(i+j) == needle.charAt(j); ++j)}
+            if (j == nl-1)						// We are checking how far from i can we
+                return i;						// match. If i matched with j, increment j
+        }										// and then match the character i+1 to j.
+    }											// If that matches, increment j and match i+2
+    return -1;									// j == n-1 checked wether or not if we were
+}												// able to match the full needle string, if
+												// yes, then i is our index
+												// in the end, nothing matched, so return -1
+```
