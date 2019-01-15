@@ -1824,3 +1824,25 @@ public boolean isPerfectSquare(int num) {
 }
 ```
 
+
+
+### [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)
+
+I cannot explain it better than this [post](https://leetcode.com/problems/sum-of-two-integers/discuss/132479/Simple-explanation-on-how-to-arrive-at-the-solution).
+
+```java
+public int getSum(int a, int b) {
+    if (a == 0)
+        return b;
+    if (b == 0)
+        return a;
+    int sum = a ^ b;
+    int carry = a & b;
+    if (carry == 0)
+        return sum;
+    return getSum(sum, carry << 1);
+}
+```
+
+
+
