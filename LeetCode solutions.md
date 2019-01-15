@@ -1720,3 +1720,72 @@ public int strStr(String haystack, String needle) {
 												// yes, then i is our index
 												// in the end, nothing matched, so return -1
 ```
+
+
+
+### [Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)
+
+```java
+public String reverseVowels(String s) {
+    if (s.length() < 2)
+        return s;					// No need to reverse a string of length 0 or 1
+    char[] str = s.toCharArray();	// Get the char array
+
+    int left = 0;
+    int right = str.length-1;
+
+    while (left < right){
+        while (left < right && !isVowel(str[left]))		// While left is pointing to a
+            left++;										// consonant, increment it/
+        while (left < right && !isVowel(str[right]))	// While right is pointing to a
+            right--;									// consonant, decrement it.
+
+        char temp = str[left];							// Left and right are now pointing
+        str[left] = str[right];							// to vowels, so swap it.
+        str[right] = temp;								// And then increment left and
+        left++;											// decrement right to process the
+        right--;										// inner string
+    }
+    return new String(str);			// Return a string from the reveresed array.
+}
+
+private boolean isVowel(char c){	// Function to check if a character is a vowel.
+    switch (c) {
+        case 'a':
+        case 'e':
+        case 'i':
+        case 'o':
+        case 'u':
+        case 'A':
+        case 'E':
+        case 'I':
+        case 'O':
+        case 'U':
+            return true;
+        default:
+            return false;
+    }
+}
+```
+
+
+
+### [Intersection of two arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
+
+```java
+public int[] intersection(int[] nums1, int[] nums2) {
+    Set<Integer> set1 = new HashSet<Integer>();		// Record all unique values in set 1
+    for (int i: nums1)
+        set1.add(i);
+    Set<Integer> intersect = new HashSet<>();		// We will use it to record intersection
+    for (int i: nums2)								// For each value in nums2 array
+        if (set1.contains(i))						// If set1 contains it, we found an
+            intersect.add(i);						// intersecting element, so add it.
+    int[] res = new int[intersect.size()];			// We will now convert the set to an
+    int i = 0;										// array and then return the array.
+    for (int n: intersect)
+        res[i++] = n;
+    return res;
+}
+```
+
