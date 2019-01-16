@@ -1871,13 +1871,13 @@ public int guessNumber(int n) {				// Standard binary search algorithm
 ```java
 public boolean canConstruct(String ransomNote, String magazine) {
     int[] store = new int[26];
-    for (int i = 0; i < magazine.length(); i++)		// First, fill the store with available
-        store[magazine.charAt(i)-'a']++;			// characters from the magazine
-    for (int i = 0; i < ransomNote.length(); i++)	// Then, scan through the note, decrement
-        if (--store[ransomNote.charAt(i)-'a'] < 0)	// each char's index by 1 because we used
-            return false;							// it. If it's frequency drops below 0,
-    return true;									// then it means that we need more chars
-}													// than available. In the end, return
-													// true if everything worked out.
+    for (char c: magazine.toCharArray())		// First, fill the store with available
+        store[c-'a']++;							// characters from the magazine
+    for (char c: ransomNote.toCharArray())		// Then, scan through the note, decrement
+        if (--store[c-'a'] < 0)					// each char's index by 1 because we used
+            return false;						// it. If it's frequency drops below 0,
+    return true;								// then it means that we need more chars
+}												// than available. In the end, return
+												// true if everything worked out.
 ```
 
