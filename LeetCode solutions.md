@@ -1898,3 +1898,27 @@ public int firstUniqChar(String s) {
 }
 ```
 
+
+
+### [Find the Difference](https://leetcode.com/problems/find-the-difference/)
+
+```java
+/**
+The general idea here is same as the problem where we are required to find a unique int
+in an array containing duplicates except one. We use the xor operator between each character
+of the string s and t, and the ones that are duplicate will xor to give 0. XOR of any element
+with 0 is the element itself, and XOR of two same elements gives 0. This way, since string s
+and t basically has pairs of repeating characters except one, the unique element will XOR
+with 0 and give us it's ASCII code. The only thing we need to take care of is to now shift it
+up by 26, so we add 'a' and convert it to char.
+*/
+public char findTheDifference(String s, String t) {
+    int xor = 0;
+    for (char c: s.toCharArray())
+        xor ^= c-'a';
+    for (char c: t.toCharArray())
+        xor ^= c-'a';
+    return (char)(xor+'a');
+}
+```
+
