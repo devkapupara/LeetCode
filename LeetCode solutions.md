@@ -1922,3 +1922,31 @@ public char findTheDifference(String s, String t) {
 }
 ```
 
+
+
+### [Nth Digit](https://leetcode.com/problems/nth-digit/)
+
+```java
+/**
+Notice that # of digits between 0-9 is 1*9, 10-99 is 2*90, 100-999 is 3*900. If we generalize
+it, it is exactly equal to 9 * (num of digits in the number) * 10^{# of digits - 1}.
+*/
+public int findNthDigit(int n) {
+    if (n < 10)
+        return n;
+    int pow = 1;				// First we need to figure out how many digits there are
+    long upperBound = 9;		// in the number.
+    while (n > upperBound){
+        n -= upperBound;		// If n is a two digit number, subtract the 9 single digit
+        ++pow;					// numbers, if 3 digit, subtract the first 189 digits.
+        upperBound = (long)Math.pow(10, pow-1) * pow * 9;
+    }							// pow allows us to track how many digits there are in num.
+
+    int num = (int)Math.pow(10,pow-1) + (n-1)/pow;		// Calculate which number we want
+    int position = pow - 1 - (n-1) % pow;				// Calculate which index we want
+    for (int i = 0; i < position; i++)					// Divide num that many times
+        num /= 10;
+    return num % 10;									// num % 10 gives us that digit.
+}
+```
+
