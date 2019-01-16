@@ -1972,3 +1972,33 @@ public int sumOfLeftLeaves(TreeNode root) {
 }
 ```
 
+
+
+### [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)
+
+```java
+public int longestPalindrome(String s) {
+    int[] freq = new int[128];		// To record the frequency of each char
+    for (char c: s.toCharArray())
+        freq[c]++;					// Increment count by 1 for each character observed
+    int len = 0;					// length of the longest palindrome
+    boolean isOdd = false;			// Check if our palindrome length is odd
+    for (int i = 0; i < 128; i++){	// Go through each character's index
+        if (freq[i] != 0){			// Only if it has been observed atleast once
+            int val = freq[i];		// Store it's frequency
+            int used;				// Record how many of it's occurrences we will use
+            if (val % 2 == 0)		// If a perfect multiple of 2, we will use all
+                used = val;
+            else{
+                used = val-1;		// If odd occurrences, then the max we can use to form a
+                isOdd = true;		// valid palindrome is val-1. It also tells us that the
+            }						// palindrome is going to be of odd length.
+            len += used;			// Finally, increment length by the number of chars used
+        }
+    }
+    if (isOdd)						// If length is odd, we can always insert any single
+        return len+1;				// character in the middle to keep the palindrome valid.
+    return len;						// If the length is even, then we can't do anything.
+}
+```
+
