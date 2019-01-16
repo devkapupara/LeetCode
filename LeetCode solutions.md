@@ -1959,8 +1959,8 @@ public int sumOfLeftLeaves(TreeNode root) {
     if (root == null)		// Empty tree, therefore total is 0.
         return 0;
     int sum = 0;			// Initialize sum.
-    // Look ahead and check. If left is not null but left is null, then sum is the value of the left leave.
-    // But if left is null or left is non leaf, then we need to explore it, so sum is whatever the subtree from the left node returns.
+    // Look ahead and check. If left is not null but left is a leaf, then sum is the value of the left leaf.
+    // But if left is null or left is an inner node, then we need to explore it, so sum is whatever the subtree from the left node returns.
     if (root.left != null && root.left.left == null && root.left.right == null)
         sum = root.left.val;
     else
