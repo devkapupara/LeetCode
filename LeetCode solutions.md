@@ -1881,3 +1881,20 @@ public boolean canConstruct(String ransomNote, String magazine) {
 												// true if everything worked out.
 ```
 
+
+
+### [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/submissions/)
+
+```java
+public int firstUniqChar(String s) {
+    int[] freq = new int[26];			// Preprocess freq array to maintain freq of each
+    char[] chars = s.toCharArray();		// character in the string s
+    for (char c: chars)
+        ++freq[c-'a'];
+    for (int i = 0; i < chars.length; i++)	// Make a second pass through the chars of the
+        if (freq[chars[i]-'a'] == 1)		// string in order, and if any of the char's
+            return i;						// frequency is 1, that's our unique char
+    return -1;								// Otherwise, no unique character
+}
+```
+
