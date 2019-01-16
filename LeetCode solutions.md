@@ -1950,3 +1950,25 @@ public int findNthDigit(int n) {
 }
 ```
 
+
+
+### [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)
+
+```java
+public int sumOfLeftLeaves(TreeNode root) {
+    if (root == null)		// Empty tree, therefore total is 0.
+        return 0;
+    int sum = 0;			// Initialize sum.
+    // Look ahead and check. If left is not null but left is null, then sum is the value of the left leave.
+    // But if left is null or left is non leaf, then we need to explore it, so sum is whatever the subtree from the left node returns.
+    if (root.left != null && root.left.left == null && root.left.right == null)
+        sum = root.left.val;
+    else
+        sum = sumOfLeftLeaves(root.left);
+    // We computed the sum of the left side. Now we need to traverse the right side and fetch
+    // the sum, so total sum is sum of the left side as computed above + sum returned by
+    // traversing the right side.
+    return sum + sumOfLeftLeaves(root.right);
+}
+```
+
