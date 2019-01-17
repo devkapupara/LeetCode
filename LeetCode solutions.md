@@ -2002,3 +2002,24 @@ public int longestPalindrome(String s) {
 }
 ```
 
+
+
+### [Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)
+
+```java
+public List<String> fizzBuzz(int n) {
+    List<String> nums = new ArrayList<String>();
+    for (int i = 1; i <= n; ++i){				// Loop from 1 to n
+        if (i % 15 == 0)						// If i divisible by 15, add "FizzBuzz"
+            nums.add("FizzBuzz");
+        else if (i % 5 == 0)					// i's not a multiple of 15, check if it's a
+            nums.add("Buzz");					// multiple of 5. If so, add "Buzz"
+        else if (i % 3 == 0)					// i's not a multiple of 5, check if it's a
+            nums.add("Fizz");					// multiple of 3, if so, add "Fizz"
+        else
+            nums.add(i+"");						// Otherwise, just add the String type of the
+    }											// number
+    return nums;
+}
+```
+
