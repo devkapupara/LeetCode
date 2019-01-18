@@ -2023,3 +2023,37 @@ public List<String> fizzBuzz(int n) {
 }
 ```
 
+
+
+### [Third maximum Number](https://leetcode.com/problems/third-maximum-number/)
+
+```java
+public int thirdMax(int[] nums) {
+    if (nums.length == 0)		// Empty array
+        return 0;
+    if (nums.length == 1)		// Size 1 array
+        return nums[0];
+    if (nums.length == 2)		// Size 2 array, check between 0th element or 1st element
+        return nums[0] > nums[1] ? nums[0] : nums[1];
+    long firstMax = Long.MIN_VALUE;		// Lowest values for all three
+    long secondMax = Long.MIN_VALUE;
+    long thirdMax = Long.MIN_VALUE;
+    for (int i: nums){					// For each number in the array
+        if (i > firstMax){				// If num > than the largest, then old largest
+            thirdMax = secondMax;		// becomes second largest and second largest becomes
+            secondMax = firstMax;		// first largest, then update the largest.
+            firstMax = i;
+        }
+        else if (i > secondMax && i != firstMax){	// If num > second and num is not is the
+            thirdMax = secondMax;					// same as first, first largets becomes
+            secondMax = i;							// second largest and update the second
+        }
+        else if (i > thirdMax && i != secondMax && i != firstMax) // // If num > third, we
+            	thirdMax = i;						// need to check that it is not the same
+    }												// as the first and second largest.
+    if (thirdMax == Long.MIN_VALUE)					// This check allows us to make sure that
+        return (int)firstMax;						// we do indeed have a third max and is
+    return (int)thirdMax;							// not what we initialized initially.
+}
+```
+
