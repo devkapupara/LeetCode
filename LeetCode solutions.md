@@ -2063,31 +2063,37 @@ public int thirdMax(int[] nums) {
 
 ```java
 public String addStrings(String num1, String num2) {
-    if (num1 == "0")		// If either of them is 0, return the other.
+    if (num1.equals("0"))
         return num2;
-    if (num2 == "0")
+    if (num2.equals("0"))
         return num1;
     
-    /** We will iterate from the end of the two strings, add their digits one by one
-    record the carrybit, and the digit to be appended and add it to the builder. Once we
-    are done iterating both the strings, we check if the carry is still 1 which may have
-    resulted from adding previous numbers that went above 10. In that case, we need to add 1
-    to the builder. Lastly, we reverse the builder to get the most significant digit in the
-    front.
+    /** We use a char array to maintain the digit at each index. We want the array to be of
+    the size of the largest string + 1 to handle carry bit if any at the end. We start
+    adding each digit of the string from the end, and place it in it's correct index at the
+    end of the sum array. This way, we avoid reversing it and return the answer in constant
+    time. Take care to convert the digit you compute by adding '0'. Lastly, if the carry bit
+    is 1, we need to make the 0th index as 1, and return the string by using the sum array.
+    If it's not 1, then the sum array has a leading 0 which we don't want. So we use Java's
+    String constructor that takes in the char array, startingIndex in that array and the
+    number of elements of that array we want. So if the carry isn't 1, we technically want
+    everything from index 1 and # of elements = sum.length - 1 because we discard 0 index.
     */
-    StringBuilder sb = new StringBuilder();		// Best way to manage string additions
-    int idx1 = num1.length()-1, idx2 = num2.length()-1, carry = 0, total = 0;
+    char[] sum = new char[1 + Math.max(num1.length(), num2.length())];
+    int index = sum.length-1, idx1 = num1.length()-1, idx2 = num2.length()-1, carry = 0, total = 0;
     int n1, n2;
     while (idx1 >= 0 || idx2 >= 0){
         n1 = idx1 < 0 ? 0 : num1.charAt(idx1--)-'0';
         n2 = idx2 < 0 ? 0 : num2.charAt(idx2--)-'0';
         total = n1 + n2 + carry;
         carry = total/10;
-        sb.append(total%10);
+        sum[index--] = (char)(total % 10 + '0');
     }
-    if (carry == 1)
-        sb.append(carry);
-    return sb.reverse().toString();
+    if (carry == 1){
+        sum[index] = '1';
+        return new String(sum);
+    }
+    return new String(sum, 1, sum.length-1);
 }
 ```
 
