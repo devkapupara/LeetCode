@@ -2057,3 +2057,37 @@ public int thirdMax(int[] nums) {
 }
 ```
 
+
+
+### [Add Two Strings](https://leetcode.com/problems/add-strings/)
+
+```java
+public String addStrings(String num1, String num2) {
+    if (num1 == "0")		// If either of them is 0, return the other.
+        return num2;
+    if (num2 == "0")
+        return num1;
+    
+    /** We will iterate from the end of the two strings, add their digits one by one
+    record the carrybit, and the digit to be appended and add it to the builder. Once we
+    are done iterating both the strings, we check if the carry is still 1 which may have
+    resulted from adding previous numbers that went above 10. In that case, we need to add 1
+    to the builder. Lastly, we reverse the builder to get the most significant digit in the
+    front.
+    */
+    StringBuilder sb = new StringBuilder();		// Best way to manage string additions
+    int idx1 = num1.length()-1, idx2 = num2.length()-1, carry = 0, total = 0;
+    int n1, n2;
+    while (idx1 >= 0 || idx2 >= 0){
+        n1 = idx1 < 0 ? 0 : num1.charAt(idx1--)-'0';
+        n2 = idx2 < 0 ? 0 : num2.charAt(idx2--)-'0';
+        total = n1 + n2 + carry;
+        carry = total/10;
+        sb.append(total%10);
+    }
+    if (carry == 1)
+        sb.append(carry);
+    return sb.reverse().toString();
+}
+```
+
