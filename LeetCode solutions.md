@@ -2185,3 +2185,32 @@ segment, so we return segment+1.
 }
 ```
 
+
+
+### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+
+```java
+public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null)						// Empty Tree
+        return result;
+    Queue<TreeNode> q = new LinkedList<>();	// BFS Queue
+    q.add(root);
+    while (!q.isEmpty()){					// While we have something to process
+        List<Integer> level = new ArrayList<>();
+        int size = q.size();				// Check how many elements at the current level
+        for (int i = 0; i < size; i++){
+            TreeNode node = q.poll();		// Remove one element each time
+            if (node != null){				// If not null, add it's val to the level list,
+                level.add(node.val);		// and it's left and right children to the queue
+                q.add(node.left);			// to process in order
+                q.add(node.right);
+            }
+        }
+        if (!level.isEmpty())				// If level list wasn't empty,
+            result.add(level);				// add it to the result list.
+    }
+    return result;
+}
+```
+
