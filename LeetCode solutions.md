@@ -2099,7 +2099,7 @@ public String addStrings(String num1, String num2) {
 
 
 
-### [Construct Quad Tree](tps://leetcode.com/problems/construct-quad-tree/)
+### [Construct Quad Tree](https://leetcode.com/problems/construct-quad-tree/)
 
 ```java
 private int[][] grid;					// Store it once, instead of passing it over & over.
