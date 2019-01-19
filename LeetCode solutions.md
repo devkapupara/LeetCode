@@ -2090,10 +2090,42 @@ public String addStrings(String num1, String num2) {
         sum[index--] = (char)(total % 10 + '0');
     }
     if (carry == 1){
-        sum[index] = '1';
+        sum[0] = '1';
         return new String(sum);
     }
     return new String(sum, 1, sum.length-1);
+}
+```
+
+
+
+### [Construct Quad Tree](tps://leetcode.com/problems/construct-quad-tree/)
+
+```java
+private int[][] grid;					// Store it once, instead of passing it over & over.
+public Node construct(int[][] _grid) {
+    grid = _grid;
+    return helper(0,0,grid.length);		// Ask helper to build the tree.
+}
+
+private Node helper(int top, int left, int len){
+    if (len <= 0)						// Base case: if empty grid or if we are done
+        return null;					// checking the full grid, return null
+    int key = grid[top][left];			// Get the topleft value, and start checking the box
+    for (int i = 0; i < len; ++i){		// of len*len. If at any point, the value doesn't
+        for (int j = 0; j < len; ++j){	// match the key, we have found a breakpoint from
+            if (grid[top+i][left+j] != key){	// where we need to break the grid into four
+                int offset = len/2;		// grids, each of len = len/2. The topleft grid has
+                return new Node(true, false, 	// the same top and left point, the topright
+                                helper(top,left, offset),	// grid has left point shifted to
+                                helper(top, left + offset, offset),	// the right by offset.
+                                helper(top+offset, left, offset),	// The bottom left grid
+                                helper(top+offset, left+offset, offset));	// is shifted
+            }	// downwards by offset with the same left point. The bottom right grid will
+        }		// have an index where it's top is shifted down by len/2 and left by left/2.
+    }			// We know that the node will have a value = true if 1 else false and it won't be a leaf, so true, false, topleft, topright, bottomleft, bottomright.
+    return new Node(key == 1, true, null, null, null, null);	// Everything passed, so we return a new Node whose value is true if key is 1, else false and it will be a leaf, with
+// no children, so 4 nulls.
 }
 ```
 
