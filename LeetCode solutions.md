@@ -2156,3 +2156,32 @@ public List<List<Integer>> levelOrder(Node root) {
 }
 ```
 
+
+
+### [Number of Segments in a String](https://leetcode.com/problems/number-of-segments-in-a-string/)
+
+```java
+public int countSegments(String s) {
+    if (s.length() == 0)					// Empty String
+        return 0;
+
+    int segments = 0;						// Record segments
+
+    char prev = s.charAt(0);				// We will compare adjacent characters.
+    for (int i = 1; i < s.length(); ++i){	// Start looking at chars from index 0
+        char curr = s.charAt(i);			// Get the current char
+        if (prev != ' ' && curr == ' ')		// If previous char wasn't a space but the
+            ++segments;						// current char is, we found a segment.
+        prev = curr;						// Make previous = current for next iteration
+    }
+/**
+This line is important. If prev was an empty space, that means that all we have been looking
+at was empty spaces towards the end. So return whatever segments we found in the beginning
+of the string. But if prev wasn't a space, that means the char next to prev might have been
+an empty space or just a normal character. In any case, we would want to include that last
+segment, so we return segment+1.
+*/
+    return prev == ' ' ? segments : segments+1;
+}
+```
+
