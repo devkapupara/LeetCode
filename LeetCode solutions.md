@@ -2129,3 +2129,30 @@ private Node helper(int top, int left, int len){
 }
 ```
 
+
+
+### [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
+
+```java
+public List<List<Integer>> levelOrder(Node root) {
+    List<List<Integer>> res = new ArrayList<>();	// Result list
+    if (root == null)								// If root is null, return empty list.
+        return res;
+    Queue<Node> q = new LinkedList<>();				// BFS Queue. Add the root.
+    q.add(root);
+    while (!q.isEmpty()){							// While q isn't empty
+        int size = q.size();						// Check how many elements in that level
+        List<Integer> level = new ArrayList<>(size);// level list to store elements.
+
+        for (int i = 0; i < size; i++){				// Remove each node for whatever the size
+            Node n = q.poll();						// Add that node's value and add all of
+            level.add(n.val);						// its children to the queue.
+            for (Node child: n.children)
+                q.add(child);
+        }
+        res.add(level);								// Add the level array to the result
+    }
+    return res;										// Return the result list.
+}
+```
+
