@@ -2254,3 +2254,36 @@ private void helper(TreeNode node, int runningSum, int sum){
 }
 ```
 
+
+
+### [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+
+```java
+public List<Integer> findAnagrams(String s, String p) {
+    List<Integer> result = new ArrayList<>();
+    int start = 0, end = 0, slen = s.length(), plen = p.length();
+    if (slen == 0 || slen < plen || plen == 0)
+        return result;
+    int[] freq = new int[26];				// Store the freq of chars in p
+    for (char c: p.toCharArray())
+        freq[c-'a']++;
+    char[] sArr = s.toCharArray();			// Get the chars of the string s as an array
+    while (end < slen){						// While everything is not processed
+        if (--freq[sArr[end]-'a'] >= 0)		// decrease the freq of the char at index end
+            plen--;							// if it's > 0, then we matched something in p
+											// so decrease plen by 1.
+        while (plen == 0){					// If plen goes to 0, we were able to match all
+            if (end-start+1 == p.length())	// chars of p. If length of the matched chars is
+                result.add(start);			// equal to length p, we found a start point.
+            if (freq[sArr[start]-'a'] >= 0)	// Check if the freq of char at start index is
+                plen++;						// >= 0. If it is, shift the window to the right
+            ++freq[sArr[start++]-'a'];		// but first restore the frequency of the char
+        }									// at the index start.
+
+        end++;								// Get ready to inspect the new element
+    }
+
+    return result;							// Return the answer.
+}
+```
+
