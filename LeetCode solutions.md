@@ -2214,3 +2214,43 @@ public List<List<Integer>> levelOrder(TreeNode root) {
 }
 ```
 
+
+
+### [Path Sum III](https://leetcode.com/problems/path-sum-iii/submissions/)
+
+```java
+HashMap<Integer, Integer> sumToWays;			// Record how many ways there are to form sum
+int ways;										// Total number of ways.
+public int pathSum(TreeNode root, int sum) {
+    sumToWays = new HashMap<>();
+    ways = 0;
+    sumToWays.put(0,1);							// 1 way to form a sum of 0.
+    helper(root, 0, sum);
+    return ways;
+}
+
+/**
+The idea here is as follows. Start with the root node, and keep a running total. We maintain
+how many ways there to form a running sum. Then we check how many ways there are to form
+(running sum) - (sum we are looking for). If there is a way to form it, then we increase the
+number of ways to form sum. We then have to update the map to record how many ways can the
+running sum be formed. If it's something we could form before, increment it, or else set it
+to 1. Now, traverse the left side and then the right side. In the end, for each time we
+incremented the count for a running sum, we need to decrement it because we are backtracking.
+We are first going down, incrementing the count for runningSum, then we move up and decrement
+it by 1 for each time we observed it. This is to maintain the Pre-Order traversal.
+*/
+private void helper(TreeNode node, int runningSum, int sum){
+    if (node == null)
+        return;
+    runningSum += node.val;
+    ways += sumToWays.getOrDefault(runningSum-sum, 0);
+    sumToWays.put(runningSum, sumToWays.getOrDefault(runningSum, 0)+1);
+
+    helper(node.left, runningSum, sum);
+    helper(node.right, runningSum, sum);
+
+    sumToWays.put(runningSum, sumToWays.get(runningSum)-1);
+}
+```
+
