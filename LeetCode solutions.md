@@ -2473,3 +2473,21 @@ public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
 }
 ```
 
+
+
+### [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)
+
+```java
+public int pivotIndex(int[] nums) {
+    int sum = 0, leftSum = 0;		// We will test each index as a pivot by sliding it ->
+    for (int i: nums)				// Precalculate the sum of the array
+        sum += i;
+    for (int i = 0; i < nums.length; ++i){	// Check if the sum of the leftSide of i is
+        if (leftSum == sum - leftSum - nums[i])	// equal to totalSum - leftSideSum - pivot
+            return i;							// which is i. If so, return i.
+        leftSum += nums[i];						// Otherwise add nums[i] to the leftSum and
+    }											// slide pivot to the ->.
+    return -1;								// No pivot found. Return -1.
+}
+```
+
