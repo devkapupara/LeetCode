@@ -2291,7 +2291,7 @@ public List<Integer> findAnagrams(String s, String p) {
 
 ### [Arranging Coins](https://leetcode.com/problems/arranging-coins/)
 
-The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}$. We need to find $n$ such that sum of $n$ numbers is closest to the number of coins we have. That is, $\frac{n^2+n}{2} = k$ where <i>k</i> is the number of coins we have. So, everything boils down to solving the quadratic equation $n^2 + n - 2k = 0$. We use the quadratic formula where for any quadratic equation $ax^2 -bx + c$ is solved substituting for $a$, $b$ and $c$ in $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}$. Here, $a$ and $b$ are always going to be 1, while $c$ is always going to be $2k$. Substitute those, and solve the equation.
+The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}​$. We need to find $n​$ such that sum of $n​$ numbers is closest to the number of coins we have. That is, $\frac{n^2+n}{2} = k​$ where $k​$ is the number of coins we have. So, everything boils down to solving the quadratic equation $n^2 + n - 2k = 0​$. We use the quadratic formula where for any quadratic equation $ax^2 -bx + c​$ is solved substituting for $a​$, $b​$ and $c​$ in $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}​$. Here, $a​$ and $b​$ are always going to be 1, while $c​$ is always going to be $2k​$. Substitute those, and solve the equation.
 
 ```java
 public int arrangeCoins(int n) {
