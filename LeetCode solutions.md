@@ -2435,3 +2435,28 @@ public List<Integer> findDisappearedNumbers(int[] nums) {
 }
 ```
 
+
+
+### [Assign Cookies](https://leetcode.com/problems/assign-cookies/)
+
+```java
+/**
+We will employ a greedy algorithm where we first try to content children whose requirements
+are small. We do this by sorting both the arrays, so we can match the child with least
+requirement with the smallest cookie available.
+*/
+public int findContentChildren(int[] g, int[] s) {
+    Arrays.sort(g);
+    Arrays.sort(s);
+    int satisfied = 0, i = 0, j = 0;
+    while (i < g.length && j < s.length){	// While children are left and we have cookies,
+        if (s[j] >= g[i]){		// Check if the cookie at index j >= child i's requirement
+            satisfied++;		// If so, increment the number of content child and we will
+            i++;				// process the next child.
+        }						// If cookie j < child i's demand, check the next cookie by
+        j++;					// incrementing j. If cookie j > child i's demand, we will
+    }							// still need to increment j, hence outside the conditional.
+    return satisfied;			// Return number of satisfied children
+}
+```
+
