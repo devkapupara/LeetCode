@@ -2389,3 +2389,49 @@ public int numberOfBoomerangs(int[][] points) {
 }
 ```
 
+
+
+### [Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+```java
+/**
+The idea is simple. For each number in the array, since it's gauranteed that that the values
+lie are inclusive [1,n], we can look at the index value-1. So check that index, and mark
+that value as negative. That is why I take the absolute value. Check value at that index, if
+negative, it means we have visited it via some other duplicate value. But if it's positive,
+then we are seeing it for the first time, so make it's value negative. Make a second pass.
+For values that are still positive, that means those indices were never visited, hence left
+positive. So add 1 to them and add it to the set. Eg:
+	Given array a = [4,3,2,7,8,2,3,1],
+1.	val = 4 => idx = 3 & a[3] > 0, therefore, a[3] *= -1
+	a = [4,3,2,-7,8,2,3,1]
+2.	val = 3 => idx = 2 & a[2] > 0, therefore a[2] *= -1
+	a = [4,3,-2,-7,8,2,3,1]
+3.	val = -2 => idx = abs(-2)-1 = 1 & a[1] > 0, therefore a[1] *= -1
+	a = [4,-3,-2,-7,8,2,3,1]
+4.	val = -7 => idx = abs(-7)-1 = 6 & a[6] > 0, therfore a[6] *= -1
+	a = [4,-3,-2,-7,8,2,-3,1]
+5.	val = 8 => idx = abs(8)-1 = 7 & a[7] > 0, therfore a[7] *= -1
+	a = [4,-3,-2,-7,8,2,-3,-1]
+6.	val = 2 => idx = 1 but a[2] < 0. No change.
+7.	val = -3 => idx = abs(-3)-1 = 2 but a[2] < 0. No change.
+8.	val = -1 => idx = abs(-1)-1 = 0 & a[0] > 0, therefore a[0] *= -1
+	a = [-4,-3,-2,-7,8,2,-3,-1]
+Observation: Notice index 4 and 5 have positive values, since those values were never
+encountered, so the values at those indexes never became negative. Hence missing values are
+5 and 6.
+*/
+public List<Integer> findDisappearedNumbers(int[] nums) {
+    List<Integer> result = new ArrayList<>();
+    for (int i: nums){				// For each number in the array
+        int idx = Math.abs(i)-1;	// Look at the index that the number corresponds to
+        if (nums[idx] > 0)
+            nums[idx] *= -1;  
+    }
+    for (int i = 0; i < nums.length; ++i)
+        if (nums[i] > 0)
+            result.add(i+1);
+    return result;
+}
+```
+
