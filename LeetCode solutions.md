@@ -2315,3 +2315,20 @@ private int iterative(int n){
 }
 ```
 
+
+
+### [Hamming Distance](https://leetcode.com/problems/hamming-distance/)
+
+```java
+public int hammingDistance(int x, int y) {
+    int diff = 0;				// Track differences
+    while (x != 0 || y != 0) {	// While both of them aren't 0
+        if (x % 2 != y % 2)		// Check the bit of x and y by mod 2. If they are unequal
+            diff++;				// increment difference.
+        x /= 2;					// Divide x and y by 2.
+        y /= 2;
+    }
+    return diff;
+}
+```
+
