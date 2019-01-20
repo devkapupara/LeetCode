@@ -2366,3 +2366,26 @@ public int compress(char[] chars) {
 }
 ```
 
+
+
+### [Number of Boomerangs](https://leetcode.com/problems/number-of-boomerangs/)
+
+```java
+public int numberOfBoomerangs(int[][] points) {
+    int boomerangs = 0;
+    HashMap<Double, Integer> map = new HashMap<>();	// To record points with same dist
+    for (int[] i: points){		// Compute distance between one point and every other.
+        map.clear()				// clear map before each relative distance computation
+        for (int[] j: points){	// Compute distance with other points
+            if (i == j)			// Don't compare the same two points.
+                continue;
+            double dist = Math.sqrt(Math.pow(i[0]-j[0],2) + Math.pow(i[1]-j[1],2));
+            int prevCount = map.getOrDefault(dist, 0);	// Check how many points are equidistant from point i.
+            boomerangs += prevCount * 2;	//  Number of boomerangs = whatever pairs there were before times 2, because you can form twice the number of different orders.
+            map.put(dist, prevCount+1);	// Increase the count of points observed for that distance.
+        }
+    }
+    return boomerangs;	// return number of boomerangs
+}
+```
+
