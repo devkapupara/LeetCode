@@ -2295,7 +2295,23 @@ The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}​$.
 
 ```java
 public int arrangeCoins(int n) {
+    // return solveQuadratic(n);
+    return iterative(n);
+}
+
+private int solveQuadratic(int n){
     return (int)(Math.sqrt(1 + 8*(long)n)-1)/2;
+}
+
+private int iterative(int n){
+    int used = 1, level = 0;		// Coins used, and level completed.
+    while (n > 0){					// While coins left are greater than 0.
+        n-=used;					// Calculcate remaining coins.
+        if (n > -1)					// If there are still some coins left,
+            ++level;				// we were able to fill the level.
+        ++used;						// Prepare used for the next level, which is plus 1.
+    }
+    return level;					// Return level
 }
 ```
 
