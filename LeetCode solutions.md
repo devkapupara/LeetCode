@@ -2425,13 +2425,13 @@ public List<Integer> findDisappearedNumbers(int[] nums) {
     List<Integer> result = new ArrayList<>();
     for (int i: nums){				// For each number in the array
         int idx = Math.abs(i)-1;	// Look at the index that the number corresponds to
-        if (nums[idx] > 0)
-            nums[idx] *= -1;  
+        if (nums[idx] > 0)			// If val is -ve, then it means we have encountered it.
+            nums[idx] *= -1;  		// If not, make it -ve.
     }
     for (int i = 0; i < nums.length; ++i)
-        if (nums[i] > 0)
-            result.add(i+1);
-    return result;
+        if (nums[i] > 0)			// Make another pass through the array, and the indices
+            result.add(i+1);		// where value was positive, index+1 was missing from
+    return result;					// the array
 }
 ```
 
