@@ -2460,3 +2460,16 @@ public int findContentChildren(int[] g, int[] s) {
 }
 ```
 
+
+
+### [Poor Pigs](https://leetcode.com/problems/poor-pigs/)
+
+[Link](https://leetcode.com/problems/poor-pigs/discuss/94305/1-line-solution-with-detailed-problem-clarification-and-math-proof-(please-read-if-you-really-want-to-know-what-this-problem-means))to the solution explanation. This problem is phrased poorly and I had to read the comments by other users to understand what it required from me. The link I marked here explains the logic pretty good. But the simple logic is this: The number of rounds $r = \frac{Total Test Time}{Minutes To Die} +1$. Each pig has chances of dying in each round or staying alive till the end, so we plus 1. Now given the number of rounds $r$ and the number of samples $s$, how many volunteers $v$ will you need? $r^v = s$. Each round has some volunteers which in total at the end should be able to test out all the samples. Therefore, $v =\log_rs$.
+
+```java
+public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
+    int base = minutesToTest/minutesToDie+1;		// How many rounds can you perform?
+    return (int)Math.ceil(Math.log(buckets)/Math.log(base));
+}
+```
+
