@@ -2491,3 +2491,48 @@ public int pivotIndex(int[] nums) {
 }
 ```
 
+
+
+### [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
+
+```java
+public int[] sortedSquares(int[] A) {
+    int len = A.length;		// Length of array A
+    int pivot = 0;			// Pivot is the index where values goes from -ve to +ve.
+    while (pivot < len && A[pivot] < 0) // While values are -ve.
+        ++pivot;			// increment pivot. We exit when we find a positive.
+    int[] squares = new int[len];	// Result array
+    int index = 0;			// Keeps track of where to where to put elements in result array
+    if (pivot == 0)			// pivot = 0 means pivot didn't shift, there are only +ve values
+        for (int i: A)		// So fill in the array with squares of numbers.
+            squares[index++] = i*i;
+    else{					// Otherwise we have a negative somewhere.
+        int left = pivot-1;	// So we will compare values left and right of the pivot
+        int right = pivot;	// and whichever's smaller fills up the array first.
+        while (left > -1 && right < len){
+            int lsquare = A[left] * A[left];
+            int rsquare = A[right] * A[right];
+            if (lsquare < rsquare){		// left < right, so add left square. decrement left
+                squares[index++] = lsquare;
+                --left;
+            }
+            else if (rsquare < lsquare){	// right < left, add right square and increment.
+                squares[index++] = rsquare;
+                ++right;
+            }
+            else{
+                squares[index++] = lsquare;	// both are equal. add both square and
+                squares[index++] = rsquare;	// decrement left, increment right.
+                --left;						// Continue doing this until we hit either end
+                ++right;					// of the array.
+            }								// In the end we need to check if elements on
+        }									// either side are left to be filled in.
+        while (left > -1)					// Left side elements remain, so fill their
+            squares[index++] = A[left] * A[left--]; // squares one by one till none left.
+        while (right < len)					// Right side elements remain, so fill their
+            squares[index++] = A[right] * A[right++];	// squares in
+    }
+    return squares;
+}
+```
+
