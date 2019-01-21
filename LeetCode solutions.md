@@ -2571,3 +2571,29 @@ private int lps(String s){
 }											// is whatever was recorded at the end of array.
 ```
 
+
+
+### [Island Perimeter](https://leetcode.com/problems/island-perimeter/)
+
+The idea is simple. Count the number of cells with value 1 which denotes the land. Check towards the left and up to that cell and check if it shares any edge with another cell with value 1. If it does record that. In the end, the formula for perimeter is 4 * (the number of land cells) - 2 * (overlapping edges).
+
+**Reasoning:** Perimeter of a square is 4 times the length of it's side. Here all squares are of length 1. So total perimeter is 4*(number of cells with value = 1). But we also need to account the edges that are common between two adjacent land cells. If one square shares an edge with another, we just lost one side from both the square, resulting in a loss of two sides. Therefore, we need to subtract twice the number of overlapping edges from the total perimeter to get  the total perimeter. 
+
+```java
+public int islandPerimeter(int[][] grid) {
+    int land = 0;
+    int overlap = 0;
+    for (int row = 0; row < grid.length; ++row)
+        for (int col = 0; col < grid[0].length; ++col){
+            if (grid[row][col] == 1){
+                ++land;
+                if (row-1 > -1 && grid[row-1][col] == 1)	// Check above the current cell.
+                    ++overlap;		// If it's a land, we need to record one overlap.
+                if (col-1 > -1 && grid[row][col-1] == 1)	// Similarly, check to the left.
+                    ++overlap;		// If it's a land, we need to increment overlap
+            }
+        }
+    return 4*land - 2*overlap;		// Check the reasoning above.
+}
+```
+
