@@ -2597,3 +2597,21 @@ public int islandPerimeter(int[][] grid) {
 }
 ```
 
+
+
+### [Number Complement](https://leetcode.com/problems/number-complement/)
+
+```java
+public int findComplement(int num) {
+    int pow2 = 1;				// Easily keep track of power of 2.
+    int comp = 0;				// Complement number
+    while (num != 0){			// Since num gets divided by 2, it will be 0 in the end.
+        int bit = num % 2 == 0 ? 1 : 0;	// If bit is 0 then complement is 1 & vice versa.
+        comp += bit * pow2;		// Multiply it by the appropriate power of 2 and add to comp
+        pow2 *= 2;				// Update power of 2 for next iteration.
+        num /= 2;				// Divide num by 2 to get the next bit.
+    }
+    return comp;				// Comp is now the complement.
+}
+```
+
