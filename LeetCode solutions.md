@@ -2536,3 +2536,38 @@ public int[] sortedSquares(int[] A) {
 }
 ```
 
+
+
+### [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/submissions/)
+
+We use the [KMP Algorithm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/) that allows us to match a string 's' with another string 'p' to find the longest sequence of characters in 's' that match 'p'. We can use a Naive Pattern match where we start from the beginning of the string and start comparing the characters of 's' with 'p'. Initially, we keep the partition at index 0. If the character's match, we move partition to the right by 1 till we get to the end of the string. If something doesn't match, we don't move the partition but look at the next character to match. In the end, wherever the partition is, that's our longest length we could match with string 'p'. The complexity of that is <i>O(len(p)(len(s)-len(p)+1))</i>.
+
+KMP fixes it by skipping characters that we know already match. In this problem, we aren't matching with any other string but itself. So, we start from index 1 of the string and compare it from the beginning. If they match, we increase j by 1, note it down in lps array and then increase i by 1 to check the next character. j basically measures the longest chain of characters we were able to match. If we couldn't match character at index i and if streak was greater than 0, then our new streak becomes whatever it was in the previous round of matching characters. If the streak is 0, then we simply note down at index i in our lps array 0, meaning longest length measured upto index i was 0. 
+
+```java
+public boolean repeatedSubstringPattern(String s) {
+        int maxLength = lps(s);
+        return maxLength > 0 && s.length() % (s.length() - maxLength) == 0;
+    }
+
+private int lps(String s){
+    int len = s.length();
+    int[] lps = new int[len];
+    int i = 1;		// To match the string with itself.
+    int j = 0;
+    while (i < len){
+        if (s.charAt(i) == s.charAt(j)){	// if the chars match
+            lps[i] = ++j;					// we record that # of matches at index i was
+            ++i;							// 1+j and increment i to check next character
+        }
+        else{								// character did not match
+            if (j > 0)						// If our matching streak > 0
+                j = lps[j-1];				// our new streak becomes the previous round's streak
+            else							// Otherwise, streak is already 0.
+                lps[i++] = 0;				// So we record that # of matches made at i is 0
+        }									// We increment i to check next index.
+    }
+    return lps[len-1];						// Longest prefix length that was also a suffix
+}											// is whatever was recorded at the end of array.
+```
+
