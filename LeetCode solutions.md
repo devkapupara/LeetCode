@@ -2702,7 +2702,7 @@ The idea is simple.
 2.  I maintain a variable *length* that counts how many characters I found in the string *S*. If length is 0, that means it contains only dashes (-). 
 3. Then I record the *offset*. *Offset* basically measures how many characters of the String *S* will be grouped unevenly in the beginning part of the string. I can check that by using the modulus operator and finding out the remainder. That many characters (of *length < K*) will be in the beginning part of the string.
 4. Next step is to calculate how many dashes I will need. It's basically *length / K*.
-5. Then I create the char array that will hold the characters of the formatted key. It's length will number of characters + the dashes we will need. We need to take care of a special case here. If the *offset* is 0, meaning I was able to divide characters in equal group, I need to subtract 1. Eg, let's say we had 8 characters and *K* was 4.  dashes = 8 / 4 = 2. We can divide 8 characters equally into 2 groups using only 1 dash. But since dashes was 2, it is clearly off by 1. This is the case when *offset* is 0.
+5. Then I create the char array that will hold the characters of the formatted key. It's length will be number of characters + the dashes we will need. We need to take care of a special case here. If the *offset* is 0, meaning I was able to divide characters in equal group, I need to subtract 1. Eg, let's say we had 8 characters and *K* was 4.  dashes = 8 / 4 = 2. We can divide 8 characters equally into 2 groups using only 1 dash. But since dashes was 2, it is clearly off by 1. This is the case when *offset* is 0.
 6. *kIndex* tracks where character is to be inserted in the key array.
 7. *used* tracks how many characters of the array *s*, which indirectly holds the characters of String *S*, are used.
 8. First I copy down the characters of length *offset*. Because those are the ones of uneven length. *kIndex* and *used* variables are updated.
@@ -2734,4 +2734,53 @@ public String licenseKeyFormatting(String S, int K) {
     return new String(key);
 }
 ```
+
+
+
+### [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
+
+Solution 1: I came up with this solution initially. 4 ms runtime and passes 99.97% submissions.
+
+```java
+public int findMaxConsecutiveOnes(int[] nums) {
+    int start = 0;					// Keep track of start of a streak, if any
+    int max = 0;					// max length of the streak
+    while (start < nums.length){	// While we are not at the end of the array
+        if (nums[start] == 1){		// Check if we have a 1 at start, if so
+            int streak = 0;			// initialize streak and check how long can we continue
+            while (start < nums.length && nums[start] == 1){	// that streak.
+                ++streak;			// Increment streak and left for each consecutive 1
+                ++start;			// make sure you don't forget that start < nums.length
+            }						// before checking nums[start] to prevent out-of-bounds
+            if (streak > max)		// Check if the current streak is better than the
+                max = streak;		// previous streak.
+        }
+        ++start;					// Increment start in either case to check for new
+    }								// streaks.
+    return max;
+}
+```
+
+
+
+Solution 2: After analyzing the problem further, I noticed that 0 denotes the end of a streak. If we observe 1, we increment streak by 1. But if I see a 0, I reset my streak to 0. This solution too had a 4 ms runtime and passed 99.97% submissions.
+
+```java
+public int findMaxConsecutiveOnes(int[] nums) {
+    int max = 0;				// Global max streak
+    int streak = 0;				// Local max streak.
+    for (int i: nums){			// For each number in nums
+        if (i == 1){			// If we see a 1
+            ++streak;			// increment our ongoing streak.
+            if (streak > max)	// If the local streak > global max
+                max = streak;	// update global max streak.
+        }
+        else					// otherwise we just saw a 0.
+            streak = 0;			// So our streak resets to 0.
+    }
+    return max;					// return the global max streak.
+}
+```
+
+
 
