@@ -2647,3 +2647,48 @@ private void helper(int lightsUsed, int numOfLights, int hrs, int min){
 }
 ```
 
+
+
+### [Minimum Moves to Equal Array Elements](https://leetcode.com/problems/minimum-moves-to-equal-array-elements/)
+
+This was an interesting problem. But after working out a few examples by hand, you can notice that it is always a question of bringing the minimum element in par with everyone. So if you know the minimum of the array, we can check how many steps it will take to bring the minimum in par with other element by calculating the distance between them. For example,
+
+> Let the array be [1,2,3]
+>
+> We can observe that the minimum here is 1. Let us list down all steps to make all elements equal.
+>
+> 1. [2,2,4], Keeping the second element fixed. Notice that distance between the element where 1 was and where 3 was is till the same.
+> 2. [3,3,4], Keeping the last element fixed.
+> 3. [4,4,4], Keeping last element fixed.
+>
+> Here, we first tried to make 1 equal to it's neighbor, which required us 1 step. Now, once it becomes equal to 1, the problem is how to make the last element in the original array, which is 3 equal to 1. It requires 2 steps, resulting in a total of of 3. The reason is that the moment you decide to increment the minimum element to match the next element, you fix the neighboring element and have to increment everything else. This will make the minimum and its neighbor the same, but it will also keep the distance between the minimum and all other elements the same because we just incremented everything. 
+>
+> So, the total number of moves required is the distance between the elements of the array and the minimum.
+
+```java
+public int minMoves(int[] nums){
+    int min = nums[0];
+    for (int i: nums)
+        if (i < min)
+            min = i;
+    int moves = 0;
+    for (int i: nums)
+        moves += i-min;
+    return moves;
+}
+```
+
+> Now the above solution required two passes of the array. Can we do even better? Notice that in the end, all we are doing is finding the min and subtracting min from all the elements in the array. That means we are subtracting min *n* times where n is the length of the array. Why *n* times? Because there are *n* elements in the array. Shouldn't it be *(n-1)* times? No, because the distance of the min from min is 0. So we need to subtract min from itself too, so *n* times. We can achieve this by first calculating the total of the array while simultaneously keeping track of the minimum. Once done, all we need to do is subtract min *n* times from the sum, which is equivalent to subtracting min from each element. This results in a much overall better algorithm, requiring only 1 pass of the array.
+
+```java
+public int minMoves(int[] nums) {
+    int sum = 0, min = nums[0];
+    for (int i: nums){
+        sum += i;
+        if (i < min)
+            min = i;
+    }
+    return sum - min*nums.length;
+}
+```
+
