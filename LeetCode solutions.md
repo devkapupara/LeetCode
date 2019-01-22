@@ -2615,3 +2615,35 @@ public int findComplement(int num) {
 }
 ```
 
+
+
+### [Binary Watch](https://leetcode.com/problems/binary-watch/)
+
+The idea is as follows. We have 10 lights. First 4 represent hours. Namely 1, 2, 4 and 8, which are the first four powers of 2. The next 6 lights, represent minutes. Those are 1, 2, 4, 8, 16 and 32. These are powers of 2 from 0-5. So if we iterate from 1 to 9, powers of numbers 1-3 gives us hours and powers of numbers 4-9 minus 4 gives us minutes. So, if we have, let's say 2 lights, we need to find every combination of 2 lights. So in our helper function, we iterate from 1-9 to check every hour and minute combination. We also need to keep a track of the lights that we used, so we don't use the same light again. If hours are > 11 or minutes are > 59, we have an invalid time and we can abort. If the number of lights are 0, that means we found a valid time and we should add it to the result. Now, if the lights are not 0, then we need to check every possible combination from the last light used to 9. If i < 4, then we are looking at an hourly combination, otherwise it's a minute combination. So we recurse with updated lights used, decrease the numOfLights since we used one, update respective hours or minutes until we hit base case.
+
+```java
+List<String> result;
+
+public List<String> readBinaryWatch(int num) {
+    result = new ArrayList<>();
+    helper(0, num, 0, 0);
+    return result;
+}
+
+private void helper(int lightsUsed, int numOfLights, int hrs, int min){
+    if (hrs > 11 || min > 59)		// Base case. Invalid time
+        return;
+
+    if (numOfLights == 0){			// All lights used, so add time to the list.
+        result.add(hrs + ":" + (min < 10 ? "0" + min : min));
+        return;
+    }
+    for (int i = lightsUsed; i < 10; i++){	// Otherwise start recursing from number of prev
+        if (i < 4)							// light used. i < 4 means hours
+            helper(i+1, numOfLights-1, hrs + (int)Math.pow(2, i), min);
+        else								// i = [4,9] means minute. So recurse.
+            helper(i+1, numOfLights-1, hrs, min + (int)Math.pow(2,i-4));
+    }
+}
+```
+
