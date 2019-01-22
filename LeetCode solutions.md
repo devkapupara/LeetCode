@@ -19,26 +19,29 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 ### [Count And Say](https://leetcode.com/problems/count-and-say/)
 
+The updated version runs in 2ms and passes 96.85% submissions.
+
 ```java
 public String countAndSay(int n) {
-    String result = "1";			// First letter
-    for (int i = 1; i < n; i++){	// To get the nth string.
-    	int startIndex = 0;
-    	String temp = "";
-    	while (startIndex < result.length()){	// While the previous string is unfinished
-        	char ch = result.charAt(startIndex)
-        	int count = 0;
-        	while (ch == result.charAt(startIndex)){	// While ch is same
-            	count++;		// record the count
-            	startIndex++;	// increment the index to keep track of current
-            	if (startIndex >= result.length())	// If out of bounds, break.
-                	break;
-       	 	}
-    	    temp += count + String.valueOf(ch);		// Add the frequency and ch to temp.
-  		}
-  	    result = temp;			// Update result to temp to generate the next "say"
+    String result = "1";		// initial result
+    StringBuilder temp;			// to create intermediate strings efficiently.
+    int len;					// length of the result string.
+    for (int i = 1; i < n; ++i){	// We need to iterate n-1 times, because 1st result is 1
+        int startIndex = 0;			// we will look at each index of result
+        temp = new StringBuilder();	// and store freq,char in the builder
+        len = result.length();
+        while (startIndex < len){
+            char ch = result.charAt(startIndex++);	// get the char at startIndex, and increment it, because we also want to look at the next character
+            int count = 1;					// intialize it's count to 1, we just saw it.
+            while (startIndex < len && ch == result.charAt(startIndex)){
+                count++;			// If next also matches, increment count and startIndex
+                startIndex++;
+            }
+            temp.append(count).append(ch);	// No more match, Add the freq and the char
+        }
+        result = temp.toString();	// Update result to generate the next cound-and-say
     }
-	return result;
+    return result;
 }
 ```
 
@@ -2781,6 +2784,4 @@ public int findMaxConsecutiveOnes(int[] nums) {
     return max;					// return the global max streak.
 }
 ```
-
-
 
