@@ -2692,3 +2692,46 @@ public int minMoves(int[] nums) {
 }
 ```
 
+
+
+### [License Key Formatting](https://leetcode.com/problems/license-key-formatting/)
+
+The idea is simple. 
+
+1. I maintain a temporary array *s* that contains only the characters in string *S* after converting them to uppercase.
+2.  I maintain a variable *length* that counts how many characters I found in the string *S*. If length is 0, that means it contains only dashes (-). 
+3. Then I record the *offset*. *Offset* basically measures how many characters of the String *S* will be grouped unevenly in the beginning part of the string. I can check that by using the modulus operator and finding out the remainder. That many characters (of *length < K*) will be in the beginning part of the string.
+4. Next step is to calculate how many dashes I will need. It's basically *length / K*.
+5. Then I create the char array that will hold the characters of the formatted key. It's length will number of characters + the dashes we will need. We need to take care of a special case here. If the *offset* is 0, meaning I was able to divide characters in equal group, I need to subtract 1. Eg, let's say we had 8 characters and *K* was 4.  dashes = 8 / 4 = 2. We can divide 8 characters equally into 2 groups using only 1 dash. But since dashes was 2, it is clearly off by 1. This is the case when *offset* is 0.
+6. *kIndex* tracks where character is to be inserted in the key array.
+7. *used* tracks how many characters of the array *s*, which indirectly holds the characters of String *S*, are used.
+8. First I copy down the characters of length *offset*. Because those are the ones of uneven length. *kIndex* and *used* variables are updated.
+9. Last thing to do is to use all the remaining characters in array *s*, but we take *K* characters at a time, because we know that the segments are going to be of equal length. We also need to insert '-' after each segment, but only if *kIndex* is not at the beginning or at the end of the key array, because inserting it at those points is invalid.
+10. Create a new string and return it.
+
+```java
+public String licenseKeyFormatting(String S, int K) {
+    char[] s = new char[S.length()];
+    int length = 0;
+    for (char c: S.toCharArray())
+      if (c != '-')
+        s[length++] = Character.toUpperCase(c);
+    if (length == 0)
+        return "";
+    int offset = length % K;
+    int dashes = length / K; 
+    char[] key = new char[length + dashes + (offset == 0 ? -1 : 0)];
+    int kIndex = 0;
+    int used = 0;
+    while (used < offset)
+      key[kIndex++] = s[used++];
+    while (used < index){
+      if (kIndex > 0 && kIndex < key.length)
+        key[kIndex++] = '-';
+      for (int i = 0; i < K; ++i)
+        key[kIndex++] = s[used++];
+    }
+    return new String(key);
+}
+```
+
