@@ -2906,3 +2906,30 @@ public int[] constructRectangle(int area) {
     return dimensions;					// return the dimensions found.
 ```
 
+
+
+### [Merge Intervals]https://leetcode.com/problems/merge-intervals/()
+
+```java
+public List<Interval> merge(List<Interval> intervals) {
+    if (intervals == null || intervals.size() < 2)
+        return intervals;
+    Collections.sort(intervals, (a,b) -> a.start-b.start);	// Sort the list so we can 
+													// compare adjacent intervals.
+    List<Interval> merged = new ArrayList<>();
+    merged.add(intervals.get(0));					// Add the initial interval.
+
+    for (Interval i: intervals){					// For each interval
+        Interval last = merged.get(merged.size()-1);// Get the last added time.
+        if (i.start > last.end)						// If it's time is greater than the last
+            merged.add(i);							// interval's end, it doesn't overlap
+        else{										// otherwise it does.
+            last.end = last.end > i.end ? last.end : i.end;	// So check which has greater end time, and make the last added interval's time equals that
+            merged.set(merged.size()-1, last);		// And set it as the last added interval
+        }
+    }
+
+    return merged;									// Return the merged list.
+}
+```
+
