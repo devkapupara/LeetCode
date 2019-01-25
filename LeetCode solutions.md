@@ -2785,3 +2785,102 @@ public int findMaxConsecutiveOnes(int[] nums) {
 }
 ```
 
+
+
+### [Permutations](https://leetcode.com/problems/permutations/)
+
+The idea is as follows. Given an array a = {1,2,3}, we want to generate all it's possible combinations. What we are trying to do here is that we first take the element at index 0, and find permutations of the remaining thing. When we do that, we insert the element at index 0 in front of the list to get 1 permutation. Similarly, we then take the element at index 1, and permute the remaining contents of the array and insert the element at index 1 in the beginning of the array to get another permutation and so on. In this problem, we are asked to return a list of list, so we first copy the numbers of the array into an ArrayList. Let's run this code for the above example.
+
+> Given nums = {1,2,3}, our ArrayList will be the same, al = [1,2,3]. Our result list is empty, result = [] and index = 0.
+>
+> **helper([1,2,3], 0)**
+>
+> > swap (0, 0) → al = [1,2,3]
+> >
+> > **helper(1,2,3, 1)**
+> >
+> > > swap(1, 1) → al = [1,2,3]
+> > >
+> > > **helper([1,2,3], 2)**
+> > >
+> > > > swap(2, 2) → [1,2,3]
+> > > >
+> > > > **helper([1,2,3], 3)**
+> > > >
+> > > > > We update our result list now, because index == length. Therefore, result = [[1,2,3]]. Our recursive stack collapses and we move on to the next instruction, which is undo the step, al = [1,2,3].
+> > >
+> > > swap(1, 2) → al = [1,3,2]
+> > >
+> > > **helper([1,3,2], 3)**
+> > >
+> > > > Again, index == length, add it to the list. result = [[1,2,3], [1,3,2]]. Recursion stack collapses, we undo the swap, al = [1,2,3]
+> >
+> > swap(0, 1) → al = [2,1,3]
+> >
+> > **helper([2,1,3], 1)**
+> >
+> > > swap(1,1) → al = [2,1,3]
+> > >
+> > > **helper([2,1,3], 2)**
+> > >
+> > > > swap(2, 2) → al = [2,1,3]
+> > > >
+> > > > **helper([2,1,3], 3)**
+> > > >
+> > > > >index == length, add the current order to the list. result = [[1,2,3], [1,3,2], [2,1,3]]
+> > >
+> > > swap(1, 2) → al = [2,3,1]
+> > >
+> > > **helper([2,3,1], 3)**
+> > >
+> > > > index == length, add the order to the list. Result = [[1,2,3], [1,3,2], [2,1,3], [2,3,1]]
+> >
+> > swap(0, 2) → al = [3,2,1]
+> >
+> > **helper([3,2,1], 2)***
+> >
+> > > swap(2,2) → al = [3,2,1]
+> > >
+> > > **helper([3,2,1], 3)**
+> > >
+> > > > index == length, add the order to the list. Result = [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,2,1]] 
+> >
+> > swap(1,2) → al = [3,1,2]
+> >
+> > **helper([3,1,2], 3)**
+> >
+> > > index == length, add the order to the list. Result = [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,2,1], [3,1,2]]
+>
+> All branches have been explored now, since the iteration ends and we return the result list.
+
+```java
+int len;						// To store the length of the input array
+List<List<Integer>> result;		// Result list
+
+public List<List<Integer>> permute(int[] nums) {
+    result = new ArrayList<>();
+    List<Integer> numList = new ArrayList<>();	// Creating a copy of the nums array
+    for (int i: nums)			// because it's easier to create a list from a list.
+        numList.add(i);			// Add everything to the list.
+    len = nums.length;
+    helper(numList, 0);			// Call the aux function.
+    return result;
+}
+
+private void helper(List<Integer> order, int index){
+    if (index == len)			// If we have checked all the numbers in the array, add a
+        result.add(new ArrayList<>(order));	// clone of the list to the array.
+    for (int i = index; i < len; ++i){	// Otherwise from index to the end of the array,
+        swap(order, i, index);	// take one element, swap it with itself, then the next and
+        helper(order, index+1);	// so on. Recurse again, but on the next index we just swapped.
+        swap(order, i, index);	// Undo the swap so that it helps us in generating the next
+    }							// permutation.
+}
+
+private void swap(List<Integer> list, int i, int j){	// Swap elements in a list.
+    int temp = list.get(i);
+    list.set(i, list.get(j));
+    list.set(j, temp);
+}
+```
+
