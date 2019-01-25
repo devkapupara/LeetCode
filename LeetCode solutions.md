@@ -2837,7 +2837,7 @@ The idea is as follows. Given an array a = {1,2,3}, we want to generate all it's
 > >
 > > swap(0, 2) → al = [3,2,1]
 > >
-> > **helper([3,2,1], 2)***
+> > **helper([3,2,1], 2)**
 > >
 > > > swap(2,2) → al = [3,2,1]
 > > >
@@ -2882,5 +2882,27 @@ private void swap(List<Integer> list, int i, int j){	// Swap elements in a list.
     list.set(i, list.get(j));
     list.set(j, temp);
 }
+```
+
+
+
+### [Construct the Rectangle](https://leetcode.com/problems/construct-the-rectangle/)
+
+The idea is very simple. We just need to iterate from width = sqrt(area) to 1 and check if area is perfectly divisible by width. If at any point, width is divisible, then that must be our minimum difference length and width, because we are diverging from the center on both sides. Width decreases while length keeps increasing. Think of it like this, for area = 24, we have many factors of 24, namely 1, 2, 3,4, 6, 8, 12, 24. It's sqrt when rounded down is 4. So we check for width = 4, is 24 perfectly divisible by 4? Yes, so divide it and whatever you get is going to be the minimal difference values. Suppose 4 and 6 weren't the factors for 24. In that case we decrease width by 1, which is 3. Check again, is 24 divisible by 3. Yes? Then that must be our answer. We are diverging away from the center on both sides equally, width to the left towards 1 and length to the right towards area . Therefore the moment we find one value that divides area perfectly, that's our required values.
+
+```java
+public int[] constructRectangle(int area) {
+    int[] dimensions = {area, 1};		// We know that if nothing works out, n*1 is always
+    boolean done = false;				// going to be the answer
+    int width = (int)Math.sqrt(area);	// We only need to check width from sqrt(area)
+    while (!done){						// While not done
+        if (area % length == 0){		// check if area is perfectly divisible by width
+            dimensions[0] = width;		// if so, we found our width and the length.
+            dimensions[1] = area/width;
+            done = true;				// mark done as false
+        }
+        --width;						// otherwise decrease the length
+    }
+    return dimensions;					// return the dimensions found.
 ```
 
