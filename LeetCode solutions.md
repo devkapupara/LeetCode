@@ -2908,7 +2908,7 @@ public int[] constructRectangle(int area) {
 
 
 
-### [Merge Intervals]https://leetcode.com/problems/merge-intervals/()
+### [Merge Intervals](https://leetcode.com/problems/merge-intervals/)
 
 ```java
 public List<Interval> merge(List<Interval> intervals) {
@@ -2930,6 +2930,64 @@ public List<Interval> merge(List<Interval> intervals) {
     }
 
     return merged;									// Return the merged list.
+}
+```
+
+
+
+### [Merged sorted lists](https://leetcode.com/problems/merge-sorted-array/)
+
+1. counterA keeps track of which element we are looking at in array 'a'. Same with counterB
+2. counterK keeps track of where to insert the element in array 'a', since a has enough space. The problem states that it might have more than enough space, so we use only the spaces we need, which is the total of both their sizes. Since indexing in an array is 0-based, we subtract 1.
+3. We insert elements from the end, since the end part of 'a' is empty. We can insert from the front, but then we would need to shift elements to the right after each insertion from 'b'.
+4. If array values are equal, add them to the end, and decrease both their counter to check new values in the next iteration
+5. If not equal, then check which one is greater, since the last part of the array should contain larger values. Whichever's greater, put it in 'a' at index 'counterA' and decrement the respective counter.
+6. In the end, we might have some leftover elements either from 'a' or 'b' because we only process elements that are equal to the **min(size(a), size(b))**, until we run out of elements in one of the array. So, whichever array has elements pending, add it to the front of the array and return a.
+
+```java
+public int[] merge(int[] a, int sizeA, int[] b, int sizeB)
+{
+    int counterA = sizeA-1, counterB = sizeB-1, counterK = sizeA+sizeB-1;
+    while (counterA > -1 && counterB > -1){
+        if (a[counterA] == b[counterB]){
+            a[counterK--] = a[counterA--];
+            a[counterK--] = b[counterB--];
+        }
+        else
+            a[counterK--] = a[counterA] > b[counterB] ? a[counterA--] : b[counterB--];
+    }
+    while (counterA > -1)
+        a[counterK--] = a[counterA--];
+    while (counterB > -1)
+        a[counterK--] = b[counterB--];
+    return a;
+}
+```
+
+
+
+### [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
+
+```java
+public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+    HashMap<Integer, Integer> index = new HashMap<>();	// We use the hashmap to keep a
+    for (int i = 0; i < nums2.length; ++i)				// track of the index of each value
+        index.put(nums2[i], i);							// in nums 2. That way, when we want
+								// to look for a value greater than a val in nums1, we know
+    int[] result = new int[nums1.length];	// which index to start iterating from.
+
+    for (int i = 0; i < nums1.length; ++i){	// So for each val in nums1
+        int val = nums1[i];
+        for (int j = index.get(val); j < nums2.length; ++j){	// Iterate from that value's
+            if (nums2[j] > val){			// index in nums2 to the end, and see if you can
+                result[i] = nums2[j];		// find any val > nums1[i]. If you do, save it
+                break;						// in the result array and break the loop.
+            }
+        }
+        if (result[i] == 0)		// Now if we didn't find any value, then result[i] would be
+            result[i] = -1;		// 0, so we set that index to -1 in our result array.
+    }
+    return result;				// simply return the result array.
 }
 ```
 
