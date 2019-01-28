@@ -2467,7 +2467,7 @@ public int findContentChildren(int[] g, int[] s) {
 
 ### [Poor Pigs](https://leetcode.com/problems/poor-pigs/)
 
-[Link](https://leetcode.com/problems/poor-pigs/discuss/94305/1-line-solution-with-detailed-problem-clarification-and-math-proof-(please-read-if-you-really-want-to-know-what-this-problem-means))to the solution explanation. This problem is phrased poorly and I had to read the comments by other users to understand what it required from me. The link I marked here explains the logic pretty good. But the simple logic is this: The number of rounds $r = \frac{Total Test Time}{Minutes To Die} +1$. Each pig has chances of dying in each round or staying alive till the end, so we plus 1. Now given the number of rounds $r$ and the number of samples $s$, how many volunteers $v$ will you need? $r^v = s$. Each round has some volunteers which in total at the end should be able to test out all the samples. Therefore, $v =\log_rs$.
+[Link](https://leetcode.com/problems/poor-pigs/discuss/94305/1-line-solution-with-detailed-problem-clarification-and-math-proof-(please-read-if-you-really-want-to-know-what-this-problem-means)) to the solution explanation. This problem is phrased poorly and I had to read the comments by other users to understand what it required from me. The link I marked here explains the logic pretty good. But the simple logic is this: The number of rounds $r = \frac{Total Test Time}{Minutes To Die} +1$. Each pig has chances of dying in each round or staying alive till the end, so we plus 1. Now given the number of rounds $r$ and the number of samples $s$, how many volunteers $v$ will you need? $r^v = s$. Each round has some volunteers which in total at the end should be able to test out all the samples. Therefore, $v =\log_rs$.
 
 ```java
 public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
@@ -3051,6 +3051,58 @@ private boolean checkWord(String word){		// Check if all chars in the word belon
             return false;					// return false
     }
     return true;							// All chars in same row, return true.
+}
+```
+
+
+
+### [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)
+
+```java
+private TreeNode parent;		// Keep track of parent at each node
+private int maxMode;			// maxMode we found
+private int currentMode;		// mode recorded at each node
+private Set<Integer> modes;		// keep distinct modes found
+
+public int[] findMode(TreeNode root){
+    if (root == null)			// node is null, so return empty array
+        return new int[0];
+    maxMode = 1;				// we have just seen the root, so maxMode so far is 1.
+    currentMode = 1;			// so is the current mode
+    modes = new HashSet<>();
+    modes.add(root.val);		// add the root to our modes set
+    traverse(root);				// start traversing it's left and right branches
+    int[] result = new int[modes.size()];	// We have found all the modes
+    int idx = 0;				// keep track of where to insert elements in result array
+    for (int i: modes)			// add all the distinct modes one by one
+        result[idx++] = i;
+    return result;				// and return it.
+}
+
+private void traverse(TreeNode node){
+    if (node == null)			// if node is null, stop
+        return;					// otherwise traverse the left branch
+    traverse(node.left);		// Once we hit the null, we start backtracking to the leaf
+    updateMode(node);			// then we call updateMode with the node
+    parent = node;				// once it's done, we update parent as the current node, so 
+    traverse(node.right);		// when we backtrack, we can easily check that node and it's
+}								// next node's value for similarity. Then traverse right.
+
+private void updateMode(TreeNode node){
+    if (parent != null && parent.val == node.val){	// If parent node isn't null and the
+        ++currentMode;			// node's value is the same as parent, we update currentMode
+        if (currentMode >= maxMode){	// If the currentMode is greater or equal to maxMode
+            if (currentMode > maxMode)	// just check if it's greater. If it is, remove all 
+                modes.clear();			// previously recorded modes
+            modes.add(node.val);		// Add the current node to the set and update the 
+            maxMode = currentMode;		// maxMode
+        }
+    }
+    else{						// otherwise, value's aren't the same. so our currentMode
+        currentMode = 1;		// becomes 1. If maxMode is also 1, then all we have been 
+        if (maxMode == 1)		// seeing are distinct values, so add that node's value to
+            modes.add(node.val);// to the mode's set.
+    }
 }
 ```
 
