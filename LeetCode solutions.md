@@ -3106,3 +3106,54 @@ private void updateMode(TreeNode node){
 }
 ```
 
+
+
+### [Base 7](https://leetcode.com/problems/base-7/)
+
+Solution 1 without StringBuilder (Beats 100%, 7ms)
+
+```java
+    public String convertToBase7(int num) {
+        if (num == 0)
+            return "0";
+        int len = (int)(Math.log(Math.abs(num))/Math.log(7))+1;	// Calculate # of bits
+        int idx;		// where to start inserting from
+        char[] digits;
+        if (num < 0) {	// If num is negative
+            num = -num;	// Make it positive
+            digits = new char[len+1];	// We need one more space for -ve sign in the front
+            digits[0] = '-';			// Put the -ve sign
+            idx = len;					// and index is now len
+        }
+        else{
+            digits = new char[len];		// otherwise we only need "len" spaces
+            idx = len-1;				// index is len-1
+        }
+        while (num != 0) {				// While num != 0, calculate remainder and add it.
+            digits[idx--] = (char)(num % 7 + '0');	// Divide number by 7
+            num /= 7;
+        }     
+        return new String(digits);		// Just create a string and return it.
+    }
+```
+
+Solution 2 with StringBuilder
+
+```java
+public String convertToBase7(int num) {
+    StringBuilder sb = new StringBuilder();
+    boolean isNegative = num < 0;	// Just so we can know if we need to add the "-" sign
+    if (num < 0)					// Take the absolute value of num
+        num = -num;
+    while (num > 6) {				// Keep adding the remainder, and dividing num by 7.
+        sb.append(num % 7);
+        num /= 7;
+    }
+    sb.append(num);					// Add whatever is left at the end.
+    if (isNegative)					// If num was negative, add the minus sign.
+        sb.append('-');
+
+    return sb.reverse().toString();	// Reverse the builder and return the toString()
+}
+```
+
