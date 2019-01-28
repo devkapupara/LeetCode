@@ -2991,3 +2991,66 @@ public int[] nextGreaterElement(int[] nums1, int[] nums2) {
 }
 ```
 
+
+
+### [String Without AAA or BBB](https://leetcode.com/problems/string-without-aaa-or-bbb/)
+
+```java
+public String strWithout3a3b(int A, int B) {				
+    char[] ch = new char[A+B];		// We create an char array to store string chars
+    int index = 0;
+    char max = A > B ? 'a' : 'b';	// record the most frequent occurring element
+    char min = max == 'a' ? 'b' : 'a';	// and the least frequent occurring element
+    while (A > 0 || B > 0){			// While we haven't added all of the elements
+    // We check that if our current index > 1 and our previoud two characters in the array
+    // are the same, then we must have written the max occurring char, so it's time to write
+    // the minimum occurring element. We write it, and then decrement the specific A or B.
+        if (index > 1 && max == ch[index-1] && max == ch[index-2]){
+            ch[index++] = min;
+            if (min == 'a')		// If the minimum freq element is 'a', decrement A
+                A--;
+            else
+                B--;			// otherwise decrement B
+        }
+        else if (B > A){		// Otherwise, if B occurs more than A, then set char to B
+            ch[index++] = 'b';	// decrement B and increment index
+            B--;
+        }
+        else{					// A occurs more, so add A to the char array.
+            ch[index++] = 'a';	// Increment index, decrement A count
+            A--;
+        }
+    }
+
+    return new String(ch);		// Create a string from the char array and return it.
+}
+```
+
+
+
+### [Keyboard Row](https://leetcode.com/problems/keyboard-row/)
+
+```java
+// Maps each character to the row in the keyboard in which it occurs.
+private int[] map = {2,3,3,2,1,2,2,2,1,2,2,2,3,3,1,1,1,1,2,1,1,3,1,3,1,3};
+
+public String[] findWords(String[] words) {
+
+    String[] w = new String[words.length];	// Store filtered words
+    int index = 0;							// Where to insert the filtered words
+    for (String s: words)					// for each word in words
+        if (checkWord(s.toLowerCase()))		// convert it to lowercase and check if all char
+            w[index++] = s;					// occurs in the same row, if it does, add it
+    return Arrays.copyOfRange(w, 0, index);	// Simply return a copy of the array from 0
+}											// index
+
+private boolean checkWord(String word){		// Check if all chars in the word belong in the
+    int row = map[word.charAt(0)-'a'];		// same row. Check first chars row
+    for (char c: word.toCharArray()){		// For all the chars in the word
+        if (map[c-'a'] != row)				// if that char belongs to a different row,
+            return false;					// return false
+    }
+    return true;							// All chars in same row, return true.
+}
+```
+
