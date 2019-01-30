@@ -3192,3 +3192,21 @@ public String[] findRelativeRanks(int[] nums) {
 }
 ```
 
+
+
+### [Perfect Number](https://leetcode.com/problems/perfect-number/)
+
+```java
+public boolean checkPerfectNumber(int num) {
+    if (num == 1)		// 1 is a special case, where it's only factor is itself.
+        return false;
+    int total = 1;		// We know our total will atleast be 1, 1 is everyone's factor
+    for (int i = 2; i <= Math.sqrt(num); ++i)	// Only loop through num's sqrt
+        if (num % i == 0){				// If i divides num perfectly
+            int otherFactor = num/i;	// Calculate the other factor
+            total += i + (otherFactor == i ? 0 : otherFactor);	// If i and other factor are
+        }								// different, add them both, otherwise just i.
+    return total == num;				// Check in the end if your total is the same as num
+}
+```
+
