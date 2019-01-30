@@ -3210,3 +3210,27 @@ public boolean checkPerfectNumber(int num) {
 }
 ```
 
+
+
+### [Detect Capital](https://leetcode.com/problems/detect-capital/)
+
+```java
+public boolean detectCapitalUse(String word) {
+    int len = word.length();
+    if (len < 2)			// Empty or size 1 words are ok.
+        return true;
+    char[] chars = word.toCharArray();	// Get the char array
+    boolean isUpper = false;	// by default we let isUpper to false
+    if (chars[0] >= 'A' && chars[0] <= 'Z')		// Check if first two letters are uppercase
+        isUpper = chars[1] >= 'A' && chars[1] <= 'Z'; // If first was upper and second wasnt
+    for (int i = 1; i < len; ++i){	// isUpper = false, otherwise true.
+        boolean isAlsoUpper = chars[i] >= 'A' && chars[i] <= 'Z'; // We check onwards 1 char
+        if (isUpper && !isAlsoUpper)	// If that char is lower and previous part was
+            return false;				// not lower, invalid use.
+        if (!isUpper && isAlsoUpper)	// Or if previous part was lower and current letter
+            return false;				// is upper, we return false.
+    }
+    return true;				// Everything proceeded smoothly. So return true.
+}
+```
+
