@@ -3157,3 +3157,38 @@ public String convertToBase7(int num) {
 }
 ```
 
+
+
+### [Relative Ranks](https://leetcode.com/problems/relative-ranks/)
+
+The idea employed here is simple. We need to store the relative ranks in sorted order. We can sort the array for that, but that is O(n log n). We can do better than that by finding the relative rank in linear time. First we find the maximum score in the array and create another array of length = maxScore + 1. We add 1 so that when we see the maxScore in the nums, we can assign it to maxScore index. Once we have done that, now we iterate over the nums array. Variable i keeps track of what rank to assign. We check a value in the array and at that index in our reverse sorted array, we put i+1, which basically marks it's rank based on it's position in the rankings. Some of then indexes would be default, that is a score of 0. We then check each value in the descend array and if it's not 0, we assign it a rank, but not if the ranks are 1, 2 or 3. In that case, we assign it a special value of Gold, SIlver or Bronze.
+
+```java
+public String[] findRelativeRanks(int[] nums) {
+    int maxScore = nums[0];
+    for (int n: nums)
+        if (n > maxScore)
+            maxScore = n;
+    int[] descend = new int[maxScore+1];
+    for (int i = 0; i < nums.length; ++i)
+        descend[nums[i]] = i+1;
+    String[] result = new String[nums.length];
+    int rank = 1;
+    for (int i = descend.length-1; i > -1; --i){
+        int idx = descend[i];
+        if (descend[i] != 0){
+            if (rank == 1)
+                result[idx-1] = "Gold Medal";
+            else if (rank == 2)
+                result[idx-1] = "Silver Medal";
+            else if (rank == 3)
+                result[idx-1] = "Bronze Medal";
+            else
+                result[idx-1] = rank + "";
+            ++rank;
+        }
+    }
+    return result;
+}
+```
+
