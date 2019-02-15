@@ -1169,7 +1169,7 @@ private int fibDP(int N){
 ### [kth Largest Element](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
 1.	The minheap algorithm has $O(n lg n) $ complexity and $O(1)$ space. The idea here is that we use a minheap to keep only the k greatest elements. If size becomes more than k, we remove the smallest element at the top of the heap. Thereby, at the end, our kth largest element will be at the top.
-2.	2.QuickSelect Algorithm performs in $O(n)$ best case, $O(n^2)​$ worst case when the pivot chosen is always the largest, so we use a random pivot.
+2.	QuickSelect Algorithm performs in $O(n)$ best case, $O(n^2)$ worst case when the pivot chosen is always the largest, so we use a random pivot.
 
 
 ```java
@@ -1181,7 +1181,7 @@ public int kthLargest(int[] nums, int k){
         if (q.size() > k)		// If size is greater than k
             q.poll();			// Remove the topmost element
     }
-    return q.poll();			// The topmost element is
+    return q.poll();			// The topmost element is our answer
 }
 
 // QuickSelect Algorithm - Hoare's Partition Scheme
@@ -1189,40 +1189,40 @@ public int kthLargest(int[] nums, int k){
 private int[] arr;
 
 public int kthLargest(int[] nums, int k){
-arr = nums;
-return quickselect(0, nums.length-1, nums.length-k);	// kth largest is (n-k)th largest
+	arr = nums;
+	return quickselect(0, nums.length-1, nums.length-k);// kth largest is (n-k)th largest
 }
 
 private int quickselect(int left, int right, int k){
-if (left == right)						// Array contains only 1 element, that's the answer
-  return arr[left];
-Random rand = new Random();				// Choose a random pivot between left and right
-int pivotIndex = left + rand.nextInt(right-left);	// but not left
-pivotIndex = partition(left, right, pivotIndex);	// Partition, and find it's correct index
-if (k == pivotIndex)					// That index is equal to kth statistic
-  return arr[pivotIndex];
-else if (k < pivotIndex)				// If it's less than the index, our ans lies in the
-  return quickselect(left, pivotIndex-1, k);	// left side
-else
-  return quickselect(pivotIndex+1, right, k);	// Otherwise, it's on the right side.
+	if (left == right)					// Array contains only 1 element, that's the answer
+  		return arr[left];
+	Random rand = new Random();				// Choose a random pivot between left and right
+	int pivotIndex = left + rand.nextInt(right-left);	// but not left
+	pivotIndex = partition(left, right, pivotIndex);	// Partition, and find it's correct index
+	if (k == pivotIndex)					// That index is equal to kth statistic
+  		return arr[pivotIndex];
+	else if (k < pivotIndex)			// If it's less than the index, our ans lies in the
+  		return quickselect(left, pivotIndex-1, k);	// left side
+	else
+  		return quickselect(pivotIndex+1, right, k);	// Otherwise, it's on the right side.
 }
 
 private int partition(int left, int right, int pivotIndex){
-int pivot = arr[pivotIndex];			// Partition element
-swap(pivotIndex, right);				// Move that element to the end
-int wall = left - 1;					// wall is initially before everything
-for (int i = left; i < right; i++){
-  if (arr[i] < pivot)					// If the current element is < than the pivot, then
-    swap(i, ++wall);					// we need to swap it with the element next to wall.
-}
-swap(right, ++wall);					// Lastly, swap the element at wall and the end.
-return wall;
+	int pivot = arr[pivotIndex];			// Partition element
+	swap(pivotIndex, right);				// Move that element to the end
+	int wall = left - 1;					// wall is initially before everything
+	for (int i = left; i < right; i++){
+  		if (arr[i] < pivot)				// If the current element is < than the pivot, then
+    		swap(i, ++wall);			// we need to swap it with the element next to wall.
+	}
+	swap(right, ++wall);					// Lastly, swap the element at wall and the end.
+	return wall;
 }
 
 private void swap(int i, int j){
-int temp = arr[i];
-arr[i] = arr[j];
-arr[j] = temp;
+	int temp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = temp;
 }
 ```
 
