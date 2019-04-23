@@ -2294,7 +2294,7 @@ public List<Integer> findAnagrams(String s, String p) {
 
 ### [Arranging Coins](https://leetcode.com/problems/arranging-coins/)
 
-The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}​$. We need to find $n​$ such that sum of $n​$ numbers is closest to the number of coins we have. That is, $\frac{n^2+n}{2} = k​$ where $k​$ is the number of coins we have. So, everything boils down to solving the quadratic equation $n^2 + n - 2k = 0​$. We use the quadratic formula where for any quadratic equation $ax^2 -bx + c​$ is solved substituting for $a​$, $b​$ and $c​$ in $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}​$. Here, $a​$ and $b​$ are always going to be 1, while $c​$ is always going to be $2k​$. Substitute those, and solve the equation.
+The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}$. We need to find $n$ such that sum of $n$ numbers is closest to the number of coins we have. That is, $\frac{n^2+n}{2} = k$ where $k$ is the number of coins we have. So, everything boils down to solving the quadratic equation $n^2 + n - 2k = 0$. We use the quadratic formula where for any quadratic equation $ax^2 -bx + c$ is solved substituting for $a$, $b$ and $c$ in $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}$. Here, $a$ and $b$ are always going to be 1, while $c$ is always going to be $2k$. Substitute those, and solve the equation.
 
 ```java
 public int arrangeCoins(int n) {
@@ -3232,5 +3232,19 @@ public boolean detectCapitalUse(String word) {
     }
     return true;				// Everything proceeded smoothly. So return true.
 }
+```
+
+
+
+### [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/)
+
+This is those kind of problems that shouldn't be up there. The problem is stated rather poorly and the solution is even stupider. All you are checking for is if the two string's aren't the same, then whichever one has a larger length is essentially the longest uncommon subsequence because the other string cannot form the full string. I know, it's stupid.
+
+```java
+  public int findLUSlength(String a, String b) {
+      if (a.equals(b))
+          return -1;
+      return a.length() > b.length() ? a.length() : b.length();
+  }
 ```
 
