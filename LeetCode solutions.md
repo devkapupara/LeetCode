@@ -3250,7 +3250,7 @@ This is those kind of problems that shouldn't be up there. The problem is stated
 
 ###
 
-###[Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+### [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 
 This is a graph problem where we require to sort the vertices topologically. There are two choices we have for sorting topologically - Depth First Search approach based on finshing times or the Kahn's Algorithm. I have used Kahn's algorithm in this solution. Runtime is 2ms [beats 100%] and uses 45.3 MB space [beats than 90.16%]. The idea for Kahn's is simple - Enqueue all the nodes which has 0 incoming edges because those are the ones that can be started first. Then while the queue isn't empty, remove one node at a time, process it's outgoing nodes and decrease their indegrees by one. The reasoning behind that is let's say Node 2 has two prerequisites, Node 0 and Node 1. Node 0 and Node 1 have 0 indegrees. So our first two nodes would be Node 1 and Node 0 and if they are finished, then their outgoing Nodes can be started, that is Node 2. Now when you decrease any node's indegree and they become zero, add them to the queue because they can now be started. Keep doing this until the queue is empty.
 
