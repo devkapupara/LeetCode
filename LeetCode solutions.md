@@ -3258,30 +3258,30 @@ In my approach, I'm avoiding any unnecessary data structure and using only the m
 
 ```java
 public int[] findOrder(int numCourses, int[][] prerequisites) {
-    int[] indegrees = new int[numCourses];							// We maintain each node's indegree
+    int[] indegrees = new int[numCourses];				// We maintain each node's indegree
     List<Integer>[] graph = new ArrayList[numCourses];	// Each node's outgoing edges
-    for (int[] edge: prerequisites) {										// Process each edge
-        indegrees[edge[0]]++;														// Update indegrees
-        if (graph[edge[1]] == null)											// Also store the edge in graph
+    for (int[] edge: prerequisites) {					// Process each edge
+        indegrees[edge[0]]++;							// Update indegrees
+        if (graph[edge[1]] == null)						// Also store the edge in graph
             graph[edge[1]] = new ArrayList<Integer>();
         graph[edge[1]].add(edge[0]);
     }
-    int[] order = new int[numCourses];		// We don't technically need a queue.
+    int[] order = new int[numCourses];		    // We don't technically need a queue.
     int idx = 0;
-    for (int i = 0; i < numCourses; ++i)	// Find all nodes who indegree is 0
-        if (indegrees[i] == 0)						// and put them in the order array
+    for (int i = 0; i < numCourses; ++i)        // Find all nodes who indegree is 0
+        if (indegrees[i] == 0)                  // and put them in the order array
             order[idx++] = i;
-    int start = 0;												// start tracks node to be polled.
-    while (start != idx) {								// while we can poll the queue
-        int u = order[start++];						// poll the node u
-        if (graph[u] != null)							// If node u has outgoing edges 
-            for (int out: graph[u])				// Then for each of those nodes
-                if (--indegrees[out] == 0)// decrease their indegrees and check if it's 0
-                    order[idx++] = out;		// if it's 0, add it to our queue (order)
+    int start = 0;                              // start tracks node to be polled.
+    while (start != idx) {                      // while we can poll the queue
+        int u = order[start++];                 // poll the node u
+        if (graph[u] != null)                   // If node u has outgoing edges 
+            for (int out: graph[u])             // Then for each of those nodes
+                if (--indegrees[out] == 0)      // decrease their indegrees and check if it's 0
+                    order[idx++] = out;         // if it's 0, add it to our queue (order)
     }
-    if (idx != numCourses)								// Cycle check. If our idx != numCourses then
-        return new int[] {};							// not all nodes could be processed. So we have
-    return order;													// a cycle. Otherwise return our order array.
+    if (idx != numCourses)						// Cycle check. If our idx != numCourses then
+        return new int[] {};					// not all nodes could be processed. So we have
+    return order;								// a cycle. Otherwise return our order array.
 }
 ```
 
