@@ -3248,3 +3248,40 @@ This is those kind of problems that shouldn't be up there. The problem is stated
   }
 ```
 
+###
+
+###[Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+
+This is a graph problem where we require to sort the vertices topologically. There are two choices we have for sorting topologically - Depth First Search approach based on finshing times or the Kahn's Algorithm. I have used Kahn's algorithm in this solution. Runtime is 2ms [beats 100%] and uses 45.3 MB space [beats than 90.16%]. The idea for Kahn's is simple - Enqueue all the nodes which has 0 incoming edges because those are the ones that can be started first. Then while the queue isn't empty, remove one node at a time, process it's outgoing nodes and decrease their indegrees by one. The reasoning behind that is let's say Node 2 has two prerequisites, Node 0 and Node 1. Node 0 and Node 1 have 0 indegrees. So our first two nodes would be Node 1 and Node 0 and if they are finished, then their outgoing Nodes can be started, that is Node 2. Now when you decrease any node's indegree and they become zero, add them to the queue because they can now be started. Keep doing this until the queue is empty.
+
+In my approach, I'm avoiding any unnecessary data structure and using only the most basic ones like array's. So instead of using the queue, what I do is fill the array `order` which also stores the topological order. `idx` keeps track of the last index available to fill in the array. `start` mimics the `poll` behaviour of a queue. `while (start != idx)` makes sure that while we still have nodes to process, remove the one that can be started and decrease all the indegrees of outgoing edges.
+
+```java
+public int[] findOrder(int numCourses, int[][] prerequisites) {
+    int[] indegrees = new int[numCourses];							// We maintain each node's indegree
+    List<Integer>[] graph = new ArrayList[numCourses];	// Each node's outgoing edges
+    for (int[] edge: prerequisites) {										// Process each edge
+        indegrees[edge[0]]++;														// Update indegrees
+        if (graph[edge[1]] == null)											// Also store the edge in graph
+            graph[edge[1]] = new ArrayList<Integer>();
+        graph[edge[1]].add(edge[0]);
+    }
+    int[] order = new int[numCourses];		// We don't technically need a queue.
+    int idx = 0;
+    for (int i = 0; i < numCourses; ++i)	// Find all nodes who indegree is 0
+        if (indegrees[i] == 0)						// and put them in the order array
+            order[idx++] = i;
+    int start = 0;												// start tracks node to be polled.
+    while (start != idx) {								// while we can poll the queue
+        int u = order[start++];						// poll the node u
+        if (graph[u] != null)							// If node u has outgoing edges 
+            for (int out: graph[u])				// Then for each of those nodes
+                if (--indegrees[out] == 0)// decrease their indegrees and check if it's 0
+                    order[idx++] = out;		// if it's 0, add it to our queue (order)
+    }
+    if (idx != numCourses)								// Cycle check. If our idx != numCourses then
+        return new int[] {};							// not all nodes could be processed. So we have
+    return order;													// a cycle. Otherwise return our order array.
+}
+```
+
