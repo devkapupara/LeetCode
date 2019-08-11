@@ -1,5 +1,129 @@
-### [Lowest Common Ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+# Index
 
+1.  [Lowest Common Ancestor](#lowest-common-ancestor)
+2.  [Count And Say](#count-and-say)
+3.  [Maximum SubArray](#maximum-subarray)
+4.  [Plus One](#plus-one)
+5.  [Sqrt of X](#sqrt of x)
+6.  [Climbing Stairs](#climbing stairs)
+7.  [Remove Duplicates from sorted list](#remove duplicates from sorted list)
+8.  [Same Tree](#same tree)
+9.  [Symmetric Tree](#symmetric tree)
+10.  [Max Depth of Binary Tree](#max depth of binary tree)
+11.  [Convert Sorted Array to Binary Search Tree](#convert-sorted-array-to-binary-search-tree)
+12.  [Balanced Binary Tree](#balanced-binary-tree)
+13.  [Minimum Depth of Binary Tree](#minimum-depth-of-binary-tree)
+14.  [Path Sum](#path-sum)
+15.  [Pascal's Triangle](#pascal's-triangle)
+16.  [Valid Palindrome](#valid-palindrome)
+17.  [Pascal's Triangle II](#pascal's-triangle-ii)
+18.  [Best Time to Buy and Sell Stock](#best-time-to-buy-and-sell-stock)
+19.  [Best Time to Buy and Sell Stock II](#best-time-to-buy-and-sell-stock-ii)
+20.  [Single Number](#single-number)
+21.  [Linked List Cycle](#linked-list-cycle)
+22.  [Min Stack](#min-stack)
+23.  [Intersection of Two Linked Lists](#intersection-of-two-linked-lists)
+24.  [Two Sum II - Input array is sorted](#two-sum-ii---input-array-is-sorted)
+25.  [Excel Sheet Column Title](#excel-sheet-column-title)
+26.  [Majority Element](#majority-element)
+27.  [Excel Sheet Column Number](#excel-sheet-column-number)
+28.  [Factorial Trailing Zeroes](#factorial-trailing-zeroes)
+29.  [Combine Two Tables](#combine-two-tables)
+30.  [Second Highest Salary](#second-highest-salary)
+31.  [Employees Earning More Than Their Managers](#employees-earning-more-than-their-managers)
+32.  [Duplicate Emails](#duplicate-emails)
+33.  [Customers Who Never Order](#customers-who-never-order)
+34.  [Rotate Array](#rotate-array)
+35.  [Delete Duplicate Emails](#delete-duplicate-emails)
+36.  [Rising Temperature](#rising-temperature)
+37.  [X of a Kind in a Deck of Cards](#x-of-a-kind-in-a-deck-of-cards)
+38.  [Reverse Integer](#reverse-integer)
+39.  [Add Two Numbers](#add-two-numbers)
+40.  [Longest Substring Without Repeating Characters](#longest-substring-without-repeating-characters)
+41.  [House Robber](#house-robber)
+42.  [Happy Number](#happy-number)
+43.  [Remove Linked List Elements](#remove-linked-list-elements)
+44.  [Count Primes](#count-primes)
+45.  [Isomorphic Strings](#isomorphic-strings)
+46.  [Reverse LinkedList](#reverse-linkedlist)
+47.  [Contains Duplicate](#contains-duplicate)
+48.  [Contains Duplicate II](#contains-duplicate-ii)
+49.  [Implement Stack Using Queues](#implement-stack-using-queues)
+50.  [Invert Binary Tree](#invert-binary-tree)
+51.  [Fibonacci Number](#fibonacci-number)
+52.  [kth Largest Element](#kth-largest-element)
+53.  [Power Of Two](#power-of-two)
+54.  [Valid Sudoku](#valid-sudoku)
+55.  [Implement Queue Using Stack](#implement-queue-using-stack)
+56.  [Palindrome LinkedList](#palindrome-linkedlist)
+57.  [Delete Node in a Linked List](#delete-node-in-a-linked-list)
+58.  [Is Anagram](#is-anagram)
+59.  [Binary Tree Paths](#binary-tree-paths)
+60.  [Add Digits](#add-digits)
+61.  [Largest Perimeter Triangle](#largest-perimeter-triangle)
+62.  [Ugly Number](#ugly-number)
+63.  [Missing Number](#missing-number)
+64.  [Is Bad Version](#is-bad-version)
+65.  [Move Zeroes](#move-zeroes)
+66.  [Word Pattern](#word-pattern)
+67.  [Can Win Nim](#can-win-nim)
+68.  [Power Of Three](#power-of-three)
+69.  [Power of Four](#power-of-four)
+70.  [Reverse String](#reverse-string)
+71.  [Implement strStr()](#implement-strstr())
+72.  [Reverse Vowels of a String](#reverse-vowels-of-a-string)
+73.  [Intersection of two arrays](#intersection-of-two-arrays)
+74.  [Is Perfect Square](#is-perfect-square)
+75.  [Sum of Two Integers](#sum-of-two-integers)
+76.  [Guess Number Higher or Lower](#guess-number-higher-or-lower)
+77.  [Ransom Note](#ransom-note)
+78.  [First Unique Character in a String](#first-unique-character-in-a-string)
+79.  [Find the Difference](#find-the-difference)
+80.  [Nth Digit](#nth-digit)
+81.  [Sum of Left Leaves](#sum-of-left-leaves)
+82.  [Longest Palindrome](#longest-palindrome)
+83.  [Fizz Buzz](#fizz-buzz)
+84.  [Third maximum Number](#third-maximum-number)
+85.  [Add Two Strings](#add-two-strings)
+86.  [Construct Quad Tree](#construct-quad-tree)
+87.  [N-ary Tree Level Order Traversal](#n-ary-tree-level-order-traversal)
+88.  [Number of Segments in a String](#number-of-segments-in-a-string)
+89.  [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+90.  [Path Sum III](#path-sum-iii)
+91.  [Find All Anagrams in a String](#find-all-anagrams-in-a-string)
+92.  [Arranging Coins](#arranging-coins)
+93.  [Hamming Distance](#hamming-distance)
+94.  [String Compression](#string-compression)
+95.  [Number of Boomerangs](#number-of-boomerangs)
+96.  [Find All Numbers Disappeared in an Array](#find-all-numbers-disappeared-in-an-array)
+97.  [Assign Cookies](#assign-cookies)
+98.  [Poor Pigs](#poor-pigs)
+99.  [Find Pivot Index](#find-pivot-index)
+100.  [Squares of a Sorted Array](#squares-of-a-sorted-array)
+101.  [Repeated Substring Pattern](#repeated-substring-pattern)
+102.  [Island Perimeter](#island-perimeter)
+103.  [Number Complement](#number-complement)
+104.  [Binary Watch](#binary-watch)
+105.  [Minimum Moves to Equal Array Elements](#minimum-moves-to-equal-array-elements)
+106.  [License Key Formatting](#license-key-formatting)
+107.  [Max Consecutive Ones](#max-consecutive-ones)
+108.  [Permutations](#permutations)
+109.  [Construct the Rectangle](#construct-the-rectangle)
+110.  [Merge Intervals](#merge-intervals)
+111.  [Merged sorted lists](#merged-sorted-lists)
+112.  [Next Greater Element I](#next-greater-element-i)
+113.  [String Without AAA or BBB](#string-without-aaa-or-bbb)
+114.  [Keyboard Row](#keyboard-row)
+115.  [Find Mode in Binary Search Tree](#find-mode-in-binary-search-tree)
+116.  [Base 7](#base-7)
+117.  [Relative Ranks](#relative-ranks)
+118.  [Perfect Number](#perfect-number)
+119.  [Detect Capital](#detect-capital)
+120.  [Longest Uncommon Subsequence I](#longest-uncommon-subsequence-i)
+121.  [Course Schedule II](#course-schedule-ii)
+122.  [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
+
+### [Lowest Common Ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)<a name="lowest-common-ancestor"></a>
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
     TreeNode current = root;
@@ -17,8 +141,7 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 
 
-### [Count And Say](https://leetcode.com/problems/count-and-say/)
-
+### [Count And Say](https://leetcode.com/problems/count-and-say/)<a name="count-and-say"></a>
 The updated version runs in 2ms and passes 96.85% submissions.
 
 ```java
@@ -47,8 +170,7 @@ public String countAndSay(int n) {
 
 
 
-### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)
-
+### [Maximum SubArray](https://leetcode.com/problems/maximum-subarray/)<a name="maximum-subarray"></a>
 ```java
 public int maxSubArray(int[] nums) {
     int localMax = nums[0];		// keeps track of max sum between the previous and current
@@ -71,8 +193,7 @@ public int maxSubArray(int[] nums) {
 
 
 
-### [Plus One](https://leetcode.com/problems/plus-one/)
-
+### [Plus One](https://leetcode.com/problems/plus-one/)<a name="plus-one"></a>
 ```java
 public int[] plusOne(int[] digits)
 {
@@ -97,8 +218,7 @@ public int[] plusOne(int[] digits)
 
 
 
-### [Sqrt of X](https://leetcode.com/problems/sqrtx/)
-
+### [Sqrt of X](https://leetcode.com/problems/sqrtx/)<a name="sqrt of x"></a>
 ```java
 public int mySqrt(int x) {
     long x1 = 10 - (100 - x)/20;		// Using Newton's method of computing square roots.
@@ -117,8 +237,7 @@ public int mySqrt(int x) {
 
 
 
-### [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
-
+### [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)<a name="climbing stairs"></a>
 ```java
 public int climbStairs(int n) {
     if (n < 4)		// I chose n < 4 because climbStairs(0 <= n <= 3) = n
@@ -152,8 +271,7 @@ public int efficientDP(int n){
 
 
 
-### [Remove Duplicates from sorted list](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
-
+### [Remove Duplicates from sorted list](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)<a name="remove duplicates from sorted list"></a>
 ```java
 public ListNode deleteDuplicates(ListNode head){
     ListNode current = head;
@@ -171,8 +289,7 @@ public ListNode deleteDuplicates(ListNode head){
 
 
 
-### [Same Tree](https://leetcode.com/problems/same-tree/)
-
+### [Same Tree](https://leetcode.com/problems/same-tree/)<a name="same tree"></a>
 ```java
 public boolean isSameTree(TreeNode p, TreeNode q)
 {
@@ -190,8 +307,7 @@ public boolean isSameTree(TreeNode p, TreeNode q)
 
 
 
-### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)
-
+### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)<a name="symmetric tree"></a>
 ```java
 public boolean isSymmetric(TreeNode root)
 {
@@ -236,8 +352,7 @@ private boolean helperRecursive(TreeNode x, TreeNode y)
 
 
 
-### [Max Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)
-
+### [Max Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)<a name="max depth of binary tree"></a>
 ```java
 /*
 If root is null, height is 0 else add 1 and find if the left or the right has a greater depth.
@@ -249,8 +364,7 @@ public int maxDepth(TreeNode root) {
 
 
 
-### [Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)
-
+### [Convert Sorted Array to Binary Search Tree](https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/)<a name="convert-sorted-array-to-binary-search-tree"></a>
 ```java
 public TreeNode sortedArrayToBST(int[] nums)
 {
@@ -272,8 +386,7 @@ private TreeNode aux(int[] n, int left, int right)
 
 
 
-### [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)
-
+### [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)<a name="balanced-binary-tree"></a>
 ```java
 public boolean isBalanced(TreeNode root)
 {
@@ -323,8 +436,7 @@ private int getHeight2(TreeNode node)
 
 
 
-### [Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)
-
+### [Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/)<a name="minimum-depth-of-binary-tree"></a>
 ```java
 public int minDepth(TreeNode root) {
     // Base case
@@ -340,8 +452,7 @@ public int minDepth(TreeNode root) {
 
 
 
-### [Path Sum](https://leetcode.com/problems/path-sum/)
-
+### [Path Sum](https://leetcode.com/problems/path-sum/)<a name="path-sum"></a>
 ```java
 public boolean hasPathSum(TreeNode root, int sum) {
     if (root == null)
@@ -356,8 +467,7 @@ public boolean hasPathSum(TreeNode root, int sum) {
 
 
 
-### [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/)
-
+### [Pascal's Triangle](https://leetcode.com/problems/pascals-triangle/)<a name="pascal's-triangle"></a>
 ```java
 public List<List<Integer>> generate(int numRows) {
     List<List<Integer>> pt = new ArrayList<>();
@@ -379,8 +489,7 @@ public List<List<Integer>> generate(int numRows) {
 
 
 
-### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
-
+### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)<a name="valid-palindrome"></a>
 ```java
 public boolean isPalindrome(String s) {
     if (s.length() > 0){		// Only do this is s is not empty
@@ -411,8 +520,7 @@ public boolean isPalindrome(String s) {
 
 
 
-### [Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)
-
+### [Pascal's Triangle II](https://leetcode.com/problems/pascals-triangle-ii/)<a name="pascal's-triangle-ii"></a>
 ```java
 public List<Integer> getRow(int rowIndex)
 {
@@ -427,8 +535,7 @@ public List<Integer> getRow(int rowIndex)
 
 
 
-### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)
-
+### [Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)<a name="best-time-to-buy-and-sell-stock"></a>
 ```Java
 /*
 The general idea is that if the price you are looking at right now in the array minus the minimum observed so far is greater than the maximum profit you recorded, update the max.
@@ -452,8 +559,7 @@ public int maxProfit(int[] prices) {
 
 
 
-### [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
-
+### [Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)<a name="best-time-to-buy-and-sell-stock-ii"></a>
 ```java
 /*
 The general idea is that the moment you observe a valley and consecutive peak, make the trade by buying the stock on the valley day and selling it on the peak day.
@@ -469,8 +575,7 @@ public int maxProfit(int[] prices) {
 
 
 
-### [Single Number](https://leetcode.com/problems/single-number/)
-
+### [Single Number](https://leetcode.com/problems/single-number/)<a name="single-number"></a>
 ```java
 /*
 The general idea is that XOR of two same numbers returns 0 and XOR with 0 returns the same number. So if there is only one element that doesn't have a pair, all the remaining will XOR with themselves at one point and give 0 but not the singleton element.
@@ -485,8 +590,7 @@ public int singleNumber(int[] nums) {
 
 
 
-### [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)
-
+### [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)<a name="linked-list-cycle"></a>
 ```java
 // Using the slow-fast runner technique.
 public boolean hasCycle(ListNode head) {
@@ -508,8 +612,7 @@ public boolean hasCycle(ListNode head) {
 
 
 
-### [Min Stack](https://leetcode.com/problems/min-stack/)
-
+### [Min Stack](https://leetcode.com/problems/min-stack/)<a name="min-stack"></a>
 ```Java
 class MinStack {
 
@@ -549,8 +652,7 @@ class MinStack {
 
 
 
-### [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
-
+### [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)<a name="intersection-of-two-linked-lists"></a>
 ```java
 /*
 The general idea is that if you are done traversing any of the lists, make it's pointer point to the head of the other list and start iterating. The reasoning is that the second time they iterate, they will have traversed exactly the same distance (it's length plus the other list's head to the intersecting node) and will meet at the intersecting node.
@@ -569,8 +671,7 @@ public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 
 
 
-### [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-
+### [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)<a name="two-sum-ii---input-array-is-sorted"></a>
 ```java
 public int[] twoSum(int[] numbers, int target) {
     int left = 0, right = numbers.length-1;
@@ -590,8 +691,7 @@ public int[] twoSum(int[] numbers, int target) {
 
 
 
-### [Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/)
-
+### [Excel Sheet Column Title](https://leetcode.com/problems/excel-sheet-column-title/)<a name="excel-sheet-column-title"></a>
 ```java
 public String convertToTitle(int n) {
     String res = "";
@@ -609,8 +709,7 @@ public String convertToTitle(int n) {
 
 
 
-### [Majority Element](https://leetcode.com/problems/majority-element/)
-
+### [Majority Element](https://leetcode.com/problems/majority-element/)<a name="majority-element"></a>
 Uses [Moore's Algorithm](https://www.geeksforgeeks.org/majority-element/)
 
 ```java
@@ -635,8 +734,7 @@ public int majorityElement(int[] nums) {
 
 
 
-### [Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/)
-
+### [Excel Sheet Column Number](https://leetcode.com/problems/excel-sheet-column-number/)<a name="excel-sheet-column-number"></a>
 ```java
 /*
 Start from the end of String s, compute the ASCII for the char, +1 for 1-26 Alphabet-Scheme (hence -64 instead of -65) and multiply it to 26^{distance from the end of the string}
@@ -652,8 +750,7 @@ public int titleToNumber(String s) {
 
 
 
-### [Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/)
-
+### [Factorial Trailing Zeroes](https://leetcode.com/problems/factorial-trailing-zeroes/)<a name="factorial-trailing-zeroes"></a>
 ```java
 /*
 The general idea is that every factorial that has 5 as a multiple also has 2 to multiply to 10. So if we can count the number of times we can divide n by 5, should gives us the number of trailing zeroes. O(log(n) base 5) complexity.
@@ -671,8 +768,7 @@ public int trailingZeroes(int n) {
 
 
 
-### [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)
-
+### [Combine Two Tables](https://leetcode.com/problems/combine-two-tables/)<a name="combine-two-tables"></a>
 ```mysql
 select FirstName, LastName, City, State
 from Person left join Address on Address.personId = person.personId;
@@ -680,8 +776,7 @@ from Person left join Address on Address.personId = person.personId;
 
 
 
-### [Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)
-
+### [Second Highest Salary](https://leetcode.com/problems/second-highest-salary/)<a name="second-highest-salary"></a>
 ```mysql
 select max(salary) as SecondHighestSalary
 from Employee
@@ -690,8 +785,7 @@ where salary not in (select max(salary) from employee);
 
 
 
-### [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)
-
+### [Employees Earning More Than Their Managers](https://leetcode.com/problems/employees-earning-more-than-their-managers/)<a name="employees-earning-more-than-their-managers"></a>
 ```mysql
 select emp.Name as Employee
 from Employee emp, Employee man
@@ -700,8 +794,7 @@ where emp.managerId = man.Id and emp.salary > man.salary;
 
 
 
-### [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)
-
+### [Duplicate Emails](https://leetcode.com/problems/duplicate-emails/)<a name="duplicate-emails"></a>
 ```mysql
 select email
 from person
@@ -711,8 +804,7 @@ having count(*) > 1;
 
 
 
-### [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)
-
+### [Customers Who Never Order](https://leetcode.com/problems/customers-who-never-order/)<a name="customers-who-never-order"></a>
 ```mysql
 select name as Customers
 from Customers
@@ -721,8 +813,7 @@ where customers.id not in (select customerId from orders);
 
 
 
-### [Rotate Array](https://leetcode.com/problems/rotate-array/)
-
+### [Rotate Array](https://leetcode.com/problems/rotate-array/)<a name="rotate-array"></a>
 ```java
 public void rotate(int[] nums, int k) {
     k %= nums.length;		// k == nums.length ? Then it's a full rotation and no change
@@ -748,8 +839,7 @@ public void reverse(int[] nums, int start, int end)
 
 
 
-### [Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails/)
-
+### [Delete Duplicate Emails](https://leetcode.com/problems/delete-duplicate-emails/)<a name="delete-duplicate-emails"></a>
 ```mysql
 delete from Person
 where Id not in (select min_id from
@@ -758,8 +848,7 @@ where Id not in (select min_id from
 
 
 
-### [Rising Temperature](https://leetcode.com/problems/rising-temperature/)
-
+### [Rising Temperature](https://leetcode.com/problems/rising-temperature/)<a name="rising-temperature"></a>
 ```mysql
 select w2.id
 from weather w1, weather w2
@@ -768,8 +857,7 @@ where Datediff(w2.recorddate, w1.recorddate) = 1 and w2.temperature > w1.tempera
 
 
 
-### [X of a Kind in a Deck of Cards](https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/)
-
+### [X of a Kind in a Deck of Cards](https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/)<a name="x-of-a-kind-in-a-deck-of-cards"></a>
 ```java
 public boolean hasGroupsSizeX(int[] deck) {
     HashMap<Integer, Integer> freq = new HashMap<>();
@@ -802,8 +890,7 @@ private static int gcd(int x, int y)
 
 
 
-### [Reverse Integer](https://leetcode.com/problems/reverse-integer/solution/)
-
+### [Reverse Integer](https://leetcode.com/problems/reverse-integer/solution/)<a name="reverse-integer"></a>
 ```Java
 public int reverse(int x) {
     int sign = x < 0 ? -1 : 1;
@@ -819,8 +906,7 @@ public int reverse(int x) {
 
 
 
-### [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/submissions/)
-
+### [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/submissions/)<a name="add-two-numbers"></a>
 ```java
 public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
     int carry = 0;							// To record the carry
@@ -848,8 +934,7 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
 
 
-### [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-
+### [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)<a name="longest-substring-without-repeating-characters"></a>
 ```java
 public int lengthOfLongestSubstring(String s) {
     if (s == null || s.length() == 0)
@@ -868,8 +953,7 @@ public int lengthOfLongestSubstring(String s) {
 
 
 
-### [House Robber](https://leetcode.com/problems/house-robber)
-
+### [House Robber](https://leetcode.com/problems/house-robber)<a name="house-robber"></a>
 ```java
 /*
 The basic idea is that if you are robbing house i, the maximum loot may come from by robbing the i-2th house or by robbing the i-3th house. Therefore rob both and then find the path that gave the maximum profit.
@@ -900,8 +984,7 @@ public int rob(int[] nums) {
 
 
 
-### [Happy Number](https://leetcode.com/problems/happy-number/submissions/)
-
+### [Happy Number](https://leetcode.com/problems/happy-number/submissions/)<a name="happy-number"></a>
 ```java
 public boolean isHappy(int n) {
         return isHappyConstantSpace(n);		// Much faster than set method
@@ -950,8 +1033,7 @@ The general idea is that the moment you see a repition, it can't be a happy numb
 
 
 
-### [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/)
-
+### [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/)<a name="remove-linked-list-elements"></a>
 ```java
 public ListNode removeElements(ListNode head, int val) {
     while (head != null && head.val == val)				// While head contains the val, skip
@@ -969,8 +1051,7 @@ public ListNode removeElements(ListNode head, int val) {
 
 
 
-### [Count Primes](https://leetcode.com/problems/count-primes/submissions/)
-
+### [Count Primes](https://leetcode.com/problems/count-primes/submissions/)<a name="count-primes"></a>
 ```java
 public int countPrimes(int n) {
     if (n < 2)
@@ -990,8 +1071,7 @@ public int countPrimes(int n) {
 
 
 
-### [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/submissions/)
-
+### [Isomorphic Strings](https://leetcode.com/problems/isomorphic-strings/submissions/)<a name="isomorphic-strings"></a>
 ```Java
 public boolean isIsomorphic(String s, String t) {
     if (s.length() != t.length())			// Can't be isomorphic is string lengths do not
@@ -1011,8 +1091,7 @@ public boolean isIsomorphic(String s, String t) {
 
 
 
-### [Reverse LinkedList](https://leetcode.com/problems/reverse-linked-list/solution/)
-
+### [Reverse LinkedList](https://leetcode.com/problems/reverse-linked-list/solution/)<a name="reverse-linkedlist"></a>
 ```java
 // Recursive
 public ListNode reverseList(ListNode head) {	// Very tricky. Refer to the demo below
@@ -1044,8 +1123,7 @@ public ListNode reverseList(ListNode head) {
 
 
 
-### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/submissions/)
-
+### [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/submissions/)<a name="contains-duplicate"></a>
 ```java
 public boolean containsDuplicate(int[] nums) {
     if (nums.length < 2)
@@ -1061,8 +1139,7 @@ public boolean containsDuplicate(int[] nums) {
 
 
 
-### [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/)
-
+### [Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/)<a name="contains-duplicate-ii"></a>
 ```java
 public boolean containsNearbyDuplicate(int[] nums, int k) {
     if (nums.length < 2)
@@ -1085,8 +1162,7 @@ public boolean containsNearbyDuplicate(int[] nums, int k) {
 
 
 
-### [Implement Stack Using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
-
+### [Implement Stack Using Queues](https://leetcode.com/problems/implement-stack-using-queues/)<a name="implement-stack-using-queues"></a>
 ```java
 class MyStack {
     Deque<Integer> stack;
@@ -1119,8 +1195,7 @@ class MyStack {
 
 
 
-### [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)
-
+### [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)<a name="invert-binary-tree"></a>
 ```java
 public TreeNode invertTree(TreeNode root) {
     if (root == null)
@@ -1136,8 +1211,7 @@ public TreeNode invertTree(TreeNode root) {
 
 
 
-### [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)
-
+### [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/)<a name="fibonacci-number"></a>
 ```java
 // Iterative
 public int fib(int N) {
@@ -1166,8 +1240,7 @@ private int fibDP(int N){
 
 
 
-### [kth Largest Element](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-
+### [kth Largest Element](https://leetcode.com/problems/kth-largest-element-in-an-array/)<a name="kth-largest-element"></a>
 1.	The minheap algorithm has $O(n lg n) $ complexity and $O(1)$ space. The idea here is that we use a minheap to keep only the k greatest elements. If size becomes more than k, we remove the smallest element at the top of the heap. Thereby, at the end, our kth largest element will be at the top.
 2.	QuickSelect Algorithm performs in $O(n)$ best case, $O(n^2)$ worst case when the pivot chosen is always the largest, so we use a random pivot.
 
@@ -1228,8 +1301,7 @@ private void swap(int i, int j){
 
 
 
-### [Power Of Two](https://leetcode.com/problems/power-of-two/)
-
+### [Power Of Two](https://leetcode.com/problems/power-of-two/)<a name="power-of-two"></a>
 ```java
 public boolean isPowerOfTwo(int n) {
     if (n < 1)
@@ -1245,8 +1317,7 @@ public boolean isPowerOfTwo(int n) {
 
 
 
-### [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)
-
+### [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)<a name="valid-sudoku"></a>
 ```java
 private char[][] board;
 public boolean isValidSudoku(char[][] board){
@@ -1340,8 +1411,7 @@ private boolean rowCheck(){						// Horizontal check
 
 
 
-### [Implement Queue Using Stack](https://leetcode.com/problems/implement-queue-using-stacks/submissions/)
-
+### [Implement Queue Using Stack](https://leetcode.com/problems/implement-queue-using-stacks/submissions/)<a name="implement-queue-using-stack"></a>
 ```java
 /*
 Since we reverse stack1 into stack2, stack2 is basically our queue, so if stack2 isn't empty, then the topmost element is what we need when we pop or peek. If it is empty, then again fill it with whatever's there is stack1, and it again becomes the correct queue.
@@ -1380,8 +1450,7 @@ public boolean empty() {
 
 
 
-### [Palindrome LinkedList](https://leetcode.com/problems/palindrome-linked-list/submissions/)
-
+### [Palindrome LinkedList](https://leetcode.com/problems/palindrome-linked-list/submissions/)<a name="palindrome-linkedlist"></a>
 ```JAVA
 public boolean isPalindrome(ListNode head) {
     if (head == null || head.next == null)		// Size 0 or 1 list, must be unique.
@@ -1423,8 +1492,7 @@ public boolean isPalindrome(ListNode head) {
 
 
 
-### [Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/)
-
+### [Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/)<a name="delete-node-in-a-linked-list"></a>
 ```java
 public void deleteNode(ListNode node) {
     node.val = node.next.val;		// Node's value becomes its next node's value
@@ -1434,8 +1502,7 @@ public void deleteNode(ListNode node) {
 
 
 
-### [Is Anagram](https://leetcode.com/problems/valid-anagram/submissions/)
-
+### [Is Anagram](https://leetcode.com/problems/valid-anagram/submissions/)<a name="is-anagram"></a>
 ```java
 public boolean isAnagram(String s, String t) {
     if (s.length() != t.length())			// Can't be anagram if size aren't the same
@@ -1453,8 +1520,7 @@ public boolean isAnagram(String s, String t) {
 
 
 
-### [Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/)
-
+### [Binary Tree Paths](https://leetcode.com/problems/binary-tree-paths/)<a name="binary-tree-paths"></a>
 ```java
 List<String> paths = new ArrayList<>();
 public List<String> binaryTreePaths(TreeNode root) {
@@ -1477,8 +1543,7 @@ private void traverse(TreeNode root, String s){
 
 
 
-### [Add Digits](https://leetcode.com/problems/add-digits/)
-
+### [Add Digits](https://leetcode.com/problems/add-digits/)<a name="add-digits"></a>
 ```java
 private int constantTime(int n){
     if (n < 10)
@@ -1508,8 +1573,7 @@ private int sumOfDigits(int n){		// Standard method to add the digits of a numbe
 
 
 
-### [Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)
-
+### [Largest Perimeter Triangle](https://leetcode.com/problems/largest-perimeter-triangle/)<a name="largest-perimeter-triangle"></a>
 ```java
 public int largestPerimeter(int[] A) {
     Arrays.sort(A);							// Sort so the largest sides are at the end.
@@ -1523,8 +1587,7 @@ public int largestPerimeter(int[] A) {
 
 
 
-### [Ugly Number](https://leetcode.com/problems/ugly-number/submissions/)
-
+### [Ugly Number](https://leetcode.com/problems/ugly-number/submissions/)<a name="ugly-number"></a>
 ```java
 public boolean isUgly(int num) {
     if (num < 1)
@@ -1541,8 +1604,7 @@ public boolean isUgly(int num) {
 
 
 
-### [Missing Number](https://leetcode.com/problems/missing-number/)
-
+### [Missing Number](https://leetcode.com/problems/missing-number/)<a name="missing-number"></a>
 ```java
 public int missingNumber(int[] nums) {			// Since it's given that the array contains
     int nsum = (nums.length*(nums.length+1))/2;	// all numbers from 0-n, we use the formula
@@ -1555,8 +1617,7 @@ public int missingNumber(int[] nums) {			// Since it's given that the array cont
 
 
 
-### [Is Bad Version](https://leetcode.com/problems/first-bad-version/submissions/)
-
+### [Is Bad Version](https://leetcode.com/problems/first-bad-version/submissions/)<a name="is-bad-version"></a>
 ```java
 public int firstBadVersion(int n) {		// Basic Binary Search Algorithm
     int low = 1, high = n;
@@ -1574,8 +1635,7 @@ public int firstBadVersion(int n) {		// Basic Binary Search Algorithm
 
 
 
-### [Move Zeroes](https://leetcode.com/problems/move-zeroes/solution/)
-
+### [Move Zeroes](https://leetcode.com/problems/move-zeroes/solution/)<a name="move-zeroes"></a>
 ```java
 /*
 The general idea is that we know the end of the array is going to contain zeroes. So first, iterate over the array, if you find any non-zero value, copy it down to the front of the array. Then we you are done, length of the array minus the last index where you copied the non-zero element is the number of zeroes you need to fill in. So iterate from that last non-zero index to the end of the array and fill in zeroes.
@@ -1608,8 +1668,7 @@ private void swap(int[] a, int i, int j){
 
 
 
-### [Word Pattern](https://leetcode.com/problems/word-pattern/)
-
+### [Word Pattern](https://leetcode.com/problems/word-pattern/)<a name="word-pattern"></a>
 ```java
 public boolean wordPattern(String pattern, String str) {
     String[] words = str.split(" ");		// Split str into words
@@ -1632,8 +1691,7 @@ public boolean wordPattern(String pattern, String str) {
 
 
 
-### [Can Win Nim](https://leetcode.com/problems/nim-game/)
-
+### [Can Win Nim](https://leetcode.com/problems/nim-game/)<a name="can-win-nim"></a>
 ```java
 public boolean canWinNim(int n) {
     return n % 4 != 0;			// You can always win the game if n is not divisible by 4.
@@ -1642,8 +1700,7 @@ public boolean canWinNim(int n) {
 
 
 
-### [Power Of Three](https://leetcode.com/problems/power-of-three/)
-
+### [Power Of Three](https://leetcode.com/problems/power-of-three/)<a name="power-of-three"></a>
 ```java
 public boolean isPowerOfThree(int n) {
     if (n < 1)				// If negative, it can't be a power of 3.
@@ -1656,8 +1713,7 @@ public boolean isPowerOfThree(int n) {
 
 
 
-### [Power of Four](https://leetcode.com/problems/power-of-four/submissions/)
-
+### [Power of Four](https://leetcode.com/problems/power-of-four/submissions/)<a name="power-of-four"></a>
 ```java
 /*
 You can also use the iterative method that I have used in Power of Two and Power of Three problems. I just wanted to try a different approach here. This is a constant time function.
@@ -1670,8 +1726,7 @@ public boolean isPowerOfFour(int num) {
 
 
 
-### [Reverse String](https://leetcode.com/problems/reverse-string/)
-
+### [Reverse String](https://leetcode.com/problems/reverse-string/)<a name="reverse-string"></a>
 ```java
 /*
 1 Liner solution. Basically, create a StringBuilder of the string, the builder already has a reverse method, so reverse it and then return it's toString.
@@ -1699,8 +1754,7 @@ public String reverseString(String s) {
 
 
 
-### [Implement strStr()](https://leetcode.com/problems/implement-strstr/submissions/)
-
+### [Implement strStr()](https://leetcode.com/problems/implement-strstr/submissions/)<a name="implement-strstr()"></a>
 ```java
 /*
 The basic idea here is that you only need to iterate haystack length - needle length, and then check the substring of size = needle length in haystack from each index. If you are successfully able to match each character of the needle in the corresponding substring in haystack, return the index you start from. 
@@ -1726,8 +1780,7 @@ public int strStr(String haystack, String needle) {
 
 
 
-### [Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)
-
+### [Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)<a name="reverse-vowels-of-a-string"></a>
 ```java
 public String reverseVowels(String s) {
     if (s.length() < 2)
@@ -1773,8 +1826,7 @@ private boolean isVowel(char c){	// Function to check if a character is a vowel.
 
 
 
-### [Intersection of two arrays](https://leetcode.com/problems/intersection-of-two-arrays/)
-
+### [Intersection of two arrays](https://leetcode.com/problems/intersection-of-two-arrays/)<a name="intersection-of-two-arrays"></a>
 ```java
 public int[] intersection(int[] nums1, int[] nums2) {
     Set<Integer> set1 = new HashSet<Integer>();		// Record all unique values in set 1
@@ -1794,8 +1846,7 @@ public int[] intersection(int[] nums1, int[] nums2) {
 
 
 
-### [Is Perfect Square](https://leetcode.com/problems/valid-perfect-square/)
-
+### [Is Perfect Square](https://leetcode.com/problems/valid-perfect-square/)<a name="is-perfect-square"></a>
 ```java
 /**
 The basic idea here is to close in on the square root using binary search algorithm. 
@@ -1829,8 +1880,7 @@ public boolean isPerfectSquare(int num) {
 
 
 
-### [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)
-
+### [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)<a name="sum-of-two-integers"></a>
 I cannot explain it better than this [post](https://leetcode.com/problems/sum-of-two-integers/discuss/132479/Simple-explanation-on-how-to-arrive-at-the-solution).
 
 ```java
@@ -1849,8 +1899,7 @@ public int getSum(int a, int b) {
 
 
 
-### [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/)
-
+### [Guess Number Higher or Lower](https://leetcode.com/problems/guess-number-higher-or-lower/)<a name="guess-number-higher-or-lower"></a>
 ```java
 public int guessNumber(int n) {				// Standard binary search algorithm
     int low = 1, high = n, result = -2;		// Arbitrary result, but not 0
@@ -1869,8 +1918,7 @@ public int guessNumber(int n) {				// Standard binary search algorithm
 
 
 
-### [Ransom Note](https://leetcode.com/problems/ransom-note/submissions/)
-
+### [Ransom Note](https://leetcode.com/problems/ransom-note/submissions/)<a name="ransom-note"></a>
 ```java
 public boolean canConstruct(String ransomNote, String magazine) {
     int[] store = new int[26];
@@ -1886,8 +1934,7 @@ public boolean canConstruct(String ransomNote, String magazine) {
 
 
 
-### [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/submissions/)
-
+### [First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/submissions/)<a name="first-unique-character-in-a-string"></a>
 ```java
 public int firstUniqChar(String s) {
     int[] freq = new int[26];			// Preprocess freq array to maintain freq of each
@@ -1903,8 +1950,7 @@ public int firstUniqChar(String s) {
 
 
 
-### [Find the Difference](https://leetcode.com/problems/find-the-difference/)
-
+### [Find the Difference](https://leetcode.com/problems/find-the-difference/)<a name="find-the-difference"></a>
 ```java
 /**
 The general idea here is same as the problem where we are required to find a unique int
@@ -1927,8 +1973,7 @@ public char findTheDifference(String s, String t) {
 
 
 
-### [Nth Digit](https://leetcode.com/problems/nth-digit/)
-
+### [Nth Digit](https://leetcode.com/problems/nth-digit/)<a name="nth-digit"></a>
 ```java
 /**
 Notice that # of digits between 0-9 is 1*9, 10-99 is 2*90, 100-999 is 3*900. If we generalize
@@ -1955,8 +2000,7 @@ public int findNthDigit(int n) {
 
 
 
-### [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)
-
+### [Sum of Left Leaves](https://leetcode.com/problems/sum-of-left-leaves/)<a name="sum-of-left-leaves"></a>
 ```java
 public int sumOfLeftLeaves(TreeNode root) {
     if (root == null)		// Empty tree, therefore total is 0.
@@ -1977,8 +2021,7 @@ public int sumOfLeftLeaves(TreeNode root) {
 
 
 
-### [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)
-
+### [Longest Palindrome](https://leetcode.com/problems/longest-palindrome/)<a name="longest-palindrome"></a>
 ```java
 public int longestPalindrome(String s) {
     int[] freq = new int[128];		// To record the frequency of each char
@@ -2007,8 +2050,7 @@ public int longestPalindrome(String s) {
 
 
 
-### [Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)
-
+### [Fizz Buzz](https://leetcode.com/problems/fizz-buzz/)<a name="fizz-buzz"></a>
 ```java
 public List<String> fizzBuzz(int n) {
     List<String> nums = new ArrayList<String>();
@@ -2028,8 +2070,7 @@ public List<String> fizzBuzz(int n) {
 
 
 
-### [Third maximum Number](https://leetcode.com/problems/third-maximum-number/)
-
+### [Third maximum Number](https://leetcode.com/problems/third-maximum-number/)<a name="third-maximum-number"></a>
 ```java
 public int thirdMax(int[] nums) {
     if (nums.length == 0)		// Empty array
@@ -2062,8 +2103,7 @@ public int thirdMax(int[] nums) {
 
 
 
-### [Add Two Strings](https://leetcode.com/problems/add-strings/)
-
+### [Add Two Strings](https://leetcode.com/problems/add-strings/)<a name="add-two-strings"></a>
 ```java
 public String addStrings(String num1, String num2) {
     if (num1.equals("0"))
@@ -2102,8 +2142,7 @@ public String addStrings(String num1, String num2) {
 
 
 
-### [Construct Quad Tree](https://leetcode.com/problems/construct-quad-tree/)
-
+### [Construct Quad Tree](https://leetcode.com/problems/construct-quad-tree/)<a name="construct-quad-tree"></a>
 ```java
 private int[][] grid;					// Store it once, instead of passing it over & over.
 public Node construct(int[][] _grid) {
@@ -2134,8 +2173,7 @@ private Node helper(int top, int left, int len){
 
 
 
-### [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)
-
+### [N-ary Tree Level Order Traversal](https://leetcode.com/problems/n-ary-tree-level-order-traversal/)<a name="n-ary-tree-level-order-traversal"></a>
 ```java
 public List<List<Integer>> levelOrder(Node root) {
     List<List<Integer>> res = new ArrayList<>();	// Result list
@@ -2161,8 +2199,7 @@ public List<List<Integer>> levelOrder(Node root) {
 
 
 
-### [Number of Segments in a String](https://leetcode.com/problems/number-of-segments-in-a-string/)
-
+### [Number of Segments in a String](https://leetcode.com/problems/number-of-segments-in-a-string/)<a name="number-of-segments-in-a-string"></a>
 ```java
 public int countSegments(String s) {
     if (s.length() == 0)					// Empty String
@@ -2190,8 +2227,7 @@ segment, so we return segment+1.
 
 
 
-### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
-
+### [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)<a name="binary-tree-level-order-traversal"></a>
 ```java
 public List<List<Integer>> levelOrder(TreeNode root) {
     List<List<Integer>> result = new ArrayList<>();
@@ -2219,8 +2255,7 @@ public List<List<Integer>> levelOrder(TreeNode root) {
 
 
 
-### [Path Sum III](https://leetcode.com/problems/path-sum-iii/submissions/)
-
+### [Path Sum III](https://leetcode.com/problems/path-sum-iii/submissions/)<a name="path-sum-iii"></a>
 ```java
 HashMap<Integer, Integer> sumToWays;			// Record how many ways there are to form sum
 int ways;										// Total number of ways.
@@ -2259,8 +2294,7 @@ private void helper(TreeNode node, int runningSum, int sum){
 
 
 
-### [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
-
+### [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/)<a name="find-all-anagrams-in-a-string"></a>
 ```java
 public List<Integer> findAnagrams(String s, String p) {
     List<Integer> result = new ArrayList<>();
@@ -2292,8 +2326,7 @@ public List<Integer> findAnagrams(String s, String p) {
 
 
 
-### [Arranging Coins](https://leetcode.com/problems/arranging-coins/)
-
+### [Arranging Coins](https://leetcode.com/problems/arranging-coins/)<a name="arranging-coins"></a>
 The idea is as follows. Sum of first n numbers is given by $\frac{n^2+n}{2}$. We need to find $n$ such that sum of $n$ numbers is closest to the number of coins we have. That is, $\frac{n^2+n}{2} = k$ where $k$ is the number of coins we have. So, everything boils down to solving the quadratic equation $n^2 + n - 2k = 0$. We use the quadratic formula where for any quadratic equation $ax^2 -bx + c$ is solved substituting for $a$, $b$ and $c$ in $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2}$. Here, $a$ and $b$ are always going to be 1, while $c$ is always going to be $2k$. Substitute those, and solve the equation.
 
 ```java
@@ -2320,8 +2353,7 @@ private int iterative(int n){
 
 
 
-### [Hamming Distance](https://leetcode.com/problems/hamming-distance/)
-
+### [Hamming Distance](https://leetcode.com/problems/hamming-distance/)<a name="hamming-distance"></a>
 ```java
 public int hammingDistance(int x, int y) {
     int diff = 0;				// Track differences
@@ -2337,8 +2369,7 @@ public int hammingDistance(int x, int y) {
 
 
 
-### [String Compression](https://leetcode.com/problems/string-compression/)
-
+### [String Compression](https://leetcode.com/problems/string-compression/)<a name="string-compression"></a>
 ```java
 public int compress(char[] chars) {
     int len = chars.length;			// No need to reverse array of length 0 or 1
@@ -2371,8 +2402,7 @@ public int compress(char[] chars) {
 
 
 
-### [Number of Boomerangs](https://leetcode.com/problems/number-of-boomerangs/)
-
+### [Number of Boomerangs](https://leetcode.com/problems/number-of-boomerangs/)<a name="number-of-boomerangs"></a>
 ```java
 public int numberOfBoomerangs(int[][] points) {
     int boomerangs = 0;
@@ -2394,8 +2424,7 @@ public int numberOfBoomerangs(int[][] points) {
 
 
 
-### [Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)
-
+### [Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/)<a name="find-all-numbers-disappeared-in-an-array"></a>
 ```java
 /**
 The idea is simple. For each number in the array, since it's gauranteed that that the values
@@ -2440,8 +2469,7 @@ public List<Integer> findDisappearedNumbers(int[] nums) {
 
 
 
-### [Assign Cookies](https://leetcode.com/problems/assign-cookies/)
-
+### [Assign Cookies](https://leetcode.com/problems/assign-cookies/)<a name="assign-cookies"></a>
 ```java
 /**
 We will employ a greedy algorithm where we first try to content children whose requirements
@@ -2465,8 +2493,7 @@ public int findContentChildren(int[] g, int[] s) {
 
 
 
-### [Poor Pigs](https://leetcode.com/problems/poor-pigs/)
-
+### [Poor Pigs](https://leetcode.com/problems/poor-pigs/)<a name="poor-pigs"></a>
 [Link](https://leetcode.com/problems/poor-pigs/discuss/94305/1-line-solution-with-detailed-problem-clarification-and-math-proof-(please-read-if-you-really-want-to-know-what-this-problem-means)) to the solution explanation. This problem is phrased poorly and I had to read the comments by other users to understand what it required from me. The link I marked here explains the logic pretty good. But the simple logic is this: The number of rounds $r = \frac{Total Test Time}{Minutes To Die} +1$. Each pig has chances of dying in each round or staying alive till the end, so we plus 1. Now given the number of rounds $r$ and the number of samples $s$, how many volunteers $v$ will you need? $r^v = s$. Each round has some volunteers which in total at the end should be able to test out all the samples. Therefore, $v =\log_rs$.
 
 ```java
@@ -2478,8 +2505,7 @@ public int poorPigs(int buckets, int minutesToDie, int minutesToTest) {
 
 
 
-### [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)
-
+### [Find Pivot Index](https://leetcode.com/problems/find-pivot-index/)<a name="find-pivot-index"></a>
 ```java
 public int pivotIndex(int[] nums) {
     int sum = 0, leftSum = 0;		// We will test each index as a pivot by sliding it ->
@@ -2496,8 +2522,7 @@ public int pivotIndex(int[] nums) {
 
 
 
-### [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)
-
+### [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/)<a name="squares-of-a-sorted-array"></a>
 ```java
 public int[] sortedSquares(int[] A) {
     int len = A.length;		// Length of array A
@@ -2541,8 +2566,7 @@ public int[] sortedSquares(int[] A) {
 
 
 
-### [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/submissions/)
-
+### [Repeated Substring Pattern](https://leetcode.com/problems/repeated-substring-pattern/submissions/)<a name="repeated-substring-pattern"></a>
 We use the [KMP Algorithm](https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/) that allows us to match a string 's' with another string 'p' to find the longest sequence of characters in 's' that match 'p'. We can use a Naive Pattern match where we start from the beginning of the string and start comparing the characters of 's' with 'p'. Initially, we keep the partition at index 0. If the character's match, we move partition to the right by 1 till we get to the end of the string. If something doesn't match, we don't move the partition but look at the next character to match. In the end, wherever the partition is, that's our longest length we could match with string 'p'. The complexity of that is <i>O(len(p)(len(s)-len(p)+1))</i>.
 
 KMP fixes it by skipping characters that we know already match. In this problem, we aren't matching with any other string but itself. So, we start from index 1 of the string and compare it from the beginning. If they match, we increase j by 1, note it down in lps array and then increase i by 1 to check the next character. j basically measures the longest chain of characters we were able to match. If we couldn't match character at index i and if streak was greater than 0, then our new streak becomes whatever it was in the previous round of matching characters. If the streak is 0, then we simply note down at index i in our lps array 0, meaning longest length measured upto index i was 0. 
@@ -2576,8 +2600,7 @@ private int lps(String s){
 
 
 
-### [Island Perimeter](https://leetcode.com/problems/island-perimeter/)
-
+### [Island Perimeter](https://leetcode.com/problems/island-perimeter/)<a name="island-perimeter"></a>
 The idea is simple. Count the number of cells with value 1 which denotes the land. Check towards the left and up to that cell and check if it shares any edge with another cell with value 1. If it does record that. In the end, the formula for perimeter is 4 * (the number of land cells) - 2 * (overlapping edges).
 
 **Reasoning:** Perimeter of a square is 4 times the length of it's side. Here all squares are of length 1. So total perimeter is 4*(number of cells with value = 1). But we also need to account the edges that are common between two adjacent land cells. If one square shares an edge with another, we just lost one side from both the square, resulting in a loss of two sides. Therefore, we need to subtract twice the number of overlapping edges from the total perimeter to get  the total perimeter. 
@@ -2602,8 +2625,7 @@ public int islandPerimeter(int[][] grid) {
 
 
 
-### [Number Complement](https://leetcode.com/problems/number-complement/)
-
+### [Number Complement](https://leetcode.com/problems/number-complement/)<a name="number-complement"></a>
 ```java
 public int findComplement(int num) {
     int pow2 = 1;				// Easily keep track of power of 2.
@@ -2620,8 +2642,7 @@ public int findComplement(int num) {
 
 
 
-### [Binary Watch](https://leetcode.com/problems/binary-watch/)
-
+### [Binary Watch](https://leetcode.com/problems/binary-watch/)<a name="binary-watch"></a>
 The idea is as follows. We have 10 lights. First 4 represent hours. Namely 1, 2, 4 and 8, which are the first four powers of 2. The next 6 lights, represent minutes. Those are 1, 2, 4, 8, 16 and 32. These are powers of 2 from 0-5. So if we iterate from 1 to 9, powers of numbers 1-3 gives us hours and powers of numbers 4-9 minus 4 gives us minutes. So, if we have, let's say 2 lights, we need to find every combination of 2 lights. So in our helper function, we iterate from 1-9 to check every hour and minute combination. We also need to keep a track of the lights that we used, so we don't use the same light again. If hours are > 11 or minutes are > 59, we have an invalid time and we can abort. If the number of lights are 0, that means we found a valid time and we should add it to the result. Now, if the lights are not 0, then we need to check every possible combination from the last light used to 9. If i < 4, then we are looking at an hourly combination, otherwise it's a minute combination. So we recurse with updated lights used, decrease the numOfLights since we used one, update respective hours or minutes until we hit base case.
 
 ```java
@@ -2652,8 +2673,7 @@ private void helper(int lightsUsed, int numOfLights, int hrs, int min){
 
 
 
-### [Minimum Moves to Equal Array Elements](https://leetcode.com/problems/minimum-moves-to-equal-array-elements/)
-
+### [Minimum Moves to Equal Array Elements](https://leetcode.com/problems/minimum-moves-to-equal-array-elements/)<a name="minimum-moves-to-equal-array-elements"></a>
 This was an interesting problem. But after working out a few examples by hand, you can notice that it is always a question of bringing the minimum element in par with everyone. So if you know the minimum of the array, we can check how many steps it will take to bring the minimum in par with other element by calculating the distance between them. For example,
 
 > Let the array be [1,2,3]
@@ -2697,8 +2717,7 @@ public int minMoves(int[] nums) {
 
 
 
-### [License Key Formatting](https://leetcode.com/problems/license-key-formatting/)
-
+### [License Key Formatting](https://leetcode.com/problems/license-key-formatting/)<a name="license-key-formatting"></a>
 The idea is simple. 
 
 1. I maintain a temporary array *s* that contains only the characters in string *S* after converting them to uppercase.
@@ -2740,8 +2759,7 @@ public String licenseKeyFormatting(String S, int K) {
 
 
 
-### [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)
-
+### [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/)<a name="max-consecutive-ones"></a>
 Solution 1: I came up with this solution initially. 4 ms runtime and passes 99.97% submissions.
 
 ```java
@@ -2787,8 +2805,7 @@ public int findMaxConsecutiveOnes(int[] nums) {
 
 
 
-### [Permutations](https://leetcode.com/problems/permutations/)
-
+### [Permutations](https://leetcode.com/problems/permutations/)<a name="permutations"></a>
 The idea is as follows. Given an array a = {1,2,3}, we want to generate all it's possible combinations. What we are trying to do here is that we first take the element at index 0, and find permutations of the remaining thing. When we do that, we insert the element at index 0 in front of the list to get 1 permutation. Similarly, we then take the element at index 1, and permute the remaining contents of the array and insert the element at index 1 in the beginning of the array to get another permutation and so on. In this problem, we are asked to return a list of list, so we first copy the numbers of the array into an ArrayList. Let's run this code for the above example.
 
 > Given nums = {1,2,3}, our ArrayList will be the same, al = [1,2,3]. Our result list is empty, result = [] and index = 0.
@@ -2886,8 +2903,7 @@ private void swap(List<Integer> list, int i, int j){	// Swap elements in a list.
 
 
 
-### [Construct the Rectangle](https://leetcode.com/problems/construct-the-rectangle/)
-
+### [Construct the Rectangle](https://leetcode.com/problems/construct-the-rectangle/)<a name="construct-the-rectangle"></a>
 The idea is very simple. We just need to iterate from width = sqrt(area) to 1 and check if area is perfectly divisible by width. If at any point, width is divisible, then that must be our minimum difference length and width, because we are diverging from the center on both sides. Width decreases while length keeps increasing. Think of it like this, for area = 24, we have many factors of 24, namely 1, 2, 3,4, 6, 8, 12, 24. It's sqrt when rounded down is 4. So we check for width = 4, is 24 perfectly divisible by 4? Yes, so divide it and whatever you get is going to be the minimal difference values. Suppose 4 and 6 weren't the factors for 24. In that case we decrease width by 1, which is 3. Check again, is 24 divisible by 3. Yes? Then that must be our answer. We are diverging away from the center on both sides equally, width to the left towards 1 and length to the right towards area . Therefore the moment we find one value that divides area perfectly, that's our required values.
 
 ```java
@@ -2908,8 +2924,7 @@ public int[] constructRectangle(int area) {
 
 
 
-### [Merge Intervals](https://leetcode.com/problems/merge-intervals/)
-
+### [Merge Intervals](https://leetcode.com/problems/merge-intervals/)<a name="merge-intervals"></a>
 ```java
 public List<Interval> merge(List<Interval> intervals) {
     if (intervals == null || intervals.size() < 2)
@@ -2935,8 +2950,7 @@ public List<Interval> merge(List<Interval> intervals) {
 
 
 
-### [Merged sorted lists](https://leetcode.com/problems/merge-sorted-array/)
-
+### [Merged sorted lists](https://leetcode.com/problems/merge-sorted-array/)<a name="merged-sorted-lists"></a>
 1. counterA keeps track of which element we are looking at in array 'a'. Same with counterB
 2. counterK keeps track of where to insert the element in array 'a', since a has enough space. The problem states that it might have more than enough space, so we use only the spaces we need, which is the total of both their sizes. Since indexing in an array is 0-based, we subtract 1.
 3. We insert elements from the end, since the end part of 'a' is empty. We can insert from the front, but then we would need to shift elements to the right after each insertion from 'b'.
@@ -2966,8 +2980,7 @@ public int[] merge(int[] a, int sizeA, int[] b, int sizeB)
 
 
 
-### [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
-
+### [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)<a name="next-greater-element-i"></a>
 ```java
 public int[] nextGreaterElement(int[] nums1, int[] nums2) {
     HashMap<Integer, Integer> index = new HashMap<>();	// We use the hashmap to keep a
@@ -2993,8 +3006,7 @@ public int[] nextGreaterElement(int[] nums1, int[] nums2) {
 
 
 
-### [String Without AAA or BBB](https://leetcode.com/problems/string-without-aaa-or-bbb/)
-
+### [String Without AAA or BBB](https://leetcode.com/problems/string-without-aaa-or-bbb/)<a name="string-without-aaa-or-bbb"></a>
 ```java
 public String strWithout3a3b(int A, int B) {				
     char[] ch = new char[A+B];		// We create an char array to store string chars
@@ -3028,8 +3040,7 @@ public String strWithout3a3b(int A, int B) {
 
 
 
-### [Keyboard Row](https://leetcode.com/problems/keyboard-row/)
-
+### [Keyboard Row](https://leetcode.com/problems/keyboard-row/)<a name="keyboard-row"></a>
 ```java
 // Maps each character to the row in the keyboard in which it occurs.
 private int[] map = {2,3,3,2,1,2,2,2,1,2,2,2,3,3,1,1,1,1,2,1,1,3,1,3,1,3};
@@ -3056,8 +3067,7 @@ private boolean checkWord(String word){		// Check if all chars in the word belon
 
 
 
-### [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)
-
+### [Find Mode in Binary Search Tree](https://leetcode.com/problems/find-mode-in-binary-search-tree/)<a name="find-mode-in-binary-search-tree"></a>
 ```java
 private TreeNode parent;		// Keep track of parent at each node
 private int maxMode;			// maxMode we found
@@ -3108,8 +3118,7 @@ private void updateMode(TreeNode node){
 
 
 
-### [Base 7](https://leetcode.com/problems/base-7/)
-
+### [Base 7](https://leetcode.com/problems/base-7/)<a name="base-7"></a>
 Solution 1 without StringBuilder (Beats 100%, 7ms)
 
 ```java
@@ -3159,8 +3168,7 @@ public String convertToBase7(int num) {
 
 
 
-### [Relative Ranks](https://leetcode.com/problems/relative-ranks/)
-
+### [Relative Ranks](https://leetcode.com/problems/relative-ranks/)<a name="relative-ranks"></a>
 The idea employed here is simple. We need to store the relative ranks in sorted order. We can sort the array for that, but that is O(n log n). We can do better than that by finding the relative rank in linear time. First we find the maximum score in the array and create another array of length = maxScore + 1. We add 1 so that when we see the maxScore in the nums, we can assign it to maxScore index. Once we have done that, now we iterate over the nums array. Variable i keeps track of what rank to assign. We check a value in the array and at that index in our reverse sorted array, we put i+1, which basically marks it's rank based on it's position in the rankings. Some of then indexes would be default, that is a score of 0. We then check each value in the descend array and if it's not 0, we assign it a rank, but not if the ranks are 1, 2 or 3. In that case, we assign it a special value of Gold, SIlver or Bronze.
 
 ```java
@@ -3194,8 +3202,7 @@ public String[] findRelativeRanks(int[] nums) {
 
 
 
-### [Perfect Number](https://leetcode.com/problems/perfect-number/)
-
+### [Perfect Number](https://leetcode.com/problems/perfect-number/)<a name="perfect-number"></a>
 ```java
 public boolean checkPerfectNumber(int num) {
     if (num == 1)		// 1 is a special case, where it's only factor is itself.
@@ -3212,8 +3219,7 @@ public boolean checkPerfectNumber(int num) {
 
 
 
-### [Detect Capital](https://leetcode.com/problems/detect-capital/)
-
+### [Detect Capital](https://leetcode.com/problems/detect-capital/)<a name="detect-capital"></a>
 ```java
 public boolean detectCapitalUse(String word) {
     int len = word.length();
@@ -3236,8 +3242,7 @@ public boolean detectCapitalUse(String word) {
 
 
 
-### [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/)
-
+### [Longest Uncommon Subsequence I](https://leetcode.com/problems/longest-uncommon-subsequence-i/)<a name="longest-uncommon-subsequence-i"></a>
 This is those kind of problems that shouldn't be up there. The problem is stated rather poorly and the solution is even stupider. All you are checking for is if the two string's aren't the same, then whichever one has a larger length is essentially the longest uncommon subsequence because the other string cannot form the full string. I know, it's stupid.
 
 ```java
@@ -3250,8 +3255,7 @@ This is those kind of problems that shouldn't be up there. The problem is stated
 
 
 
-### [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
-
+### [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)<a name="course-schedule-ii"></a>
 This is a graph problem where we require to sort the vertices topologically. There are two choices we have for sorting topologically - Depth First Search approach based on finshing times or the Kahn's Algorithm. I have used Kahn's algorithm in this solution. Runtime is 2ms [beats 100%] and uses 45.3 MB space [beats than 90.16%]. The idea for Kahn's is simple - Enqueue all the nodes which has 0 incoming edges because those are the ones that can be started first. Then while the queue isn't empty, remove one node at a time, process it's outgoing nodes and decrease their indegrees by one. The reasoning behind that is let's say Node 2 has two prerequisites, Node 0 and Node 1. Node 0 and Node 1 have 0 indegrees. So our first two nodes would be Node 1 and Node 0 and if they are finished, then their outgoing Nodes can be started, that is Node 2. Now when you decrease any node's indegree and they become zero, add them to the queue because they can now be started. Keep doing this until the queue is empty.
 
 In my approach, I'm avoiding any unnecessary data structure and using only the most basic ones like array's. So instead of using the queue, what I do is fill the array `order` which also stores the topological order. `idx` keeps track of the last index available to fill in the array. `start` mimics the `poll` behaviour of a queue. `while (start != idx)` makes sure that while we still have nodes to process, remove the one that can be started and decrease all the indegrees of outgoing edges.
@@ -3287,8 +3291,7 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
 
 
 
-### [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
-
+### [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)<a name="letter-combinations-of-a-phone-number"></a>
 How do we count numbers? 16, 17, 18, 19 and then what? 20 right? We see that the last number is 19, we can't go past 9 so we set it to 0 and then increment the precedding digit to get 20. The idea is the same for this problem too. We keep a `levels` array to keep track of which character do we take from which number's allowed alphabet letters. For example, let's say the input string is `23`. Our `levels` array would `[0, 0]` in the beginning. This says pick characters at index 0 and 0 from alphabet characters corresponding to 2 and 3 which gives us `ad`. Then, we increase the last most counter in our levels array by 1 giving us `[0, 1]`. This allows us to get `ae` in the next iteration and levels array would be `[0, 2]`. We get `af` and levels array becomes `[0, 3]`. Now this is where it becomes interesting. We are only allowed three letters for the digit corresponding to 3 and since we already used all of them , we now need to shift to the next character for digit 2, which is `b`. Level array looks like `[1, 0]`. This will allow us to get `[b,e]`. So you get the rough idea now. Only thing now is we watch out when to stop. We stop when we have utilized all available characters from the 0th index's number's allowed alphabet letters. In this case, we stop when levels array look like `[3, 0]`.
 
 ```java
