@@ -122,9 +122,12 @@
 120.  [Longest Uncommon Subsequence I](#longest-uncommon-subsequence-i)
 121.  [Course Schedule II](#course-schedule-ii)
 122.  [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
+123.  [Sudoku Solver](#sudoku-solver)
+
 ---
 
 ---
+
 ### [Lowest Common Ancestor](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)<a name="lowest-common-ancestor"></a>
 ```java
 public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
@@ -3294,6 +3297,13 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
 
 
 ### [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)<a name="letter-combinations-of-a-phone-number"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Letter Combinations of a Phone Number.
+
+Memory Usage: 35.9 MB, less than 98.63% of Java online submissions for Letter Combinations of a Phone Number.
+
+---
+
 How do we count numbers? 16, 17, 18, 19 and then what? 20 right? We see that the last number is 19, we can't go past 9 so we set it to 0 and then increment the precedding digit to get 20. The idea is the same for this problem too. We keep a `levels` array to keep track of which character do we take from which number's allowed alphabet letters. For example, let's say the input string is `23`. Our `levels` array would `[0, 0]` in the beginning. This says pick characters at index 0 and 0 from alphabet characters corresponding to 2 and 3 which gives us `ad`. Then, we increase the last most counter in our levels array by 1 giving us `[0, 1]`. This allows us to get `ae` in the next iteration and levels array would be `[0, 2]`. We get `af` and levels array becomes `[0, 3]`. Now this is where it becomes interesting. We are only allowed three letters for the digit corresponding to 3 and since we already used all of them , we now need to shift to the next character for digit 2, which is `b`. Level array looks like `[1, 0]`. This will allow us to get `[b,e]`. So you get the rough idea now. Only thing now is we watch out when to stop. We stop when we have utilized all available characters from the 0th index's number's allowed alphabet letters. In this case, we stop when levels array look like `[3, 0]`.
 
 ```java
@@ -3345,6 +3355,70 @@ class Solution {
         result.add(new String(s));                                  // Add the string and induce next recursive call.
         helper();
     }
+}
+```
+
+
+
+### [Sudoku Solver](https://leetcode.com/problems/sudoku-solver/)<a name="sudoku-solver"></a>
+
+Runtime: 4 ms, faster than 90.01% of Java online submissions for Sudoku Solver.
+
+Memory Usage: 35.1 MB, less than 71.93% of Java online submissions for Sudoku Solver.
+
+```java
+private char[][] board;
+
+public void solveSudoku(char[][] board) {
+    this.board = board;
+    solve(0, 0);
+}
+
+private boolean solve(int row, int col) {
+    if (col == 9) {                                 // If col is 9, make it 0 and shift to the next row
+        col = 0;
+        row += 1;
+        if (row == 9)                               // If row is also 9 now, then it means we have successfully filled all cells
+            return true;                            // So return true and end backtracking.
+    }
+    for (int i = 1; i < 10; ++i) {                  // Otherwise, we start picking values from 1-9
+        if (board[row][col] == '.') {               // And try to plug it into empty cells
+            if (isValid(row, col, i)) {             // If that value is valid in that cell
+                board[row][col] = (char)(i+'0');    // fill it
+                if (solve(row, col+1))          // and move on to fill the next cell via recursive call
+                    return true;                    // If the recursion ended by returning true, then return true to signal success
+                else                                // Otherwise, we were not able to put an value in that cell
+                    board[row][col] = '.';          // so change it back to 0 and the backtracking would try the next higher value in that cell.
+            }
+        }
+        else
+            return solve(row, col+1);           // That cell wasn't empty, so move on to the next empty cell.
+    }
+    return false;                                   // No solution found.
+}
+
+private boolean isValid(int row, int col, int val) {
+    // row check
+    for (int c = 0; c < 9; ++c)
+        if (board[row][c] - '0' == val)
+            return false;
+
+    // column check
+    for (int r = 0; r < 9; ++r)
+        if (board[r][col] - '0' == val)
+            return false;
+
+    // box check
+    int top = row / 3 * 3;
+    int left = col / 3 * 3;
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            if (board[top+i][left+j] - '0' == val)
+                return false;
+
+        }
+    }
+    return true;
 }
 ```
 
