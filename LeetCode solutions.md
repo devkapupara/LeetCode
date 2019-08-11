@@ -3248,7 +3248,7 @@ This is those kind of problems that shouldn't be up there. The problem is stated
   }
 ```
 
-###
+
 
 ### [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 
@@ -3282,6 +3282,64 @@ public int[] findOrder(int numCourses, int[][] prerequisites) {
     if (idx != numCourses)						// Cycle check. If our idx != numCourses then
         return new int[] {};					// not all nodes could be processed. So we have
     return order;								// a cycle. Otherwise return our order array.
+}
+```
+
+
+
+### [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
+How do we count numbers? 16, 17, 18, 19 and then what? 20 right? We see that the last number is 19, we can't go past 9 so we set it to 0 and then increment the precedding digit to get 20. The idea is the same for this problem too. We keep a `levels` array to keep track of which character do we take from which number's allowed alphabet letters. For example, let's say the input string is `23`. Our `levels` array would `[0, 0]` in the beginning. This says pick characters at index 0 and 0 from alphabet characters corresponding to 2 and 3 which gives us `ad`. Then, we increase the last most counter in our levels array by 1 giving us `[0, 1]`. This allows us to get `ae` in the next iteration and levels array would be `[0, 2]`. We get `af` and levels array becomes `[0, 3]`. Now this is where it becomes interesting. We are only allowed three letters for the digit corresponding to 3 and since we already used all of them , we now need to shift to the next character for digit 2, which is `b`. Level array looks like `[1, 0]`. This will allow us to get `[b,e]`. So you get the rough idea now. Only thing now is we watch out when to stop. We stop when we have utilized all available characters from the 0th index's number's allowed alphabet letters. In this case, we stop when levels array look like `[3, 0]`.
+
+```java
+class Solution {
+	private char[][] map = {
+            {'a', 'b', 'c'},        // 2
+            {'d', 'e', 'f'},        // 3
+            {'g', 'h', 'i'},        // 4
+            {'j', 'k', 'l'},        // 5
+            {'m', 'n', 'o'},        // 6
+            {'p', 'q', 'r', 's'},   // 7
+            {'t', 'u', 'v'},        // 8
+            {'w', 'x', 'y', 'z'}    // 9
+    };
+
+    private List<String> result = new ArrayList<>();                // Maintain the list of combinations
+    private int[] numbers;                                          // numbers parsed from input
+    private int[] levels;                                           // utility array to keep track of next character in string
+    private int n;                                                  // number of input digits.
+
+    private List<String> solution(String digits) {
+        if (digits == null || digits.length() == 0)                 // stop if null or empty string
+            return result;
+        n = digits.length();
+        numbers = new int[n];
+        levels = new int[n];
+
+        for (int i = 0; i < digits.length(); ++i) {                 // parse all the digits from the string as int
+            if ((numbers[i] = digits.charAt(i) - '0') < 2)          // stop if any of them is 0 or 1
+                return result;
+        }
+        helper();                                                   // start recursion
+        return result;
+    }
+
+    private void helper() {
+        if (levels[0] == map[numbers[0]-2].length)                  // if we are done iterating over all possible combinations,
+            return;                                                 // stop recursion.
+        char[] s = new char[n];                                     // stores all the characters of the string
+        for (int i = 0; i < n; ++i)                                 // loop through levels array. The value at each index
+            s[i] = map[numbers[i]-2][levels[i]];                    // tells us which character to keep from which map index
+        levels[n-1]++;                                              // Increase the entry at the end of the levels array
+        for (int i = levels.length-1; i > 0; --i) {                 // Now loop through the levels array from the end
+            if (levels[i] == map[numbers[i]-2].length) {            // If the value = total number of characters allowed for that number
+                levels[i] = 0;                                      // then we set it to 0 and increment the previous level entry
+                levels[i - 1]++;
+            }
+        }
+        result.add(new String(s));                                  // Add the string and induce next recursive call.
+        helper();
+    }
 }
 ```
 
