@@ -123,6 +123,7 @@
 121.  [Course Schedule II](#course-schedule-ii)
 122.  [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
 123.  [Sudoku Solver](#sudoku-solver)
+124.  [Bulls and Cows](#bulls-and-cows)
 
 ---
 
@@ -3422,3 +3423,38 @@ private boolean isValid(int row, int col, int val) {
 }
 ```
 
+
+### [Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/)<a name="bulls-and-cows"></a>
+
+Runtime: 1 ms, faster than 100.00% of Java online submissions for Bulls and Cows.
+
+Memory Usage: 36.3 MB, less than 100.00% of Java online submissions for Bulls and Cows.
+
+The idea is simple, first record the frequency of the digits of the secret number. Then we first find number of `bulls` by checking for exact indices match. After that we start to record the number of `cows`. The way we do is by again iterating over the `guess` string; only if there was a character mismatch and we still have the character available from `freq` table, we have a `cow`. Update it and decrement the frequency of the number we just used up.
+
+```java
+public String getHint(String secret, String guess) {
+    int bulls = 0;
+    int cows = 0;
+    int[] freq = new int[10];							// Freq of available digits from secret
+    for (int i = 0; i < guess.length(); ++i) {
+        char s = secret.charAt(i);
+        freq[s - '0']++;								// Record the freq of the digit
+        if (s == guess.charAt(i)) {						// If it's a match, we have a bulls.
+            bulls++;
+            freq[s - '0']--;							// We just used the character, so decrement it.
+        }
+    }
+    
+    for (int i = 0; i < guess.length(); ++i) {
+        int s = secret.charAt(i) - '0';					// Convert the chars into int
+        int g = guess.charAt(i) - '0';
+        if (s != g && freq[g] > 0) {					// Only if they are a mismtach and we have a number g available in freq table
+            cows++;										// then it's a cow.
+            freq[g]--;									// We used up the number, so decrement it's freq.
+        }
+    }
+    
+    return new StringBuilder().append(bulls).append("A").append(cows).append("B").toString();
+}
+```
