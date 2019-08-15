@@ -3562,5 +3562,5 @@ public int findPairs(int[] nums, int k) {
             pairs++;
     }
     return pairs;
-    }
+}
 ```
