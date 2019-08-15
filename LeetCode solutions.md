@@ -125,6 +125,7 @@
 123.  [Sudoku Solver](#sudoku-solver)
 124.  [Bulls and Cows](#bulls-and-cows)
 125.  [N-Queens 1](#n-queens-1)
+126.  [K-diff pairs in an Array](#k-diff-pairs-in-an-array)
 
 ---
 
@@ -3464,6 +3465,9 @@ public String getHint(String secret, String guess) {
 
 ### [N-Queens I](https://leetcode.com/problems/n-queens/)<a name="n-queens-1"></a>
 
+Runtime: 3 ms, faster than 73.76% of Java online submissions for N-Queens.
+Memory Usage: 37.6 MB, less than 100.00% of Java online submissions for N-Queens.
+
 The idea is same as sudoku, but insteading of scanning rows, we scan columns. Start with row 0, column 0 and see if we can place a queen there, if yes place it and try the next cell of row 0 by recursing. We can't put the queen in the same row again, so we keep changing rows with column 1 until we find somewhere to place it. Keep doing this until you were successfully able to place all the queens as checked by the condition `col == n`. If so, add that solution to our list of accepted solutions.
 
 ```java
@@ -3533,3 +3537,30 @@ public class NQueens {
 }
 ```
 
+
+### [K-diff pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/)<a name="k-diff-pairs-in-an-array"></a>
+
+Pretty intuitive solution. Build a frequency HashMap for all the numbers in the array. In a special case where `diff` is 0, just count occurences in our `freq` map whose values are 2 or more. In other case, just loop through all the keys and make sure it's supplement exists to count the number of K-diff pairs.
+
+```java
+public int findPairs(int[] nums, int k) {
+    if (k < 0)
+        return 0;
+    int pairs = 0;
+    HashMap<Integer, Integer> freq = new HashMap<>();
+    for (int i: nums) {
+        freq.put(i, freq.getOrDefault(i, 0)+1);
+    }
+    if (k == 0) {
+        for (int i: freq.values())
+            if (i > 1)
+                pairs++;
+        return pairs;
+    }
+    for (int i: freq.keySet()) {
+        if (freq.containsKey(i+k))
+            pairs++;
+    }
+    return pairs;
+    }
+```
