@@ -124,6 +124,7 @@
 122.  [Letter Combinations of a Phone Number](#letter-combinations-of-a-phone-number)
 123.  [Sudoku Solver](#sudoku-solver)
 124.  [Bulls and Cows](#bulls-and-cows)
+125.  [N-Queens 1](#n-queens-1)
 
 ---
 
@@ -3458,3 +3459,77 @@ public String getHint(String secret, String guess) {
     return new StringBuilder().append(bulls).append("A").append(cows).append("B").toString();
 }
 ```
+
+
+
+### [N-Queens I](https://leetcode.com/problems/n-queens/)<a name="n-queens-1"></a>
+
+The idea is same as sudoku, but insteading of scanning rows, we scan columns. Start with row 0, column 0 and see if we can place a queen there, if yes place it and try the next cell of row 0 by recursing. We can't put the queen in the same row again, so we keep changing rows with column 1 until we find somewhere to place it. Keep doing this until you were successfully able to place all the queens as checked by the condition `col == n`. If so, add that solution to our list of accepted solutions.
+
+```java
+public class NQueens {
+
+    private int[][] board;
+    private int n;
+    private List<List<String>> result;
+
+    public List<List<String>> solveNQueens(int n) {
+        this.n = n;
+        board = new int[n][n];
+        result = new ArrayList<>();
+        solve(0);
+        return result;
+    }
+
+    private boolean solve(int col) {
+        if (col == n)
+            addToList();
+        for (int row = 0; row < n; ++row) {
+            if (canPlaceQueen(row, col)) {
+                board[row][col] = 1;
+                if (solve(col+1)) {
+                    return true;
+                }
+                else
+                    board[row][col] = 0;
+            }
+        }
+        return false;
+    }
+
+    private void addToList() {
+        List<String> list = new LinkedList<>();
+        StringBuilder sb;
+        for (int[] r: board) {
+            sb = new StringBuilder();
+            for (int i: r)
+                sb.append(i == 1 ? 'Q' : '.');
+            list.add(sb.toString());
+        }
+        result.add(list);
+    }
+
+    private boolean canPlaceQueen(int row, int col) {
+        // Check all rows for the same column
+        for (int i = 0; i < col; ++i) {
+            if (board[row][i] == 1)
+                return false;
+        }
+        
+        // Check upper left diagonal of the cell
+        for (int i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+            if (board[i][j] == 1)
+                return false;
+        }
+        
+        // Check lower left diagonal of the cell.
+        for (int i = row, j = col; i < n && j >= 0; i++, j--) {
+            if (board[i][j] == 1)
+                return false;
+        }
+
+        return true;
+    }
+}
+```
+
