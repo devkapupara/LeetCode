@@ -126,6 +126,7 @@
 124.  [Bulls and Cows](#bulls-and-cows)
 125.  [N-Queens 1](#n-queens-1)
 126.  [K-diff pairs in an Array](#k-diff-pairs-in-an-array)
+127.  [Is Subsequence](#is-subsequence)
 
 ---
 
@@ -3538,6 +3539,7 @@ public class NQueens {
 ```
 
 
+
 ### [K-diff pairs in an Array](https://leetcode.com/problems/k-diff-pairs-in-an-array/)<a name="k-diff-pairs-in-an-array"></a>
 
 Pretty intuitive solution. Build a frequency HashMap for all the numbers in the array. In a special case where `diff` is 0, just count occurences in our `freq` map whose values are 2 or more. In other case, just loop through all the keys and make sure it's supplement exists to count the number of K-diff pairs.
@@ -3564,3 +3566,7 @@ public int findPairs(int[] nums, int k) {
     return pairs;
 }
 ```
+
+
+
+###[Is Subsequence]()
