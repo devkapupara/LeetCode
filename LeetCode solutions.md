@@ -3427,6 +3427,7 @@ private boolean isValid(int row, int col, int val) {
 ```
 
 
+
 ### [Bulls and Cows](https://leetcode.com/problems/bulls-and-cows/)<a name="bulls-and-cows"></a>
 
 Runtime: 1 ms, faster than 100.00% of Java online submissions for Bulls and Cows.
@@ -3569,4 +3570,20 @@ public int findPairs(int[] nums, int k) {
 
 
 
-###[Is Subsequence]()
+###[Is Subsequence](https://leetcode.com/problems/is-subsequence/submissions/)<a name="is-subsequence"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Is Subsequence.
+Memory Usage: 49.6 MB, less than 100.00% of Java online submissions for Is Subsequence.
+
+```java
+public boolean isSubsequence(String s, String t) {
+    int idx = -1;								// Set it to 0 to start check for 0th index
+    for (char c: s.toCharArray()) {				// For all the characters in String s
+        idx = t.indexOf(c, idx+1);				// Find it's index in String t from index one more than the last index matched
+        if (idx < 0)							// idx < 0 means not found
+            return false;
+    }
+    return true;
+}
+```
+
