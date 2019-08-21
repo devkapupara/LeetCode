@@ -4,12 +4,12 @@
 2.  [Count And Say](#count-and-say)
 3.  [Maximum SubArray](#maximum-subarray)
 4.  [Plus One](#plus-one)
-5.  [Sqrt of X](#sqrt of x)
-6.  [Climbing Stairs](#climbing stairs)
-7.  [Remove Duplicates from sorted list](#remove duplicates from sorted list)
-8.  [Same Tree](#same tree)
-9.  [Symmetric Tree](#symmetric tree)
-10.  [Max Depth of Binary Tree](#max depth of binary tree)
+5.  [Sqrt of X](#sqrt-of-x)
+6.  [Climbing Stairs](#climbing-stairs)
+7.  [Remove Duplicates from sorted list](#remove-duplicates-from-sorted-list)
+8.  [Same Tree](#same-tree)
+9.  [Symmetric Tree](#symmetric-tree)
+10.  [Max Depth of Binary Tree](#max-depth-of-binary-tree)
 11.  [Convert Sorted Array to Binary Search Tree](#convert-sorted-array-to-binary-search-tree)
 12.  [Balanced Binary Tree](#balanced-binary-tree)
 13.  [Minimum Depth of Binary Tree](#minimum-depth-of-binary-tree)
@@ -127,6 +127,7 @@
 125.  [N-Queens 1](#n-queens-1)
 126.  [K-diff pairs in an Array](#k-diff-pairs-in-an-array)
 127.  [Is Subsequence](#is-subsequence)
+128.  [Minimum Absolute Difference in BST](#minimum-abolsute-difference-in-bst)
 
 ---
 
@@ -227,7 +228,7 @@ public int[] plusOne(int[] digits)
 
 
 
-### [Sqrt of X](https://leetcode.com/problems/sqrtx/)<a name="sqrt of x"></a>
+### [Sqrt of X](https://leetcode.com/problems/sqrtx/)<a name="sqrt-of-x"></a>
 ```java
 public int mySqrt(int x) {
     long x1 = 10 - (100 - x)/20;		// Using Newton's method of computing square roots.
@@ -246,7 +247,7 @@ public int mySqrt(int x) {
 
 
 
-### [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)<a name="climbing stairs"></a>
+### [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)<a name="climbing-stairs"></a>
 ```java
 public int climbStairs(int n) {
     if (n < 4)		// I chose n < 4 because climbStairs(0 <= n <= 3) = n
@@ -298,7 +299,7 @@ public ListNode deleteDuplicates(ListNode head){
 
 
 
-### [Same Tree](https://leetcode.com/problems/same-tree/)<a name="same tree"></a>
+### [Same Tree](https://leetcode.com/problems/same-tree/)<a name="same-tree"></a>
 ```java
 public boolean isSameTree(TreeNode p, TreeNode q)
 {
@@ -316,7 +317,7 @@ public boolean isSameTree(TreeNode p, TreeNode q)
 
 
 
-### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)<a name="symmetric tree"></a>
+### [Symmetric Tree](https://leetcode.com/problems/symmetric-tree/)<a name="symmetric-tree"></a>
 ```java
 public boolean isSymmetric(TreeNode root)
 {
@@ -3587,3 +3588,25 @@ public boolean isSubsequence(String s, String t) {
 }
 ```
 
+### [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/)<a name="#minimum-abolsute-difference-in-bst"></a>
+
+The idea is to use the Inorder traversal of a BST. We repeatively iterate over the left branch to find the minimum diff and then do the same for the right branch, but this time we already know that the parent of the right branch has to be its minimum, so first set it and then traverse the right branch to find the minimum difference.
+
+```java
+int res = Integer.MAX_VALUE;								// Hold the minimum difference.
+int prev = Integer.MAX_VALUE;								// Holds the minimum value observed for the right branch
+
+public int getMinimumDifference(TreeNode root) {
+    traverse(root);											// Start iterating from the root.
+    return res;
+}
+
+private void traverse(TreeNode node) {
+    if (node == null)										// Null node, so stop recursion
+        return;
+    traverse(node.left);									// Keep traversing till the end of the tree
+    res = Math.min(Math.abs(node.val-prev), res);			// Check if we have a minimum, if so set it.
+    prev = node.val;										// The smallest value for the right branch is it's parent
+    traverse(node.right);									// Set it first and then traverse.
+}
+```
