@@ -127,7 +127,7 @@
 125.  [N-Queens 1](#n-queens-1)
 126.  [K-diff pairs in an Array](#k-diff-pairs-in-an-array)
 127.  [Is Subsequence](#is-subsequence)
-128.  [Minimum Absolute Difference in BST](#minimum-abolsute-difference-in-bst)
+128.  [Minimum Absolute Difference in BST](#minimum-absolute-difference-in-bst)
 
 ---
 
@@ -3588,7 +3588,7 @@ public boolean isSubsequence(String s, String t) {
 }
 ```
 
-### [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/)<a name="#minimum-abolsute-difference-in-bst"></a>
+### [Minimum Absolute Difference in BST](https://leetcode.com/problems/minimum-absolute-difference-in-bst/)<a name="minimum-absolute-difference-in-bst"></a>
 
 The idea is to use the Inorder traversal of a BST. We repeatively iterate over the left branch to find the minimum diff and then do the same for the right branch, but this time we already know that the parent of the right branch has to be its minimum, so first set it and then traverse the right branch to find the minimum difference.
 
