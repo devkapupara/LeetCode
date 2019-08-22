@@ -128,6 +128,7 @@
 126.  [K-diff pairs in an Array](#k-diff-pairs-in-an-array)
 127.  [Is Subsequence](#is-subsequence)
 128.  [Minimum Absolute Difference in BST](#minimum-absolute-difference-in-bst)
+129.  [BST Tree to Greater Tree](#bst-tree-to-greater-tree)
 
 ---
 
@@ -3608,5 +3609,24 @@ private void traverse(TreeNode node) {
     res = Math.min(Math.abs(node.val-prev), res);			// Check if we have a minimum, if so set it.
     prev = node.val;										// The smallest value for the right branch is it's parent
     traverse(node.right);									// Set it first and then traverse.
+}
+```
+
+### [BST Tree to Greater Tree](https://leetcode.com/problems/convert-bst-to-greater-tree/)<a name="bst-tree-to-greater-tree"></a>
+
+The idea is simple. In a BST, we know everything on the right side of a node is greater than it and it's left side. So when we are at any node, it's value would be its value + sum of everything on its right side. So, we first compute the node's value and then notice that the value for the node on the left is nothing but its value + parents value. So the node's value is computed, do the same thing for the left side, but this time, the starting sum would be the parent's value.
+
+
+```java
+public TreeNode convertBST(TreeNode root) {
+    traverse(root, 0);
+    return root;
+}
+
+private int traverse(TreeNode node, int sum) {
+    if (node == null)
+        return sum;
+    node.val += traverse(node.right, sum);
+    return traverse(node.left, node.val);
 }
 ```
