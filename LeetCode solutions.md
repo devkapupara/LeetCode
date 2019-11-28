@@ -3632,7 +3632,7 @@ private int traverse(TreeNode node, int sum) {
 }
 ```
 
-### [Student Attendance Record I](https://leetcode.com/problems/student-attendance-record-i/)<a name="student-attendance-record-I"
+### [Student Attendance Record I](https://leetcode.com/problems/student-attendance-record-i/)<a name="student-attendance-record-I"></a>
 
 ```java
 public boolean checkRecord(String s) {
