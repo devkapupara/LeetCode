@@ -129,6 +129,7 @@
 127.  [Is Subsequence](#is-subsequence)
 128.  [Minimum Absolute Difference in BST](#minimum-absolute-difference-in-bst)
 129.  [BST Tree to Greater Tree](#bst-tree-to-greater-tree)
+130.  [Student Attendance Record I](#student-attendance-record-I)
 
 ---
 
@@ -3630,3 +3631,30 @@ private int traverse(TreeNode node, int sum) {
     return traverse(node.left, node.val);
 }
 ```
+
+### [Student Attendance Record I](https://leetcode.com/problems/student-attendance-record-i/)<a name="student-attendance-record-I"
+
+```java
+public boolean checkRecord(String s) {
+      int A = 0;												// Count number of A's seen
+      int L = 0;												// Count number of consecutive L's seen
+      for (char c: s.toCharArray()) {		// Loop through each character
+          if (c == 'A') {								// If c is A, increment A
+              A++;
+              if (A > 1)								// If A is more than 1, return false
+                  return false
+              L = 0;										// Always set L count to 0
+          }
+          else if (c == 'L') {					// If c is L,
+              L++;											// We might have consecutive L's, so start counting
+              if (L > 2) {							// If we have more than 2 consecutive L's
+                  return false;					// return false
+              }
+          }
+          else													// Lastly, we might have a P, that will reset our
+              L = 0;										// consecutive L streak.
+      }
+      return true;											// Everything passed, so return true.
+  }
+```
+
