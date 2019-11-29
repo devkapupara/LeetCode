@@ -131,6 +131,7 @@
 129.  [BST Tree to Greater Tree](#bst-tree-to-greater-tree)
 130.  [Student Attendance Record I](#student-attendance-record-I)
 131.  [Reverse Words in String III](#reverse-words-in-string-iii)
+132.  [Quad Tree Intersection](#quad-tree-intersection)
 
 ---
 
@@ -3691,6 +3692,33 @@ public String reverseWords(String s) {
           arr[start+i] = arr[stop-i];
           arr[stop-i] = temp;
       }
+  }
+```
+
+### [Quad Tree Intersection](https://leetcode.com/problems/quad-tree-intersection/)<a name="quad-tree-intersection"></a>
+
+```java
+public Node intersect(Node qt1, Node qt2) {
+      if (qt1.isLeaf)										// If only a leaf, then return the one with true val
+          return qt1.val ? qt1 : qt2;
+      if (qt2.isLeaf)
+          return qt2.val ? qt2 : qt1;
+      Node n = new Node();							// Prepare for recursion
+      n.val = true;											// By default, each level node is not a leaf with 
+      n.isLeaf = false;									// value = true
+  
+  		// Keep traversing all the way to a terminal node and then store it.
+      n.topLeft = intersect(qt1.topLeft, qt2.topLeft);
+      n.topRight = intersect(qt1.topRight, qt2.topRight);
+      n.bottomLeft = intersect(qt1.bottomLeft, qt2.bottomLeft);
+      n.bottomRight = intersect(qt1.bottomRight, qt2.bottomRight);
+  
+  		// Check now if you're at the base case. If n's children are leaves and all their values are same, then make n a leaf and it's value the same as it's child.
+      if (n.topLeft.isLeaf && n.topRight.isLeaf && n.bottomLeft.isLeaf && n.bottomRight.isLeaf && (n.topLeft.val == n.topRight.val && n.topRight.val == n.bottomLeft.val && n.bottomLeft.val == n.bottomRight.val)) {
+          n.isLeaf = true;
+          n.val = n.topLeft.val;
+      }
+      return n;
   }
 ```
 
