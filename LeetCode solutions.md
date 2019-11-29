@@ -130,6 +130,7 @@
 128.  [Minimum Absolute Difference in BST](#minimum-absolute-difference-in-bst)
 129.  [BST Tree to Greater Tree](#bst-tree-to-greater-tree)
 130.  [Student Attendance Record I](#student-attendance-record-I)
+131.  [Reverse Words in String III](#reverse-words-in-string-iii)
 
 ---
 
@@ -3655,6 +3656,41 @@ public boolean checkRecord(String s) {
               L = 0;										// consecutive L streak.
       }
       return true;											// Everything passed, so return true.
+  }
+```
+
+### [Reverse Words in String III](https://leetcode.com/problems/reverse-words-in-a-string-iii/)<a name="reverse-words-in-string-iii"></a>
+
+Runtime: 2 ms, faster than 99.34% of Java online submissions for Reverse Words in a String III.
+
+Memory Usage: 37.9 MB, less than 100.00% of Java online submissions for Reverse Words in a String III.
+
+```java
+public String reverseWords(String s) {
+      char[] arr = s.toCharArray();
+      int len = arr.length;
+      int start = 0;
+      int end;
+      while (start < len) {											// Check the whole string
+          end = start;													// find the index of the first whitespace
+          while(end < len && arr[end] != ' ')		// denoting end of the word
+              end++;
+          reverseWord(arr, start, end-1);				// reverse that specific word
+          start = end+1;												// update start to the new word beginning
+      }
+      return new String(arr);										// create a new string out of the array
+  }
+
+	/*
+	Reverses a word in-place by iterating n/2 times where n = len of the word.
+	Traverse upto the middle point of the word while swapping each word from start+offset to end-	 offset.
+	**/
+  private void reverseWord(char[] arr, int start, int stop) {
+      for (int i = 0; i <= (stop-start)/2; ++i) {
+          char temp = arr[start+i];
+          arr[start+i] = arr[stop-i];
+          arr[stop-i] = temp;
+      }
   }
 ```
 
