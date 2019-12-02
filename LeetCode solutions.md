@@ -133,6 +133,7 @@
 131.  [Reverse Words in String III](#reverse-words-in-string-iii)
 132.  [Quad Tree Intersection](#quad-tree-intersection)
 133.  [Long Pressed Name](#long-pressed-name)
+134.  [Binary Tree Zigag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 
 ---
 
@@ -3752,5 +3753,44 @@ public boolean isLongPressedName(String name, String typed) {
       }
       return startN == endN;										// Lastly, check if we were able to match
   }																							// all character of the name string
+```
+
+### [Binary Tree Zigzag Level Order Traversal](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/)<a name="binary-tree-zigzag-level-order-traversal"></a>
+
+The idea here is simple. We perform a BFS as usual using a Queue but I maintain a variable called `dir` to check which side do I add from. `dir=1` means add from Right->Left and `dir=-1` means add from usual Left->Right. I am also using LinkedList because of easy addition of elements in both direction. When I need to add from Right->Left, I use the `addFirst(E e)` method of LinkedList to add to the head, otherwise normal add to the tail. One important thing to take care of at each iteration is to know how many nodes to dequeue, hence the usage of the variable `children`. This allows me to keep track of how many children were added to the queue at each stage so I dequeue exactly that many children in the next stage. Apart from that, everything is straightforward.
+
+```java
+public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+      List<List<Integer>> list = new LinkedList<>();
+      if (root == null)
+          return list;
+      Queue<TreeNode> q = new LinkedList<>();
+      q.add(root);										// Children = 1 because only root is added.
+      int dir = 1, children = 1;			// Added the root, so next time dir = 1 (Right->Left)
+      while(!q.isEmpty()) {
+          int pushed = 0;
+          LinkedList<Integer> l = new LinkedList<>();
+          for (int i = 0; i < children; ++i) {		// Poll only those nodes that were queued in
+              TreeNode u = q.poll();							// the previous stage.
+              if (dir == 1)
+                  l.add(u.val);
+              else
+                  l.addFirst(u.val);							// Left->Right add
+              if (u.left != null) {								// Add children, notice I am counting here
+                  q.add(u.left);									// how many children I am pushing/queuing
+                  ++pushed;												// to the queue
+              }
+              if (u.right != null) {							// Same thing for right child.
+                  q.add(u.right);
+                  ++pushed;
+              }
+          }
+          list.add(l);														// Add this list to main list
+          children = pushed;											// update # of children pushed
+          dir = dir == 1 ? -1: 1;									// update dir for next iteration
+
+      }
+      return list;
+  }
 ```
 
