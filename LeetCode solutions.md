@@ -132,6 +132,7 @@
 130.  [Student Attendance Record I](#student-attendance-record-I)
 131.  [Reverse Words in String III](#reverse-words-in-string-iii)
 132.  [Quad Tree Intersection](#quad-tree-intersection)
+133.  [Long Pressed Name](#long-pressed-name)
 
 ---
 
@@ -3720,5 +3721,36 @@ public Node intersect(Node qt1, Node qt2) {
       }
       return n;
   }
+```
+
+### [Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)<a name="long-pressed-name"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Long Pressed Name.
+
+Memory Usage: 34.2 MB, less than 100.00% of Java online submissions for Long Pressed Name.
+
+```java
+public boolean isLongPressedName(String name, String typed) {
+      char[] n = name.toCharArray();						// Arrays are much nicer to work with
+      char[] t = typed.toCharArray();						// Record start and stop points for both
+      int startN = 0, endN = n.length, startT = 0, endT = t.length;
+      while (startT < endT) {										// While we haven't looked at the whole string
+          int temp = startN+1;									// Let's first count same consecutive letters
+          int countN = 1;												// in String name
+          while (temp < endN && n[startN] == n[temp]) {
+              temp++;
+              countN++;
+          }
+          int countT = 0;												// Do the same for typed string
+          while (startT < endT && n[startN] == t[startT]) {
+              startT++;
+              countT++;
+          }																			// If consecutive letters in typed string are
+          if (countT < countN)									// less than the ones in original name
+              return false;											// return false
+          startN = temp;												// Otherwise, prepare for next character
+      }
+      return startN == endN;										// Lastly, check if we were able to match
+  }																							// all character of the name string
 ```
 
