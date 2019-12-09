@@ -134,6 +134,7 @@
 132.  [Quad Tree Intersection](#quad-tree-intersection)
 133.  [Long Pressed Name](#long-pressed-name)
 134.  [Binary Tree Zigag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
+135.  [Array Partition I](#array-partition-I)
 
 ---
 
@@ -3792,5 +3793,37 @@ public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
       }
       return list;
   }
+```
+
+### [Array Partition I](https://leetcode.com/problems/array-partition-i/)<a name="array-partition-I"></a>
+
+Runtime: 3 ms, faster than 99.90% of Java online submissions for Array Partition I.
+
+Memory Usage: 40.1 MB, less than 100.00% of Java online submissions for Array Partition I.
+
+I originally came up with the sorting solution where you sort the array and look at two numbers at a time and keep the smaller number out of them and add to the sum. It was way slower, so I checked the fastest submission and this one is pretty smart. The idea is really good. We know there are going to be 20,001 numbers, so reserve an array for it. Now let's say we had duplicates in our array, ex [1,2,1,4,1,1], if we were to sort it, we would get [1,1,1,1,2,4]. Notice that those four 1's don't really matter because each of them pairs up with the other to give you a one 1. That is why we mark those particular indices as true and false. Notice that in our variable `sum` we would have counted them individually, making `sum = 4` when in fact it should be 2 since we only take one of them from two pairs. If we have even occurrence of any number, they would be false, meaning we don't need to account them in the `diff` calculation. Now coming to `diff` how do we compute it? First we have the `seen` array to know which elements we need to look at. If that particular index is true, then we check if it's the first element of the pair which we maintain via the boolean value `firstElemOfPair`. If its true, then `first` becomes that value. Otherwise, we know that we're looking at the second element so we update the `diff` which is basically that value subtract `first`. Notice that if we look at a pair in our example as (2,4), we would pick 2 and the `diff` would be 2. This needs to be subtracted from our `sum`, hence the reason to maintain both of them. At the end, we finally subtract sum and diff and divide the result by 2 because we were doubling our diff's too.
+
+```java
+public int arrayPairSum(int[] nums) {
+        boolean[] seen = new boolean[20001];
+        int sum = 0;
+        for (int n: nums) {
+            seen[n + 10000] = !seen[n+10000];
+            sum += n;
+        }
+        int diff = 0;
+        int first = 0;
+        boolean firstElemOfPair = true;
+        for (int i = 0; i < seen.length; ++i) {
+            if (seen[i]) {
+                if (firstElemOfPair)
+                    first = i;
+                else
+                    diff += i-first;
+                firstElemOfPair = !firstElemOfPair;
+            }
+        }
+        return (sum-diff)/2;
+    }
 ```
 
