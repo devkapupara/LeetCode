@@ -135,6 +135,7 @@
 133.  [Long Pressed Name](#long-pressed-name)
 134.  [Binary Tree Zigag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
 135.  [Array Partition I](#array-partition-I)
+136.  [Reshape the matrix](#reshape-the-matrix)
 
 ---
 
@@ -3805,25 +3806,54 @@ I originally came up with the sorting solution where you sort the array and look
 
 ```java
 public int arrayPairSum(int[] nums) {
-        boolean[] seen = new boolean[20001];
-        int sum = 0;
-        for (int n: nums) {
-            seen[n + 10000] = !seen[n+10000];
-            sum += n;
+      boolean[] seen = new boolean[20001];
+      int sum = 0;
+      for (int n: nums) {
+          seen[n + 10000] = !seen[n+10000];
+          sum += n;
+      }
+      int diff = 0;
+      int first = 0;
+      boolean firstElemOfPair = true;
+      for (int i = 0; i < seen.length; ++i) {
+          if (seen[i]) {
+              if (firstElemOfPair)
+                  first = i;
+              else
+                  diff += i-first;
+              firstElemOfPair = !firstElemOfPair;
+          }
+      }
+      return (sum-diff)/2;
+  }
+```
+
+### [Reshape the Matrix](https://leetcode.com/problems/reshape-the-matrix/)<a name="reshape-the-matrix"></a>
+
+Runtime: 1 ms, faster than 100.00% of Java online submissions for Reshape the Matrix.
+
+Memory Usage: 38.4 MB, less than 100.00% of Java online submissions for Reshape the Matrix.
+
+```java
+public int[][] matrixReshape(int[][] nums, int r, int c) {
+    int numsR = nums.length;				                    // Get rows and col of nums
+    int numsC = nums[0].length;
+    if (numsR * numsC != r*c || (numsR == r && numsC == c))	// If can't reshape or problems
+        return nums;									        // asks to reshape in the same dimensions, return the same array
+    int[][] mat = new int[r][c];			                    // New matrix to be returned
+    int row = 0, col = 0, nR = 0, nC = 0; 	                // To keep track of which element to consume and where to place it in the new matrix
+    while (row != r) {
+        mat[row][col++] = nums[nR][nC++];	                    // Increment only the column value for both
+        if (col == c) {								        // Check if we are at boundary, if so, increment row
+            col = 0;									        // and set col to 0 for both cases.
+            ++row;
         }
-        int diff = 0;
-        int first = 0;
-        boolean firstElemOfPair = true;
-        for (int i = 0; i < seen.length; ++i) {
-            if (seen[i]) {
-                if (firstElemOfPair)
-                    first = i;
-                else
-                    diff += i-first;
-                firstElemOfPair = !firstElemOfPair;
-            }
+        if (nC == numsC) {
+            nC = 0;
+            ++nR;
         }
-        return (sum-diff)/2;
     }
+    return mat;
+  }
 ```
 
