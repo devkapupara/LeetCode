@@ -3858,25 +3858,29 @@ public int[][] matrixReshape(int[][] nums, int r, int c) {
   }
 ```
 
-###[Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)<a name="swap-nodes-in-pairs"></a>
+### [Swap Nodes in Pairs](https://leetcode.com/problems/swap-nodes-in-pairs/)<a name="swap-nodes-in-pairs"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Swap Nodes in Pairs.
+
+Memory Usage: 34.5 MB, less than 100.00% of Java online submissions for Swap Nodes in Pairs.
 
 The idea is simple. We add a dummy node in front for simplicity as it allows us to generalize the concept of getting two nodes at a time. We maintain a current pointer that points to the node in the actual LinkedList. Then, we get it's next and it's next.next and store it into n1 and n2. Now notice that before making n2's next = n1, we need to store n2's next into n1's next. After we do that, we need to make sure that current's next is n2 which is now working with the actual LinkedList. Then, we need to make sure that current.next.next is n1 which we just fixed and update current which is basically n1.
 
 ```java
 public ListNode swapPairs(ListNode head) {
-      ListNode dummy = new ListNode(0);
-      dummy.next = head;
-      ListNode curr = dummy;
-      while (curr.next != null && curr.next.next != null) {
-          ListNode n1 = curr.next;
-          ListNode n2 = n1.next;
-          n1.next = n2.next;
-          curr.next = n2;
-          curr.next.next = n1;
-          curr = curr.next.next;
-      }
-      return dummy.next;
-  }
+    ListNode dummy = new ListNode(0);
+    dummy.next = head;
+    ListNode curr = dummy;
+    while (curr.next != null && curr.next.next != null) {
+        ListNode n1 = curr.next;
+        ListNode n2 = n1.next;
+        n1.next = n2.next;
+        curr.next = n2;
+        curr.next.next = n1;
+        curr = curr.next.next;
+    }
+    return dummy.next;
+}
 ```
 
 
