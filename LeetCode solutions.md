@@ -137,6 +137,7 @@
 135.  [Array Partition I](#array-partition-I)
 136.  [Reshape the matrix](#reshape-the-matrix)
 137.  [Swap Nodes in Pairs](#swap-nodes-in-pairs)
+138.  [Generate Parentheses](#generate-parentheses)
 
 ---
 
@@ -3883,5 +3884,52 @@ public ListNode swapPairs(ListNode head) {
 }
 ```
 
+### [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)<a name="generate-parentheses"></a>
 
+Iterative Approach 1: This one is very slow.
 
+Runtime: 4 ms, faster than 8.87% of Java online submissions for Generate Parentheses.
+
+Memory Usage: 36.1 MB, less than 100.00% of Java online submissions for Generate Parentheses.
+
+The idea is simple. We basically do a BFS and keep track of the parentheses combination we have obtained so far. Poll the queue and check if it's length is 2*n (for a given n, we would have # of open brackets = # of closed brackets), add it to the list and check next combination. If not, then check if we can add an open bracket, add it and update number of open bracket count and add this combination to the queue. Then try to see if we can add a closed bracket, if you can add it, then update closed bracket count add that combination to the queue. Keep doing this until the queue becomes empty. This is the first approach I came up with which is naive as you can see since it's doing an exhaustive search for all valid combination.
+
+```java
+private class Node {
+    private String data;
+    private int open;
+    private int close;
+
+    Node(String s, int o, int c) {
+        data = s;
+        open = o;
+        close = c;
+    }
+}
+
+public List<String> generateParenthesis(int n) {
+    List<String> list = new LinkedList<>();
+    Queue<Node> q = new LinkedList<>();
+    q.add(new Node("(", 1, 0));
+    while (!q.isEmpty()) {
+        Node u = q.poll();
+        if (u.data.length() == 2*n)
+            list.add(u.data);
+        else {
+            Node n1 = new Node(u.data, u.open, u.close);
+            Node n2 = new Node(u.data, u.open, u.close);
+            if (n1.open < n) {
+                n1.data = u.data + '(';
+                ++n1.open;
+                q.add(n1);
+            }
+            if (n2.close < u.open) {
+                n2.data = u.data + ')';
+                ++n2.close;
+                q.add(n2);
+            }
+        }
+    }
+    return list;
+}
+```
