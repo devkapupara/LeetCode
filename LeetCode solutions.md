@@ -3933,3 +3933,28 @@ public List<String> generateParenthesis(int n) {
     return list;
 }
 ```
+
+Recursive Solution 2: This one is much more faster. I generalized the above idea into the fact that I am adding only valid combinations and any invalid combinations are automatically discarded. The logic is as follows: We know for a given n, the string length should be 2*n. So that forms our base case for recursion, if the length of String `s` is `2n`, we want to add it to the list. Otherwise, we check if the number of open brackets we have so far is less than `n`. If so, we can add an open bracket. Then check if number of close bracket is less than `open`, if so that sequence would be valid and add a close bracket and recurse.
+
+Runtime: 1 ms, faster than 95.16% of Java online submissions for Generate Parentheses.
+Memory Usage: 36.1 MB, less than 100.00% of Java online submissions for Generate Parentheses.
+
+```java
+public List<String> generateParenthesis(int n) {
+    List<String> list = new ArrayList<>();
+    helper(list, "(", 1, 0, n);
+    return list;
+}
+
+private void helper(List<String> list, String s, int open, int close, int n) {
+    if (s.length() == 2*n)
+        list.add(s);
+    else {
+        if (open < n)
+            helper(list, s+'(', open+1, close, n);
+        if (close < open)
+            helper(list, s+')', open, close+1, n);
+    }
+}
+```
+
