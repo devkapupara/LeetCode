@@ -140,6 +140,7 @@
 138.  [Generate Parentheses](#generate-parentheses)
 139.  [Distribute Candies](#distribute-candies)
 140.  [Maximum Subproduct Subarray](#maximum-subproduct-subarray)
+141.  [Binary Tree Right Side View](#binary-tree-right-side-view)
 
 ---
 
@@ -3993,6 +3994,43 @@ public int maxProduct(int[] nums) {
         max = Math.max(max, imax);
     }
     return max;
+}
+```
+
+### [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)<a name="binary-tree-right-side-view"></a>
+
+Runtime: 1 ms, faster than 95.45% of Java online submissions for Binary Tree Right Side View.
+
+Memory Usage: 36.3 MB, less than 100.00% of Java online submissions for Binary Tree Right Side View.
+
+This is an interesting problem cause initially, I thought we would always have a complete binary tree and I made my initial solution oriented towards it. But then I saw that it doesn't say that anywhere and it could be any kind of binary tree. So it got me thinking towards a more generalized approach. Notice that to get a right side view of the binary tree, we only need the last value at any given level and put it into the list. So we maintain a queue and also the number of elements we enqueue at each stage. Initially, we put the root node in our queue and our enqueue count is 1. We dequeue exactly that many elements and again enqueue each of those dequeued node's children. Notice that I am using the variable `newEnqueued` to keep track of newly enqueued elements. Lastly, we need to check if we dequeued the last element. If so, that must be a part of the solution since it has to be the rightmost element at that level, so I add it to the list. Update `enqueued` to the new value and repeat until our queue isn't empty.
+
+```java
+public List<Integer> rightSideView(TreeNode root) {
+    List<Integer> list = new ArrayList<>();
+    if (root == null)
+        return list;
+    Queue<TreeNode> q = new LinkedList<>();
+    q.add(root);
+    int enqueued = 1;
+    while (!q.isEmpty()) {
+        int newEnqueued = 0;
+        for (int i = 0; i < enqueued; ++i) {
+            TreeNode u = q.poll();
+            if (u.left != null) {
+                q.add(u.left);
+                ++newEnqueued;
+            }
+            if (u.right != null) {
+                q.add(u.right);
+                ++newEnqueued;
+            }
+            if (i == enqueued-1)
+                list.add(u.val);
+        }
+        enqueued = newEnqueued;
+    }
+    return list;
 }
 ```
 
