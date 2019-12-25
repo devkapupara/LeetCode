@@ -138,6 +138,7 @@
 136.  [Reshape the matrix](#reshape-the-matrix)
 137.  [Swap Nodes in Pairs](#swap-nodes-in-pairs)
 138.  [Generate Parentheses](#generate-parentheses)
+139.  [Distribute Candies](#distribute-candies)
 
 ---
 
@@ -3955,6 +3956,20 @@ private void helper(List<String> list, String s, int open, int close, int n) {
         if (close < open)
             helper(list, s+')', open, close+1, n);
     }
+}
+```
+
+###[Distribute Candies](https://leetcode.com/problems/distribute-candies/)<a name="distribute-candies"></a>
+
+Pretty simple solution. We want to give maximize the number of unique candies to give to the sister. So we maintain a hashset to collect all the unique candies first. Both of them get half the candies, so let `s = number of candies they get`. Now, if the size of the set is greater than or equal to `s`, then the sister only gets `s` candies out of it. Otherwise, the maximum amount of unique candies she can get is equal to the set size.
+
+```java
+public int distributeCandies(int[] candies) {
+    Set<Integer> set = new HashSet<>(candies.length);
+    for (int i: candies)
+        set.add(i);
+    int share = candies.length/2;
+    return set.size() >= share ? share: set.size();
 }
 ```
 
