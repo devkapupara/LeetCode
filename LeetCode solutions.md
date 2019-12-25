@@ -139,6 +139,7 @@
 137.  [Swap Nodes in Pairs](#swap-nodes-in-pairs)
 138.  [Generate Parentheses](#generate-parentheses)
 139.  [Distribute Candies](#distribute-candies)
+140.  [Maximum Subproduct Subarray](#maximum-subproduct-subarray)
 
 ---
 
@@ -3970,6 +3971,28 @@ public int distributeCandies(int[] candies) {
         set.add(i);
     int share = candies.length/2;
     return set.size() >= share ? share: set.size();
+}
+```
+
+### [Maximum subproduct subarray](https://leetcode.com/problems/maximum-product-subarray/)<a name="maximum-subproduct-subarray"></a>
+
+Credits for this simplistic solution to LeetCode user [mzchen](https://leetcode.com/problems/maximum-product-subarray/discuss/48230/Possibly-simplest-solution-with-O(n)-time-complexity). The approach is very clever. Notice that if this problem was about finding maximum sum subarray, then a negative number would break the contiguous array. Here, what it does is that it makes our maximum product minimum when we see a negative number and vice versa. We keep track of maximum and minimum we have so far and check if we have a negative number. If so swap our max and min. Then, find the local maximum and minimum between current number and multiplying that number with our current max or min. After that, update our global max value and keep doing this for all values in the array.
+
+```java
+public int maxProduct(int[] nums) {
+    int max = nums[0];
+    for (int i = 1, imax = max, imin = max; i < nums.length; ++i) {
+        if (nums[i] < 0) {
+            int temp = imax;
+            imax = imin;
+            imin = temp;
+        }
+
+        imax = Math.max(nums[i], imax * nums[i]);
+        imin = Math.min(nums[i], imin * nums[i]);
+        max = Math.max(max, imax);
+    }
+    return max;
 }
 ```
 
