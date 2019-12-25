@@ -141,6 +141,7 @@
 139.  [Distribute Candies](#distribute-candies)
 140.  [Maximum Subproduct Subarray](#maximum-subproduct-subarray)
 141.  [Binary Tree Right Side View](#binary-tree-right-side-view)
+142.  [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
 
 ---
 
@@ -4031,6 +4032,30 @@ public List<Integer> rightSideView(TreeNode root) {
         enqueued = newEnqueued;
     }
     return list;
+}
+```
+
+### [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/submissions/)<a name="find-minimum-in-rotated-sorted-array"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Find Minimum in Rotated Sorted Array.
+
+Memory Usage: 38.6 MB, less than 77.27% of Java online submissions for Find Minimum in Rotated Sorted Array.
+
+```java
+public int findMin(int[] nums) {
+    if (nums.length == 1)									// Base case.
+        return nums[0];
+    int left = 0;
+    int right = nums.length-1;
+    int mid;
+    while (nums[left] > nums[right]) {		// While we are in the ascending order half,
+        mid = (left + right)/2;						// Find the middle element
+        if (nums[mid] >= nums[left])			// If mid element >= left element, then our min
+            left = mid + 1;								// must be in the right half.
+        else
+            right = mid;									// otherwise min in the left half.
+    }
+    return nums[left];										// left points to minimum element.
 }
 ```
 
