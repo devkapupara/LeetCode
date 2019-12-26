@@ -4059,3 +4059,42 @@ public int findMin(int[] nums) {
 }
 ```
 
+### [Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)<a name="binary-search-tree-iterator"></a>
+
+Runtime: 15 ms, faster than 99.74% of Java online submissions for Binary Search Tree Iterator.
+
+Memory Usage: 49.9 MB, less than 93.83% of Java online submissions for Binary Search Tree Iterator.
+
+Logic is same as your In-Order traversal of any Binary Tree, but store the node values you visit in any data structure. Here I am using an ArrayList for storing each of the visited node's value. Maintain `idx` value to keep track of which value to return. `hasNext()` method returns true as long as `idx < list.size()`.
+
+```java
+class BSTIterator {
+    
+    private List<Integer> list;
+    private int idx = 0;
+
+    public BSTIterator(TreeNode root) {
+        list = new ArrayList<>();
+        traverse(root);
+    }
+    
+    private void traverse(TreeNode node) {
+        if (node == null)
+            return;
+        traverse(node.left);
+        list.add(node.val);
+        traverse(node.right);
+    }
+    
+    /** @return the next smallest number */
+    public int next() {
+        return list.get(idx++);
+    }
+    
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return idx != list.size();
+    }
+}
+```
+
