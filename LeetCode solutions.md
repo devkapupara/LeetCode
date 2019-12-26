@@ -144,6 +144,7 @@
 142.  [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
 143.  [Binary Search Tree Iterator](#binary-search-tree-iterator)
 144.  [Find Peak Element](#find-peak-element)
+145.  [Next Permutation](#next-permutation)
 
 ---
 
@@ -4119,4 +4120,44 @@ public int findPeakElement(int[] nums) {
     return low;
 }
 ```
+
+### [Next Permutation](https://leetcode.com/problems/next-permutation/)<a name="next-permutation"></a>
+
+Runtime: 0 ms, faster than 100.00% of Java online submissions for Next Permutation.
+
+Memory Usage: 40.3 MB, less than 47.00% of Java online submissions for Next Permutation.
+
+This one was quite interesting in the sense it seems difficult but is very simple once you try out a few example. If we want to find the next lexicographical greater number, then we need to find a particular index from the right side of the array such that the number after it is greater than itself, because by swapping them would give us a next larger number. So what I first do is find the index of the number such that `num[idx] > num[idx-1]`. We know at this point that all the numbers after that index are reverse sorted, so we need to fix it and sort them in increasing order because lexicographical order demands all the numbers in increasing manner. Example, say `nums = [2,3,1,4,2,1,0]`. You can see that that the next number should be `[2,3,2,0,1,1,4]`. Notice that I replaced the number at index 2 with the first number which is greater than it if the array after index 2 was sorted. This gaurantees us a larger lexicographical number. So the first while loop finds us that index number and then I reverse the array after it. Once you reverse it, we should expect the `nums` array to look like `[2,3,1,0,1,2,4]`. Note that now we need to find the number larger than the number at index 2, which is 1 in this case. The first number greater than 1 is 2, so the second while loop finds it and then we simply swap them to give us the next larger lexicographically greater number => `[2,3,2,0,1,1,4].`
+
+```java
+public void nextPermutation(int[] nums) {
+    if (nums.length < 2)
+        return;
+    int idx = nums.length-1;
+    while (idx > 0 && nums[idx] <= nums[idx-1])
+        --idx;
+    reverse(nums, idx);
+    if (idx == 0)
+        return;
+    int val = nums[idx-1];
+    int i = idx;
+    while (i < nums.length && nums[i] <= val)
+        ++i;
+    swap(nums, i, idx-1);
+}
+
+private void swap(int[] arr, int idx1, int idx2) {
+    int temp = arr[idx1];
+    arr[idx1] = arr[idx2];
+    arr[idx2] = temp;
+}
+
+private void reverse(int[] arr, int start) {
+    int end = arr.length-1;
+    while (start < end)
+        swap(arr, start++, end--);
+}
+```
+
+
 
