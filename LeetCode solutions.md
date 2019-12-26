@@ -143,6 +143,7 @@
 141.  [Binary Tree Right Side View](#binary-tree-right-side-view)
 142.  [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
 143.  [Binary Search Tree Iterator](#binary-search-tree-iterator)
+144.  [Find Peak Element](#find-peak-element)
 
 ---
 
@@ -4096,6 +4097,26 @@ class BSTIterator {
     public boolean hasNext() {
         return idx != list.size();
     }
+}
+```
+
+### [Find Peak Element](https://leetcode.com/problems/find-peak-element/)<a name="find-peak-element"></a>
+
+This question was asked to me for my internship at Yahoo! The idea is simple, we want any one of the peak. So to achieve `O(log n)` time, we have to mimic binary search algorithm. We look at the middle element and check it's neighbor, if it's greater than the middle element, then we know we will have atleast one peak on the right side. Why? Think what could happen. We know that the element next to middle is greater than it, so there are two possibilities on the right side, either elements keep increasing to the right of the middle's next element or we might go up till a particular index and then go down. So in any case, we will have a peak on the right side. On the other case, if the element on the right side is smaller than the middle, then we know that the left half including the middle will have the peak cause middle is already greater than middle's right, so we might have middle as the peak itself.
+
+```java
+public int findPeakElement(int[] nums) {
+    if (nums.length == 1)
+        return 0;
+    int low = nums[0], high = nums.length - 1, mid;
+    while (low < high) {
+        mid = (low + high)/2;
+        if (nums[mid] < nums[mid+1])
+            low = mid+1;
+        else
+            high = mid;
+    }
+    return low;
 }
 ```
 
