@@ -146,6 +146,7 @@
 144.  [Find Peak Element](#find-peak-element)
 145.  [Next Permutation](#next-permutation)
 146.  [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+147.  [Transpose Matrix](#transpose-matrix)
 
 ---
 
@@ -4186,6 +4187,27 @@ public int search(int[] nums, int target) {
         }
     }
     return -1;
+}
+```
+
+### [Transpose Matrix](https://leetcode.com/problems/transpose-matrix/)<a name="transpose-matrix"></a>
+
+Pretty straightforward. Create matrix B of opposite dimensions to those of A. We maintain `br` and `bc` which tracks row and columns of B. We iterate over each element of A and put it in `B[br][bc]` and then ideally we would increment `bc` for an exact copy, but since we want transpose, we increment `br` and then reset it to 0 if we fill all the values in a row and increment column count, giving us the tranpose of the matrix.
+
+```java
+public int[][] transpose(int[][] A) {
+    int[][] B = new int[A[0].length][A.length];
+    int br = 0, bc = 0;
+    for (int i = 0; i < A.length; ++i) {
+        for (int j = 0; j < A[0].length; ++j) {
+            B[br][bc] = A[i][j];
+            if (++br == B.length) {
+                br = 0;
+                ++bc;
+            }
+        }
+    }
+    return B;
 }
 ```
 
