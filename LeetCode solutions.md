@@ -147,6 +147,7 @@
 145.  [Next Permutation](#next-permutation)
 146.  [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
 147.  [Transpose Matrix](#transpose-matrix)
+148.  [Shortest Unsorted Continuous Subarray](#shortest-unsorted-continuous-subarray)
 
 ---
 
@@ -4211,3 +4212,30 @@ public int[][] transpose(int[][] A) {
 }
 ```
 
+### [Shortest Unsorted Continuos Subarray](https://leetcode.com/problems/shortest-unsorted-continuous-subarray/)<a name="shortest-unsorted-continuous-subarray"></a>
+Runtime: 1 ms, faster than 100.00% of Java online submissions for Shortest Unsorted Continuous Subarray.
+Memory Usage: 39.5 MB, less than 100.00% of Java online submissions for Shortest Unsorted Continuous Subarray.
+This is a very tricky problem. Not easy as it is marked. The idea stems from monotonically increasing values and decreasing values. For an unsorted array, we need to find it's left most minimum and right most maximum element which we can then sort. So what I do is start from the left and find the right end. As long as we have increasing elements, keep updated our max. But as soon as we see a number less than the max, we now know that part of the array needs to be sorted, so I updated my `end` variable. Keep doing this till you hit the end of the array. Now we need to find the `start` position of our unsorted array. Idea is again the same. We need to find a break in a monotonically decreasing sequence. Start from the end of the array and keep skipping elements as long as they are decreasing. The moment you find an element greater than its right neighbor, we need to update our `start` position because that part of the array needs to be fixed. Once you found your variables, we know number of elements between `start` and `end` is `end-start+1`, so return it.
+
+```java
+public int findUnsortedSubarray(int[] nums) {
+    int len = nums.length;
+    int max = nums[0], end = -1;
+    for (int i = 1; i < len; ++i) {
+        if (nums[i] >= max)
+	    max = nums[i];
+        else
+	    end = i;
+    }
+    if (end == -1)				// Array was monotonically decreasing, no change in end variable, no need to sort
+        return 0;
+    int min = nums[len-1], start = -1;
+    for (int i = len-2; i > -1; --i) {
+        if (nums[i] <= min)
+	    min = nums[i];
+        else
+	    start = i;
+    }
+    return end-start+1;
+}
+```
