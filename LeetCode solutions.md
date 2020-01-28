@@ -4221,9 +4221,9 @@ public ListNode mergeKLists(ListNode[] lists) {
     if (lists.length == 0)
         return null;
     PriorityQueue<ListNode> pq = new PriorityQueue<>(lists.length, (n1, n2) -> n1.val - n2.val);
-    for (int i = 0; i < lists.length; ++i)
-        if (lists[i] != null)
-            pq.add(lists[i]);
+    for (ListNode ln: lists)
+        if (ln != null)
+            pq.add(ln);
     if (pq.isEmpty())
         return null;
     ListNode node = new ListNode(-1);
