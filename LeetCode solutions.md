@@ -148,6 +148,7 @@
 146.  [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
 147.  [Transpose Matrix](#transpose-matrix)
 148.  [Merge K sorted lists](#merge-k-sorted-lists)
+149.  [Palindrome Number](#palindrome-number)
 
 ---
 
@@ -4236,6 +4237,35 @@ public ListNode mergeKLists(ListNode[] lists) {
     }
 
     return ret.next;
+}
+```
+
+### [Palindrome Number](https://leetcode.com/problems/merge-k-sorted-lists/submissions/)<a name="palindrome-number"></a>
+
+Very elegant solution I found through the [forums](https://www.youtube.com/watch?v=OlTk8wM48ww). I had my implementation of this problem but was only 90% faster so in order to get the best answer, I searched and understood the following solution.
+
+The `if` condition checks for edge cases. Negative numbers cannot be palindrome or any number that ends with a 0 cannot be one either.
+
+The main idea is that if a number is palindrome, then we can divide the original number into half, reverse it and compare it with the other half. They both should be same in order for it to be a palindrome.
+
+**Example 1:** `x = 1221`. In this case, our two halves are `12` and `21`. We reverse the second half giving us `12`. But how do we do that? We simply use modulus operator to extract the last digit and keep adding it to our `half` variable which acts like the sum. Note that we need to multiply half by 10 each time in order to construct a proper number with correct digits at ones, tens or hundreds place. Now, once we reverse the halfs, just compare the remaining of `x` and see if it is equal to `half` or not. 
+
+But what if our number has odd digits? That is where the second condition in the `return` statement comes in handy.
+
+**Example 2:** `x = 12321`. We construct `half` as above and we get `half = 123` and `x = 12` at which point we exit the loop. Now, since we have unequal halves, remember that in a palindrome, the middle digit is basically useless since when reversed, it doesn't change its position. So all we need is to remove that number by dividing it with 10. So our `half` is not 12 and `x` is also 12.
+
+```java
+public boolean isPalindrome(int x) {
+    if (x < 0 || (x != 0 && x % 10 == 0)) {
+			return false;
+		}
+
+		int half = 0;
+		while (x > half) {
+			half = (half * 10) + (x % 10);				// Extract the last digit and add it to half * 10
+			x /= 10;															// Remove the last digit from x
+		}
+		return x == half || x == half / 10;
 }
 ```
 
