@@ -1,9 +1,9 @@
 def knapsack(n: int, capacity: int, weights: list[int], profit: list[float]) -> int:
-	# create a 2D matrix that stores how much profit we can accrue using all items ranging from 0-row.
-	# for example, first row states what is the profit we can use bag capacity of 0, 1, 2, 3 and so on.
-	# row 2 denotes how much profit can we make using both item 1 and 2 and with bag capacity of 0, 1, 2, 3 and so on.
-	# naturally, using 0 (row) items means we cannot make any profit. Similarly, 0th column means profit with bag
-	# capacity = 0 => 0 profit for however many items you got.
+	# create a dp store that stores how much profit we can accrue for partial_capacity upto full_capacity.
+	# for example, initially, we will have everything set to 0. This means that using 0 items, our profit for
+	# all weights ranging from 0 to capacity will be 0. We shall use this to compute the profit that we can
+	# accrue using the next item. When we try to find profit using item 2, we utilize this dp table by checking
+	# checking profit values from the end since we do in place update of the same table.
 	dp = [0 for _ in range(capacity+1)]
 
 	# for all items 1 through n
