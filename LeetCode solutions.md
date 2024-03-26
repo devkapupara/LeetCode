@@ -149,6 +149,7 @@
 147.  [Transpose Matrix](#transpose-matrix)
 148.  [Merge K sorted lists](#merge-k-sorted-lists)
 149.  [Palindrome Number](#palindrome-number)
+150.  [Summary Ranges](#summary-ranges)
 
 ---
 
@@ -4269,3 +4270,21 @@ public boolean isPalindrome(int x) {
 }
 ```
 
+## [Summary Ranges](https://leetcode.com/problems/summary-ranges/)<a name="summary-ranges"></a>
+
+```python
+def summaryRanges(self, nums: List[int]) -> List[str]:
+    result = []
+    idx = 0
+    end_idx = len(nums)
+    while idx < end_idx:
+        start = nums[idx]
+        while (idx < end_idx-1) and (nums[idx+1] - nums[idx] == 1):
+            idx += 1
+        end = nums[idx]
+        idx += 1
+        result.append(f'{start}->{end}' if start != end else f'{start}')
+    return result
+```
+
+The logic for this is simple. I start from the beginning of the list and continue exploring further down the list as long as I have consecutive numbers (checked if the difference between the current and the next number is 1). If so, keep increasing the index till the next number is not a consecutive one. Record the start and end points of that range, but do check if it's a singleton (meaning that the number next to our start is not a consecutive one in which case there is no range). Pay attention to the index range being used in the outer `while` loop and in the inside `while` loop. The outer loop must consider all numbers while the inside loop must stop one short of the length of numbers to ensure we don't run out of bounds. This is a single pass algorithm so it has `O(n)` runtime.
