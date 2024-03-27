@@ -150,6 +150,7 @@
 148.  [Merge K sorted lists](#merge-k-sorted-lists)
 149.  [Palindrome Number](#palindrome-number)
 150.  [Summary Ranges](#summary-ranges)
+151.  [Find the sum of encrypted integers](#find-the-sum-of-encrypted-integers)
 
 ---
 
@@ -4288,3 +4289,21 @@ def summaryRanges(self, nums: List[int]) -> List[str]:
 ```
 
 The logic for this is simple. I start from the beginning of the list and continue exploring further down the list as long as I have consecutive numbers (checked if the difference between the current and the next number is 1). If so, keep increasing the index till the next number is not a consecutive one. Record the start and end points of that range, but do check if it's a singleton (meaning that the number next to our start is not a consecutive one in which case there is no range). Pay attention to the index range being used in the outer `while` loop and in the inside `while` loop. The outer loop must consider all numbers while the inside loop must stop one short of the length of numbers to ensure we don't run out of bounds. This is a single pass algorithm so it has `O(n)` runtime.
+
+### [Find the sum of encrypted integers](https://leetcode.com/problems/find-the-sum-of-encrypted-integers/)<a name="find-the-sum-of-encrypted-integers"></a>
+
+```python
+def sumOfEncryptedInt(self, nums: List[int]) -> int:
+    result = 0
+    for num in nums:
+        power, max_digit = 0, 0
+        while num:
+            digit = num % 10
+            num = num // 10
+            power = power * 10 + 1
+            max_digit = max(digit, max_digit)
+        result += power * max_digit
+    return result
+```
+
+There is a subtle detail here that is very easy to miss and also the genius part of this solution. Conventional logic dictates that we would find the max digit, record how many digits there were in the number and then start multiplying the max digit with powers of 10 for however many digits we get. For example, if our number is 523, our `max_digit = 5` and `exponent=3`. So we would do something like 5\*10^0 + 5\*10^1 + 5\*10^2 = 5 + 50 + 500 = 555. Instead of doing that, all we want is the max digit in all places. So how about we build up the number in such a way that we have 1's everywhere and that is what line 12 is doing and the subtle part of the solution. In our example of 523, our `mul` at the end of the while loop is actually 111 (replaced all digits with just 1's) and after that, we are guaranteed to have our max digit, so just multiply 111 with 5 to get 555.
