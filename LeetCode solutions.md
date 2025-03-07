@@ -4317,8 +4317,6 @@ There is a subtle detail here that is very easy to miss and also the genius part
 
 Use two lists and do an in-order traversal for both the trees, storing values as you traverse in each respective list. Now, use the same idea from Merge-Sort to merge the two sorted lists. This will give you an `O(m+n)` time complexity with `O(m+n)` space because you need additional data structures to hold all the elements.
 
-
-
 #### Optimizations
 
 We can improve the storage by a factor of one whole tree. To do this, we will use a `LinkedList` as a queue where we will first traverse the first tree in order and store all values as we see in this list. This queue will contain all values from the first tree in sorted order. Good! Now, we just need to perform in-order traversal on the second tree but taking care of the values that we see.
@@ -4328,6 +4326,13 @@ Let's say the queue looks like `[-1, 0, 1, 2, 5, 6]` and the left-most node in t
 So, our queue is sorted and we know we will be visiting the second tree in ascending order too. Save up space by just making decisions now. We see `-1` and `0` both are less than or equal to second tree node value. So take them out of the queue and put it in `result` list. Now, we will put the 0 from the second tree node also inside result so we can move on one step higher in the recursion stack. This will again compare that node's value with the value in front of our queue. If it's bigger, then we need to dequeue from the front till we get closed to the new node value now. 
 
 Think of it like this. Using the first tree, we build an ascending queue of numbers like `[-1, 0, 1, 2, 5, 6]` and then looking at each value of the tree, we see where we can place it in the series. So suppose the second tree has these values (arrange them from left to right in a binary tree) `[5, 2, 7, 1, 4, 6]`. The root of the tree is 5 and it's left child is 2, right child 7. 2's left child is 1 and right child is 4. 7's left child is 6. The in-order traversal would yield these values one by one `[1, 2, 4, 5, 6, 7]`. So we take the first value and see where does it fit in the queue. After the 2nd index element, 1. So remove -1, 0 and 1 from the series into a result list. Add our current node value 1, and we move to 2 now. Our queue is now `[2, 5, 6]`. We see a 2 next from the second tree. We dequeue all smaller or equal to 2 elements from our queue into result list and then put the node value, so out result looks like `[-1, 0, 1, 1, 2, 2]` and our queue has `[5]` in it now.
+
+**Benefit**: We are halving our runtime and space requirements
+
+1. Instead of the two extra lists for storing both trees, we use one queue to store only the first tree
+2. We only iterate `(m + n)` times, equal to the number of nodes. In the naive approach, we had to iterate `2(m+n)` times, once to add all elements of the tree and then again (m+n) time to merge them
+
+The new runtime is `O(m+n)` and space storage is `O(m)`
 
 ```java
 public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
