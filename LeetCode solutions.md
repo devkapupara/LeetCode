@@ -2404,34 +2404,51 @@ public int hammingDistance(int x, int y) {
 
 
 ### [String Compression](https://leetcode.com/problems/string-compression/)<a name="string-compression"></a>
+
+- Runtime: 1ms, beats 99.65%
+- Space: 43.30MB, beats 98.11%
+
+Variables:
+
+- `arrayIndex` to keep track of the compressed string built so far
+- `idx` to keep track of current index in the `chars` array
+
+Logic
+
+- Traverse the full string once using `idx` to keep track of current character
+- Count how many characters occur in a sequence until a break
+- We will overwrite the `chars` array by using `arrayIndex` to keep track of the current index to write to
+- Write the character first
+- Then determine if count is greater than 1
+- If less than 10, then just convert the number to character and write it to `chars` increasing the `arrayIndex`
+- If greater than 10, then we will need to write all the digits in the array, so that's what we are doing.
+- Return the `arrayIndex` once done.
+
 ```java
 public int compress(char[] chars) {
-    int len = chars.length;			// No need to reverse array of length 0 or 1
-    if (len < 2)
-        return len;
-    int arrayIndex = 0;				// To maintain the length of new array.
-    int start = 0;					// start index
-    int end = 0;					// end index
-    while (end < len){
-        char first = chars[start];	// Record the char we are looking at.
-        int count = 0;				// count is 0.
-        while (end < len && chars[end] == first){	// while the char is the same
-            ++end;					// increment end to check next char
-            ++count;				// and increment the count.
-        }
-        start = end;				// shift start to end to check next sequence of chars
-        chars[arrayIndex++] = first;	// our arrayIndex points to to the new array's 
-        if (count != 1){				// indices. So copy the first char to arrayIndex.
-            if (count > 1 && count < 10)	//Only if count isn't 1, if count is less than 10
-                chars[arrayIndex++] = (char)(count+'0');	// then we simply convert count to char and write it next to the char we just overwrote.
-            else						// Otherwise, it has many digits. So convert it to
-                for (char c: String.valueOf(count).toCharArray()){	// string and add all it's digit to the array one by one while increment arrayIndex.
-                    chars[arrayIndex++] = c;
-            }
-        }
-    }
-    return arrayIndex;			// Wherever arrayIndex is, is the new length for the array.
-}
+      int arrayIndex = 0;
+      int idx = 0;
+      while (idx < chars.length) {
+          int count = 0;
+          char c = chars[idx];
+          while (idx < chars.length && chars[idx] == c) {
+              count++;
+              idx++;
+          }
+          chars[arrayIndex++] = c;
+          if (count > 1) {
+              if (count < 10) {
+                  chars[arrayIndex++] = (char)(count+'0');
+              }
+              else {
+                  for (char ch: String.valueOf(count).toCharArray()) {
+                      chars[arrayIndex++] = ch;
+                  }
+              }
+          }
+      }
+      return arrayIndex;
+  }
 ```
 
 
