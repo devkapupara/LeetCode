@@ -151,8 +151,8 @@
 149.  [Palindrome Number](#palindrome-number)
 150.  [Summary Ranges](#summary-ranges)
 151.  [Find the sum of encrypted integers](#find-the-sum-of-encrypted-integers)
-152.  [All elements in Two Binary Search Trees](https://leetcode.com/problems/all-elements-in-two-binary-search-trees/description/)<a name = "all-elements-in-two-binary-search-trees"></a>
-153.  [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)<a name="binary-tree-preorder-traversal"></a>
+152.  [All elements in Two Bxinary Search Trees](#all-elements-in-two-binary-search-trees)
+153.  [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
 
 ---
 
