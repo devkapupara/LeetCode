@@ -152,6 +152,7 @@
 150.  [Summary Ranges](#summary-ranges)
 151.  [Find the sum of encrypted integers](#find-the-sum-of-encrypted-integers)
 152.  [All elements in Two Binary Search Trees](https://leetcode.com/problems/all-elements-in-two-binary-search-trees/description/)<a name = "all-elements-in-two-binary-search-trees"></a>
+153.  [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)<a name="binary-tree-preorder-traversal"></a>
 
 ---
 
@@ -4392,3 +4393,25 @@ public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
     }
 ```
 
+
+
+### [Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/description/)<a name="binary-tree-preorder-traversal"></a>
+
+```java
+public List<Integer> preorderTraversal(TreeNode root) {
+    List<Integer> result = new ArrayList<>();
+    traverse(result, root);
+    return result;
+}
+
+private void traverse(List<Integer> list, TreeNode node) {
+    if (node == null) {
+        return;
+    }
+    list.add(node.val);
+    traverse(list, node.left);
+    traverse(list, node.right);
+}
+```
+
+Pretty simple and straightforward. Add the node's value. Then traverse left side and then right side. 
