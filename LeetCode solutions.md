@@ -153,6 +153,7 @@
 151.  [Find the sum of encrypted integers](#find-the-sum-of-encrypted-integers)
 152.  [All elements in Two Bxinary Search Trees](#all-elements-in-two-binary-search-trees)
 153.  [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
+154.  [Sort Colors](#sort-colors)
 
 ---
 
@@ -4415,3 +4416,78 @@ private void traverse(List<Integer> list, TreeNode node) {
 ```
 
 Pretty simple and straightforward. Add the node's value. Then traverse left side and then right side. 
+
+### [Sort Colors](https://leetcode.com/problems/sort-colors/description/)<a name="sort-colors"></a>
+
+This is a very dumb way to do things. This is essentially just counting sort. We have three things to keep track of, so count how many red, whites and blue are there in the box. Then just overwrite `nums` with `0's` first equal to the number of red count. Do the same for white and then blue. Tada! It's sorted in place.
+
+- Runtime: 0ms, beats 100%
+- Space: 41.69MB, beats 96.34%
+
+But of course, this is not in the spirit of the problem. We have to really do it in place, not just tricks like this.
+
+```java
+public void sortColors(int[] nums) {
+    int white = 0;
+    int red = 0;
+    int blue = 0;
+    for (int i: nums) {
+        if (i == 0) {
+            red++;
+        }
+        else if (i == 1) {
+            white++;
+        }
+        else {
+            blue++;
+        }
+    }
+    int idx = 0;
+    while (red-- != 0) {
+        nums[idx++] = 0;
+    }
+    while (white-- != 0) {
+        nums[idx++] = 1;
+    }
+    while (blue-- != 0) {
+        nums[idx++] = 2;
+    }
+}
+```
+
+The actual way to do this is using three pointers. We will collect all reds on the left side of the array, all blue balls on the right side and eventually, all whites will collect in the middle. Traverse through the `nums` array. If you see a red ball, then swap it with the white pointer but increment both red and white pointer. If you see a white ball, then just increment the white pointer. If you see a blue ball, then swap it with the blue pointer and decrement it to prepare for the next blue ball swap.
+
+```java
+public void sortColors(int[] nums) {
+  	// white pointer is used to iterate over the balls, like current pointer
+    int white = 0;
+  	// red pointer to keep track of where to insert red balls
+    int red = 0;
+  	// index where blue balls go
+    int blue = nums.length - 1;
+    while (white <= blue) {
+      	// if we see a red ball, then move it at the red pointers position
+      	// swap the red pointer value with white pointer
+        if (nums[white] == 0) {
+            int w = nums[white];
+            nums[white] = nums[red];
+            nums[red] = w;
+            white++;
+            red++;
+        }
+      	// if it's a white ball, then just move ahead,
+        else if (nums[white] == 1) {
+            white++;
+        }
+      	// it's a blue ball, so move it where blue balls are being gathered
+      	// swap blue and white pointer balls.
+        else {
+            int b = nums[blue];
+            nums[blue] = nums[white];
+            nums[white] = b;
+            blue--;
+        }
+    }
+}
+```
+
