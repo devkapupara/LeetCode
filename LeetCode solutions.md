@@ -154,6 +154,7 @@
 152.  [All elements in Two Bxinary Search Trees](#all-elements-in-two-binary-search-trees)
 153.  [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
 154.  [Sort Colors](#sort-colors)
+155.  [Pow(x,n)](#pow-xn)
 
 ---
 
@@ -4488,6 +4489,38 @@ public void sortColors(int[] nums) {
             blue--;
         }
     }
+}
+```
+
+### [Pow(x,n)](https://leetcode.com/problems/powx-n/description/)<a name="pow-xn"></a>
+
+Couple shortcuts here, especially with `long exp = n`. Don't do that, have cases for boundary checks to prevent overflow instead of wrapping the `int` with a wider `long` data type. Apart from that, key points:
+
+- If `n = 0`, then return 1
+- If negative power, then make it positive and flip our `x` value
+- We will follow binary exponentiation here, each time taking square of `x` to achieve a `O(log(n))` runtime instead of the `O(n)`. 
+  - If our `n` value is odd, then we need to take that extra `n` value we are left with when divided by 2 and multiply it with result to keep it a part of the ongoing product.
+  - If not, then just update our `x` using `old x` value squared
+  - Half the `n` value because we just used up 2 `x`'s in the multiplication.
+- Return result at the end. It is always multiplied by the updated `x` value because we will hit `exp = 1` at the last point where `exp % 2 > 0` condition would be triggered
+
+```java
+public double myPow(double x, int n) {
+    if (n == 0) return 1;
+    long exp = n;
+    if (exp < 0) {
+        exp = -exp;
+        x = 1/x;
+    }
+    double result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            result *= x;
+        }
+        x = x*x;
+        exp = exp / 2;
+    }
+    return result;
 }
 ```
 
