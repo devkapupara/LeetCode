@@ -2962,7 +2962,7 @@ The idea is very simple. We just need to iterate from width = sqrt(area) to 1 an
 
 ```java
 public int[] constructRectangle(int area) {
-		int[] dimensions = {area, 1};		// We know that if nothing works out, n*1 is always
+	int[] dimensions = {area, 1};		// We know that if nothing works out, n*1 is always
     boolean done = false;				// going to be the answer
     int width = (int)Math.sqrt(area);	// We only need to check width from sqrt(area)
     while (!done){						// While not done
