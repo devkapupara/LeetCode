@@ -155,6 +155,7 @@
 153.  [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
 154.  [Sort Colors](#sort-colors)
 155.  [Pow(x,n)](#pow-xn)
+156.  [Maximum Distance](#maximum-distance)
 
 ---
 
@@ -4532,3 +4533,41 @@ public double myPow(double x, int n) {
 }
 ```
 
+### [Maximum Distance](https://leetcode.com/problems/maximum-distance-in-arrays/description/)<a name="maximum-distance"></a>
+
+My initial approach was using two Heaps, one max and other minimum. I stored `Node` object inside each heap. The `Node` data structure had a `val` and `idx` value to store the value and index inside the `arrays` list so that we can avoid taking the global max and min from the same list. However, this is overkilll in terms of space and I realized I only need to keep track of the maximum distance.
+
+So here is the optimized version. We want to keep track of the maxDistance observed so far. We set our global max and min to that of the first list inside our given lists. We know that maximum is going to be at the end of the list and minimum at the front, since it's gauranteed to be sorted. So we then start iterating from index 1 and compare the local min and max vs our global min and max. There are two possibilities now:
+1. Distance 1 = `globalMax - localMin` or
+2. Distance 2 = `localMax - globalMin`
+We can't take `globalMax - globalMin` cause we have to pick elements from different lists
+
+We want to take the maximum of what we have so far and these two distances as our max distance. Take care to update the global min and max everytime we see an element.
+
+At the end, return the max distance observed so far
+
+```java
+public int maxDistance(List<List<Integer>> arrays) {
+    int globalMin = arrays.get(0).get(0);
+    int globalMax = arrays.get(0).get(arrays.get(0).size()-1);
+    int maxDistance = 0;
+
+    for (int i = 1; i < arrays.size(); ++i) {
+        int localMin = arrays.get(i).get(0);
+        int localMax = arrays.get(i).get(arrays.get(i).size()-1);
+
+        int dist1 = globalMax - localMin;
+        int dist2 = localMax - globalMin;
+
+        maxDistance = Math.max(maxDistance, Math.max(dist1, dist2));
+
+        if (localMin < globalMin) {
+            globalMin = localMin;
+        }
+        if (localMax > globalMax) {
+            globalMax = localMax;
+        }
+    }
+    return maxDistance;
+}
+```
