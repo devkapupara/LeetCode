@@ -2962,7 +2962,7 @@ The idea is very simple. We just need to iterate from width = sqrt(area) to 1 an
 
 ```java
 public int[] constructRectangle(int area) {
-    int[] dimensions = {area, 1};		// We know that if nothing works out, n*1 is always
+		int[] dimensions = {area, 1};		// We know that if nothing works out, n*1 is always
     boolean done = false;				// going to be the answer
     int width = (int)Math.sqrt(area);	// We only need to check width from sqrt(area)
     while (!done){						// While not done
@@ -2979,26 +2979,34 @@ public int[] constructRectangle(int area) {
 
 
 ### [Merge Intervals](https://leetcode.com/problems/merge-intervals/)<a name="merge-intervals"></a>
-```java
-public List<Interval> merge(List<Interval> intervals) {
-    if (intervals == null || intervals.size() < 2)
-        return intervals;
-    Collections.sort(intervals, (a,b) -> a.start-b.start);	// Sort the list so we can 
-													// compare adjacent intervals.
-    List<Interval> merged = new ArrayList<>();
-    merged.add(intervals.get(0));					// Add the initial interval.
+The problem definition changed, previously it was using a predefined object Interval, not using raw Arrays.
 
-    for (Interval i: intervals){					// For each interval
-        Interval last = merged.get(merged.size()-1);// Get the last added time.
-        if (i.start > last.end)						// If it's time is greater than the last
-            merged.add(i);							// interval's end, it doesn't overlap
-        else{										// otherwise it does.
-            last.end = last.end > i.end ? last.end : i.end;	// So check which has greater end time, and make the last added interval's time equals that
-            merged.set(merged.size()-1, last);		// And set it as the last added interval
+No problem, we first sort all the given intervals ordered by increasing start time. We will modify the `intervals` array in place by placing the correct interval always at the end of the array using the `k` value. So we start iterating from the index `i` interval. `k` is tracking `0`, tracking `intervals[0]` initially because the first one will always be a part of the merged intervals. Now check if we need to merge `intervals[k]` and `intervals[i]`. If so, pick whoever has the largest end time and set it at `interval[k]`. We don't increment `k` because it could be that the next interval we pick might be needed for comparison against the next interval we see.
+If we don't need to merge, then increment k and set this value as this non-overlapping interval and move on to the next interval. At the end, using `k` value, we know where our merged interval ends in the given `interval` array, so return a the sub-array till that range
+
+```java
+public int[][] merge(int[][] intervals) {
+  	// sort by start times
+    Arrays.sort(intervals, (i1, i2) -> {
+        return i1[0] - i2[0];
+    });
+		
+  	// to track interval to consider and also the length of merged list
+    int k = 0;
+
+  	// look at each interval and compare it with the last interval in our merged list using k
+    for (int i = 1; i < intervals.length; ++i) {
+      	// if you need to merge it, chose the one with the higher end time
+        if (intervals[k][1] >= intervals[i][0]) {
+            intervals[k][1] = Math.max(intervals[k][1], intervals[i][1]);
+        }
+      	// else, just add it to our merged list
+        else {
+            k++;
+            intervals[k] = intervals[i];
         }
     }
-
-    return merged;									// Return the merged list.
+    return Arrays.copyOfRange(intervals, 0, k+1);
 }
 ```
 
