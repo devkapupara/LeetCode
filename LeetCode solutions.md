@@ -156,6 +156,7 @@
 154.  [Sort Colors](#sort-colors)
 155.  [Pow(x,n)](#pow-xn)
 156.  [Maximum Distance](#maximum-distance)
+157.  [The Number of Weak Characters in the Game](#number-of-weak-characters-in-game)
 
 ---
 
@@ -4569,5 +4570,38 @@ public int maxDistance(List<List<Integer>> arrays) {
         }
     }
     return maxDistance;
+}
+```
+
+### [The Number of Weak Characters in the Game](https://leetcode.com/problems/the-number-of-weak-characters-in-the-game/description/)<a name="number-of-weak-characters-in-game"></a>
+
+```java
+public int numberOfWeakCharacters(int[][] properties) {
+    int n = properties.length;
+    int count = 0;
+    
+    // very crucial to understand
+    // the goal is to sort all characters by decreasing attack
+    // if two character has the same attack power, then the one with the lower defense comes first
+    Arrays.sort(properties, (a, b) -> (b[0] == a[0]) ? (a[1] - b[1]) : b[0] - a[0]);
+    
+    // keep track of the maximum defense
+    int maxDefense = 0;
+
+    // go through each character, we are gauranteed to have decreasing attack powers, so just compare
+    // each character's defense against the maxDefense so far
+    for (int i = 0; i < n; i++) {
+        
+        // if it has a lower defense, then it also have a smaller attack compared to its left neighbor, 
+        // so increment weaker character count
+        if (properties[i][1] < maxDefense) {
+            count++;
+        }
+        // always update the maximum defense found so far
+        // that will help us know if the next character in line can be beaten by the character
+        // who has currently the highest defense so far and also highest attack (on the left side)
+        maxDefense = Math.max(maxDefense, properties[i][1]);
+    }
+    return count;
 }
 ```
