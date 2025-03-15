@@ -158,6 +158,7 @@
 156.  [Maximum Distance](#maximum-distance)
 157.  [The Number of Weak Characters in the Game](#number-of-weak-characters-in-game)
 158.  [Remove duplicates from a sorted array](#remove-duplicated-from-sorted-array)
+159.  [Remove elements](#remove-elements)
 
 ---
 
@@ -4626,5 +4627,29 @@ public int removeDuplicates(int[] nums) {
         nums[++idx] = nums[i];
     }
     return idx+1;
+}
+```
+
+### [Remove elements](https://leetcode.com/problems/remove-element/description/)<a name="remove-elements"></a>
+
+```java
+public int removeElement(int[] nums, int val) {
+    // i keeps track of current element
+    // j keeps track of the list without val
+    int i = 0;
+    int j = 0;
+    while (i < nums.length) {
+        // set nums[j] = nums[i]
+        nums[j] = nums[i];
+        // if current element is not equal to val, then our list contains a non-val value
+        // so increment j to know that we found 1 non-val value
+        if (nums[i] != val) {
+            j++;
+        }
+        // increment i to look at next value
+        i++;
+    }
+    // however many non-val values we found is the length of our list
+    return j;
 }
 ```
