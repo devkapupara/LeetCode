@@ -157,6 +157,7 @@
 155.  [Pow(x,n)](#pow-xn)
 156.  [Maximum Distance](#maximum-distance)
 157.  [The Number of Weak Characters in the Game](#number-of-weak-characters-in-game)
+158.  [Remove duplicates from a sorted array](#remove-duplicated-from-sorted-array)
 
 ---
 
@@ -310,7 +311,7 @@ public int efficientDP(int n){
 
 
 
-### [Remove Duplicates from sorted list](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)<a name="remove duplicates from sorted list"></a>
+### [Remove Duplicates from sorted list](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)<a name="remove-duplicates-from-sorted-list"></a>
 ```java
 public ListNode deleteDuplicates(ListNode head){
     ListNode current = head;
@@ -4603,5 +4604,27 @@ public int numberOfWeakCharacters(int[][] properties) {
         maxDefense = Math.max(maxDefense, properties[i][1]);
     }
     return count;
+}
+```
+
+### [Remove Duplicates from a Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/)<a name="remove-duplicated-from-sorted-array"></a>
+
+Runtime: 0ms, beats 100%
+Memory: 44.48MB, beats 98.04%
+
+Very straightforward solution using two pointers. We start with the first element (as referenced by `idx`) of the array and iterate from the second. 
+Skip all elements that match the element at index `idx`. If they don't match, then we have to set the element at `idx+1` to this new element.
+At the end, return `idx+1` to mark the terminating index.
+
+```java
+public int removeDuplicates(int[] nums) {
+    int idx = 0;
+    for (int i = 1; i < nums.length; ++i) {
+        if (nums[idx] == nums[i]) {
+            continue;
+        }
+        nums[++idx] = nums[i];
+    }
+    return idx+1;
 }
 ```
