@@ -4304,6 +4304,23 @@ public boolean isPalindrome(int x) {
 }
 ```
 
+Another very elegant solution. Let us just reconstruct the number in reverse order. Consider `x = 121`. Take the last digit, which is 1. Multiply the running sum by 10 each time we find a digit and add the current digit to it. So `sum` after the first digit is 1. Next digit we have is 2. Multiply `sum` by 10 to get 10 and then we add the next digit 2 to get 12. The last digit we get is 1. Multiply `sum` by 10 to get 120 and add 1 to it to get 121. Compare it against the input `x`. 
+```java
+public boolean isPalindrome(int x) {
+    if (x < 0) {
+        return false;
+    }
+    int n = x;
+    int sum = 0;
+    while (n != 0) {
+        int rem = n % 10;
+        sum = sum*10+rem;
+        n /= 10;
+    }
+    return x == sum;
+}
+```
+
 ## [Summary Ranges](https://leetcode.com/problems/summary-ranges/)<a name="summary-ranges"></a>
 
 ```python
