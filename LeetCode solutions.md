@@ -70,7 +70,7 @@
 68.  [Power Of Three](#power-of-three)
 69.  [Power of Four](#power-of-four)
 70.  [Reverse String](#reverse-string)
-71.  [Implement strStr()](#implement-strstr())
+71.  [Implement strStr()](#implement-strstr)
 72.  [Reverse Vowels of a String](#reverse-vowels-of-a-string)
 73.  [Intersection of two arrays](#intersection-of-two-arrays)
 74.  [Is Perfect Square](#is-perfect-square)
@@ -160,6 +160,7 @@
 158.  [Remove duplicates from a sorted array](#remove-duplicated-from-sorted-array)
 159.  [Remove elements](#remove-elements)
 160.  [Reverse String II](#reverse-string-ii)
+161.  [Remove nth node from the end of linked list](#remove-nth-node-from-end-of-linked-list)
 
 ---
 
@@ -1796,7 +1797,7 @@ public String reverseString(String s) {
 
 
 
-### [Implement strStr()](https://leetcode.com/problems/implement-strstr/submissions/)<a name="implement-strstr()"></a>
+### [Implement strStr()](https://leetcode.com/problems/implement-strstr/submissions/)<a name="implement-strstr"></a>
 ```java
 /*
 The basic idea here is that you only need to iterate haystack length - needle length, and then check the substring of size = needle length in haystack from each index. If you are successfully able to match each character of the needle in the corresponding substring in haystack, return the index you start from. 
@@ -1820,6 +1821,33 @@ public int strStr(String haystack, String needle) {
 												// in the end, nothing matched, so return -1
 ```
 
+They changed the problem name to Find the Index of the First Occurrence in a String. Different approach here than above
+but same idea. Keep checking each character of haystack at a time against the first character of needle. The moment there
+is a match, check all remaining characters of needle versus the next characters from `i` in haystack. If there's a 
+mismatch, skip that instance and move on to the next character in haystack.
+So how do we know if there was a match? Simple! Use `j` to see if it's equal to needle's length. The only way that is
+possible is when we were able to match the full `needle` string.
+
+```java
+public int strStr(String haystack, String needle) {
+    int firstChar = needle.charAt(0);
+    
+    for (int i = 0; i < haystack.length(); ++i) {
+        if (haystack.charAt(i) == firstChar) {
+            int j = 1;
+            for (; j < needle.length() && (i+j) < haystack.length(); ++j) {
+                if (haystack.charAt(i+j) != needle.charAt(j)) {
+                    break;
+                } 
+            }
+            if (j == needle.length()) {
+                return i;
+            }
+        }
+    }
+    return -1;
+}
+```
 
 
 ### [Reverse Vowels of a String](https://leetcode.com/problems/reverse-vowels-of-a-string/)<a name="reverse-vowels-of-a-string"></a>
@@ -4695,5 +4723,29 @@ public String reverseStr(String s, int k) {
         }
     }
     return new String(arr);
+}
+```
+
+### [Remove nth node from end of the linked list](https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/)<a name="remove-nth-node-from-end-of-linked-list"></a>
+
+We'll use the rabbit-tortoise pointer technique. One pointer gets a head start of `n` nodes while the other is at the beginning. We check if the `fast` pointer is null, meaning if we hit the end of the linked list, if so, just return head's next because they want us to basically remove the first node of the list. If `fast` is not null, then we advance both the `slow` and `fast` pointer until `fast` hits the end of the list. If it does, then wherever our `slow` pointer is pointing to is the node whose `next` we want to delete.
+
+```java
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode fast = head, slow = head;
+    for (int i = 0; i < n; ++i) {
+        fast = fast.next;
+    }
+    if (fast == null) {
+        return head.next;
+    }
+    // fast is not null, keep looping till fast hits the end. 
+    while (fast.next != null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    // distance between slow and fast is always `n`
+    slow.next = slow.next.next;
+    return head;
 }
 ```
