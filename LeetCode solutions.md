@@ -4753,13 +4753,14 @@ public ListNode removeNthFromEnd(ListNode head, int n) {
 
 ### [Three Sum](https://leetcode.com/problems/3sum/description/)<a name="three-sum"></a>
 
-Can we reduced this problem to two-sum? That's the trick. To do so, we will first sort the array as it makes our lives 
+Can we reduce this problem to two-sum? That's the trick. To do so, we will first sort the array as it makes our lives 
 so much easier. We fix one of the element using `i`. We also take care to check if similar value has already been taken
-in account or not, hence the first continue. Skip all values that are same. Next, we fix `j` as the element next to `i` and then `k` as the last index in the array `nums`. We add all values at those indices and check, is our total = 0? If so, add
-those numbers to our result list. If `total` > 0, then we need to take a smaller number so we decrement `k` otherwise we 
-need a bigger number so increment `j`. Do this till `j < k`. Special check: If we were able to successfully find a triplet,
-then we need to take care the all values that are equal to `nums[j]` are skipped because it says we cannot use the same
-element twice in a triplet, hence the while loop inside the `total == 0` block to skip all values that are equal to `nums[j]`.
+in account or not, hence the first `continue`. Skip all values that are same. Next, we fix `j` as the element next to `i` 
+and then `k` as the last index in the array `nums`. We add all values at those indices and check, is our total = 0? If so, 
+add those numbers to our result list. If `total` > 0, then we need to take a smaller number so we decrement `k` otherwise 
+we need a bigger number so increment `j`. Do this till `j < k`. Special check: If we were able to successfully find a 
+triplet, then we need to take care the all values that are equal to `nums[j]` are skipped because it says we cannot use the 
+same element twice in a triplet, hence the while loop inside the `total == 0` block to skip all values that are equal to `nums[j]`.
 
 ```java
 public List<List<Integer>> threeSum(int[] nums) {
