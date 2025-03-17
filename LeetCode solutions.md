@@ -159,6 +159,7 @@
 157.  [The Number of Weak Characters in the Game](#number-of-weak-characters-in-game)
 158.  [Remove duplicates from a sorted array](#remove-duplicated-from-sorted-array)
 159.  [Remove elements](#remove-elements)
+160.  [Reverse String II](#reverse-string-ii)
 
 ---
 
@@ -4668,5 +4669,31 @@ public int removeElement(int[] nums, int val) {
     }
     // however many non-val values we found is the length of our list
     return j;
+}
+```
+
+### [Reverse String II](https://leetcode.com/problems/reverse-string-ii/description/)<a name="reverse-string-ii"></a>
+
+Pretty straightforward and readable solution. We will consider blocks of `2k` characters at a time. Once we identify the block, we initialize two pointers, `l` and `r`, pointing to the start and end of the block respectively. For the `r` pointer, we need to take care that we don't go over the length of the string.
+```java
+public String reverseStr(String s, int k) {
+    int len = s.length();
+    if (len == 1) {
+        return s;
+    }
+    char[] arr = s.toCharArray();
+    int l, r;
+    char temp;
+
+    for (int i = 0; i < len; i += 2*k) {
+        l = i;
+        r = Math.min(i+k-1, len-1);
+        while (l < r) {
+            temp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = temp;
+        }
+    }
+    return new String(arr);
 }
 ```
