@@ -162,6 +162,7 @@
 160.  [Reverse String II](#reverse-string-ii)
 161.  [Remove nth node from the end of linked list](#remove-nth-node-from-end-of-linked-list)
 162.  [3 sum](#three-sum)
+163.  [Latest Time by replacing hidden digits](#latest-time-by-replacing-hidden-digits)
 
 ---
 
@@ -4793,5 +4794,53 @@ public List<List<Integer>> threeSum(int[] nums) {
         }
     }
     return res;
+}
+```
+
+### [Latest Time by Replacing Hidden Digits]()<a name="latest-time-by-replacing-hidden-digits"></a>
+
+Pretty straightforward solution. Keep checking all digits and fill them appropriately as per the conditions
+
+```java
+public String maximumTime(String t) {
+    char[] time = t.toCharArray();
+
+    if (time[0] == '?') {
+        if (time[1] == '?') {
+            time[0] = '2';
+            time[1] = '3';
+        }
+        else if (time[1] < 4 + '0') {
+            time[0] = '2';
+        }
+        else {
+            time[0] = '1';
+        }
+    }
+    
+    if (time[1] == '?') {
+        if (time[0] == '2') {
+            time[1] = '3';
+        }
+        else {
+            time[1] = '9';
+        }
+    }
+
+    if (time[3] == '?') {
+        if (time[4] == '?') {
+            time[3] = '5';
+            time[4] = '9';
+        }
+        else {
+            time[3] = '5';
+        }
+    }
+
+    if (time[4] == '?') {
+        time[4] = '9';
+    }
+
+    return new String(time);
 }
 ```
