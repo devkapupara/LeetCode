@@ -163,6 +163,7 @@
 161.  [Remove nth node from the end of linked list](#remove-nth-node-from-end-of-linked-list)
 162.  [3 sum](#three-sum)
 163.  [Latest Time by replacing hidden digits](#latest-time-by-replacing-hidden-digits)
+164.  [Check if the Sentence Is Pangram](#check-if-the-sentence-is-pangram)
 
 ---
 
@@ -4797,7 +4798,7 @@ public List<List<Integer>> threeSum(int[] nums) {
 }
 ```
 
-### [Latest Time by Replacing Hidden Digits]()<a name="latest-time-by-replacing-hidden-digits"></a>
+### [Latest Time by Replacing Hidden Digits](https://leetcode.com/problems/latest-time-by-replacing-hidden-digits/description/)<a name="latest-time-by-replacing-hidden-digits"></a>
 
 Pretty straightforward solution. Keep checking all digits and fill them appropriately as per the conditions
 
@@ -4842,5 +4843,25 @@ public String maximumTime(String t) {
     }
 
     return new String(time);
+}
+```
+
+[Check if the Sentence Is Pangram](https://leetcode.com/problems/check-if-the-sentence-is-pangram/)<a name="check-if-the-sentence-is-pangram"></a>
+
+```java
+public boolean checkIfPangram(String sentence) {
+    if (sentence.length() < 26) {
+        return false;
+    }
+    boolean[] seen = new boolean[26];
+    for (char c: sentence.toCharArray()) {
+        seen[c-'a'] = true;
+    }
+    for (boolean s: seen) {
+        if (s == false) {
+            return false;
+        }
+    }
+    return true;
 }
 ```
