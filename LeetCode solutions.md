@@ -164,6 +164,7 @@
 162.  [3 sum](#three-sum)
 163.  [Latest Time by replacing hidden digits](#latest-time-by-replacing-hidden-digits)
 164.  [Check if the Sentence Is Pangram](#check-if-the-sentence-is-pangram)
+165.  [Maximum Ice Cream Bars](#maximum-ice-cream-bars)
 
 ---
 
@@ -4863,5 +4864,43 @@ public boolean checkIfPangram(String sentence) {
         }
     }
     return true;
+}
+```
+
+[Maximum Ice Cream Bars](https://leetcode.com/problems/maximum-ice-cream-bars/description/)<a name="maximum-ice-cream-bars"></a>
+
+Pretty easy and intuitive solution. The constraint is to use counting sort. We implement a counting sort to sort out the costs of ice-creams.
+After that, we try to buy as many ice-creams as we can greedily. So this is a greedy algorithm.
+
+```java
+public int maxIceCream(int[] costs, int coins) {
+    countSort(costs);
+    int total = 0;
+    int idx = 0;
+    while (idx < costs.length && (coins-costs[idx]) >= 0) {
+        coins -= costs[idx++];
+        total++;
+    }
+    return total;
+}
+
+private void countSort(int[] costs) {
+    int max = 0;
+    for (int c: costs) {
+        if (c > max) {
+            max = c;
+        }
+    }
+    int[] freq = new int[max+1];
+    for (int c: costs) {
+        freq[c]++;
+    }
+    int idx = 0;
+    for (int i = 0; i < freq.length; ++i) {
+        int count = freq[i];
+        for (int j = 0; j < count; j++) {
+            costs[idx++] = i;
+        }
+    }
 }
 ```
